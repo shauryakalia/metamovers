@@ -1,0 +1,9 @@
+.cardhover {
+  width: 20rem;
+}
+
+.cardhover:hover {
+  border: 5px solid #e5eff1;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+}
