@@ -7,6 +7,14 @@ body {
   background: whitesmoke;
 }
 
+.themeClr {
+  color: #1824ef;
+}
+
+.themeBgClr {
+  background-color: #1824ef;
+}
+
 .p-10 {
   padding: 10%;
 }
@@ -30,6 +38,7 @@ body {
   display: inline-block;
   position: relative;
   color: white;
+  cursor: pointer;
 }
 
 .hover-underline-animation:after {
@@ -63,13 +72,14 @@ body {
 }
 
 .homeTitle {
+  margin-top: 5rem;
   font-size: 115px;
   font-weight: bold;
   background: rgb(43, 53, 226);
   background: linear-gradient(
     90deg,
-    rgba(43, 53, 226, 1) 51%,
-    rgba(255, 255, 255, 1) 75%
+    rgba(43, 53, 226, 1) 48%,
+    rgba(255, 255, 255, 1) 64%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,6 +93,15 @@ body {
   color: #0b4daf;
   border-right: 5px solid;
   padding-right: 10px;
+  font-weight: bolder;
+  background: rgb(43, 53, 226);
+  background: linear-gradient(
+    90deg,
+    rgba(43, 53, 226, 1) 66%,
+    rgba(255, 255, 255, 1) 71%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 blink_me {
@@ -107,4 +126,239 @@ blink_me {
 
 .video-content {
   box-shadow: 10px 5px 200px rgb(43, 53, 226) !important;
+}
+
+.footer .navlinks {
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+.shadow-lg {
+  box-shadow: 10px 5px 200px rgb(43, 53, 226) !important;
+}
+
+.service-card {
+  width: 30%;
+  min-height: 290px;
+  text-align: center;
+  padding: 1rem;
+  border: 0;
+  overflow: auto;
+  cursor: default;
+  background-color: whitesmoke;
+}
+
+.team-card {
+  width: 25%;
+  min-height: 290px;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 15px;
+  border: 0;
+  overflow: auto;
+  cursor: default;
+  background-color: whitesmoke;
+  border: 3px solid #265ac1;
+}
+
+.metamoversImg {
+  height: 100px;
+  width: 100px;
+  background: #265ac1;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.animate-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 3px solid transparent;
+}
+
+.animate-border:hover::before {
+  animation: animate 0.4s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+    width: 0;
+    height: 0;
+    border-top-color: #1824ef;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  50% {
+    width: 100%;
+    height: 0;
+    border-top-color: #1824ef;
+    border-right-color: #1824ef;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-top-color: #1824ef;
+    border-right-color: #1824ef;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+}
+
+.animate-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 3px solid transparent;
+}
+
+.animate-border:hover::after {
+  animation: animates 0.4s linear forwards;
+}
+
+@keyframes animates {
+  0% {
+    width: 0;
+    height: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #1824ef;
+  }
+
+  50% {
+    width: 0;
+    height: 100%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #1824ef;
+    border-left-color: #1824ef;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #1824ef;
+    border-left-color: #1824ef;
+  }
+}
+
+.border-bottom-1 {
+  border-bottom: 1px solid gainsboro;
+}
+
+.teamModalTrigger {
+  padding: 10px 30px;
+  border-radius: 25px;
+}
+
+.socialBtn {
+  padding: 5px 10px;
+  font-size: 20px;
+  /* margin: 5px;
+  background: gainsboro;
+  border-radius: 50%; */
+  cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  max-height: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  background: whitesmoke;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
 }

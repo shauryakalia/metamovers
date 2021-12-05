@@ -8,18 +8,25 @@ import loading_url from '../../imgs/Metamovers.png';
 
 const Navbar = ({ title }) => {
   const githubContext = useContext(GithubContext);
+  const scrollToSection = (elemId) => {
+    var element = document.getElementById(elemId);
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light p-5">
-        <a className="navbar-brand text-info" href="about">
+        <span
+          onClick={() => scrollToSection('aboutSection')}
+          className="navbar-brand text-info"
+        >
           <img
             src={loading_url}
             alt="metamovers"
             style={{ marginLeft: '10%' }}
             height="50px"
           />
-        </a>
+        </span>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,32 +42,39 @@ const Navbar = ({ title }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item ">
-              <a href="about" className="nav-link hover-underline-animation">
+              <span
+                onClick={() => scrollToSection('aboutSection')}
+                className="nav-link hover-underline-animation"
+              >
                 About
-              </a>
+              </span>
             </li>
             <li className="nav-item ">
-              <a
-                href="metamovers"
+              <span
+                onClick={() => scrollToSection('metamoversSection')}
                 className="nav-link hover-underline-animation"
               >
                 Metamovers
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a href="roadmap" className="nav-link hover-underline-animation">
-                Roadmap
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a href="theteam" className="nav-link hover-underline-animation">
-                The Team
-              </a>
-            </li>
-            <li className="nav-item ">
-              <span className="navbarBtn shadow-sm">
-                BUY NFT
               </span>
+            </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => scrollToSection('roadMapSection')}
+                className="nav-link hover-underline-animation"
+              >
+                Roadmap
+              </span>
+            </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => scrollToSection('theTeamSection')}
+                className="nav-link hover-underline-animation"
+              >
+                The Team
+              </span>
+            </li>
+            <li className="nav-item ">
+              <span className="navbarBtn shadow-sm">BUY NOW</span>
             </li>
           </ul>
         </div>
