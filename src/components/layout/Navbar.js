@@ -1,43 +1,25 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import GithubContext from "../../context/github_finder/context";
+/* eslint-disable no-unused-vars */
+import React, { useState, useContext } from 'react';
+import { a } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import GithubContext from '../../context/metamovers/context';
+import { isMobile } from 'react-device-detect';
+import loading_url from '../../imgs/Metamovers.png';
 
 const Navbar = ({ title }) => {
   const githubContext = useContext(GithubContext);
-  const [searchUserText, setsearchUserText] = useState("");
-  const [errorpage, seterrorpage] = useState(false);
-
-  const onChange = e => {
-    setsearchUserText(e.target.value);
-  };
-
-  const onSubmit = e => {
-    e.preventDefault();
-    if (searchUserText !== "") {
-      githubContext.searchUsers(searchUserText);
-    } else {
-      seterrorpage(true);
-      setTimeout(function() {
-        seterrorpage(false);
-      }, 1500);
-    }
-  };
 
   return (
     <React.Fragment>
-      {errorpage && (
-        <div className="alert alert-danger mt-5" role="alert">
-          Please specify the user name.
-        </div>
-      )}
-
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <Link className="navbar-brand text-info" to="/">
-          <i className="fas fa-user-circle fa-lg"></i>
-          &nbsp;
-          {title}
-        </Link>
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top p-5">
+        <a className="navbar-brand text-info" href="about">
+          <img
+            src={loading_url}
+            alt="metamovers"
+            style={{ marginLeft: '10%' }}
+            height="50px"
+          />
+        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -51,33 +33,33 @@ const Navbar = ({ title }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item ">
-              <Link className="nav-link" to="AboutUs">
-                About us
-              </Link>
+              <a href="about" className="nav-link">
+                About
+              </a>
+            </li>
+            <li className="nav-item ">
+              <a href="metamovers" className="nav-link">
+                Metamovers
+              </a>
+            </li>
+            <li className="nav-item ">
+              <a href="roadmap" className="nav-link">
+                Roadmap
+              </a>
+            </li>
+            <li className="nav-item ">
+              <a href="theteam" className="nav-link">
+                The Team
+              </a>
+            </li>
+            <li className="nav-item ">
+              <span className="nav-link">
+                BUY NFT
+              </span>
             </li>
           </ul>
-          <form
-            className="form-inline my-2 my-lg-0 ml-auto col-md-10"
-            onSubmit={onSubmit}
-          >
-            <input
-              className="form-control mr-sm-2 col-md-8 ml-auto"
-              type="search"
-              placeholder="Enter Name"
-              aria-label="Search"
-              name="searchUserText"
-              value={searchUserText}
-              onChange={onChange}
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search Github Users
-            </button>
-          </form>
         </div>
       </nav>
     </React.Fragment>
@@ -85,11 +67,11 @@ const Navbar = ({ title }) => {
 };
 
 Navbar.defaultProps = {
-  title: "Page Title"
+  title: 'Page Title',
 };
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default Navbar;

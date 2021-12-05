@@ -1,4 +1,19 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: "Source Sans Pro", sans-serif;
-  background: #e5eff1;
+  font-family: 'Source Sans Pro', sans-serif;
+  background: white;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-item {
+  padding: 0 20px;
 }
