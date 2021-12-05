@@ -4,7 +4,15 @@ html {
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  background: white;
+  background: whitesmoke;
+}
+
+.p-10 {
+  padding: 10%;
+}
+
+.p-15-10 {
+  padding: 18% 10%;
 }
 
 .loader {
@@ -16,4 +24,87 @@ body {
 
 .nav-item {
   padding: 0 20px;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: white;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.homeCoverImg {
+  background-image: url('./imgs/homeBack.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  margin-top: -12%;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+}
+
+.homeTitle {
+  font-size: 115px;
+  font-weight: bold;
+  background: rgb(43, 53, 226);
+  background: linear-gradient(
+    90deg,
+    rgba(43, 53, 226, 1) 51%,
+    rgba(255, 255, 255, 1) 75%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: -20px;
+}
+
+.subTitle {
+  font-size: 20px;
+  text-align: right;
+  width: 50%;
+  color: #0b4daf;
+  border-right: 5px solid;
+  padding-right: 10px;
+}
+
+blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.navbarBtn {
+  background: white;
+  color: blue !important;
+  padding: 8px 26px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  vertical-align: -webkit-baseline-middle;
+}
+
+.video-content {
+  box-shadow: 10px 5px 200px rgb(43, 53, 226) !important;
 }

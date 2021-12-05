@@ -11,7 +11,7 @@ const Navbar = ({ title }) => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light fixed-top p-5">
+      <nav className="navbar navbar-expand-lg navbar-light p-5">
         <a className="navbar-brand text-info" href="about">
           <img
             src={loading_url}
@@ -35,27 +35,30 @@ const Navbar = ({ title }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item ">
-              <a href="about" className="nav-link">
+              <a href="about" className="nav-link hover-underline-animation">
                 About
               </a>
             </li>
             <li className="nav-item ">
-              <a href="metamovers" className="nav-link">
+              <a
+                href="metamovers"
+                className="nav-link hover-underline-animation"
+              >
                 Metamovers
               </a>
             </li>
             <li className="nav-item ">
-              <a href="roadmap" className="nav-link">
+              <a href="roadmap" className="nav-link hover-underline-animation">
                 Roadmap
               </a>
             </li>
             <li className="nav-item ">
-              <a href="theteam" className="nav-link">
+              <a href="theteam" className="nav-link hover-underline-animation">
                 The Team
               </a>
             </li>
             <li className="nav-item ">
-              <span className="nav-link">
+              <span className="navbarBtn shadow-sm">
                 BUY NFT
               </span>
             </li>
