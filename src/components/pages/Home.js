@@ -12,20 +12,38 @@ export const Home = () => {
     getHomeInfo,
     homeInfo,
     teamInfo,
+    metamoversInfo,
     getTeamInfo,
+    getMetamoversInfo,
+    footerInfo,
+    getFooterInfo,
   } = githubContext;
   useEffect(() => {
     getHomeInfo();
     getTeamInfo();
+    getMetamoversInfo();
+    getFooterInfo();
     //eslint-disable-next-line
   }, []);
 
   if (loading) return <Loader />;
   const { title, subtitle, videoUrl, features = [] } = homeInfo;
   const { title: teamTitle, team = [] } = teamInfo;
+  const {
+    title: metaTitle,
+    subtitle: metaSubTitle,
+    metamovers = [],
+  } = metamoversInfo;
   const setMemberInfoFn = (bio) => {
     setMemberInfo(bio);
   };
+  const chunkSize = 3;
+  const chunkMetamovers = [];
+
+  for (let i = 0; i < metamovers.length; i += chunkSize) {
+    chunkMetamovers.push(metamovers.slice(i, chunkSize + i));
+  }
+
   return (
     <>
       <div id="myModal" class={`modal ${memberInfo ? 'd-block' : 'd-none'}`}>
@@ -68,7 +86,9 @@ export const Home = () => {
               </div>
             </div>
             <div>
-              <p className="card-text h6 p-3 overflow-auto">{memberInfo && memberInfo.bio}</p>
+              <p className="card-text h6 p-3 overflow-auto">
+                {memberInfo && memberInfo.bio}
+              </p>
             </div>
           </div>
         </div>
@@ -119,10 +139,11 @@ export const Home = () => {
           <section class="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
             <div class="container">
               <div class="row">
-                <div class="col-6">
-                  <h1 class="mb-3 font-weight-bold">Meet the Metamovers</h1>
+                <div class="col-10">
+                  <h1 class="mb-2 font-weight-bold">{metaTitle}</h1>
+                  <h6 class="mb-2 metamoversSubTitle">{metaSubTitle}</h6>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-2 text-right">
                   <a
                     class="btn btn-light text-primary mb-3 mr-1"
                     href="#carouselExampleIndicators2"
@@ -147,50 +168,26 @@ export const Home = () => {
                     data-ride="carousel"
                   >
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <div class="row">
+                      {chunkMetamovers.map((childChunk, idx) => {
+                        const currentItems = childChunk.map((child2) => (
                           <div class="col-md-4 mb-3">
-                            <div class="card shadow-lg">
-                              <img
-                                class="img-fluid border-0"
-                                alt="100%x280"
-                                src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"
-                              />
+                            <div class="card shadow-lg p-2">
+                              <video
+                                className="metamoversVideo"
+                                src={child2.videourl}
+                                controls
+                              ></video>
                             </div>
                           </div>
-                          <div class="col-md-4 mb-3">
-                            <div class="card shadow-lg">
-                              <img
-                                class="img-fluid border-0"
-                                alt="100%x280"
-                                src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698"
-                              />
-                            </div>
+                        ));
+                        return (
+                          <div
+                            class={`carousel-item ${idx === 0 ? 'active' : ''}`}
+                          >
+                            <div class="row">{currentItems}</div>
                           </div>
-                          <div class="col-md-4 mb-3">
-                            <div class="card shadow-lg">
-                              <img
-                                class="img-fluid border-0"
-                                alt="100%x280"
-                                src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row">
-                          <div class="col-md-4 mb-3">
-                            <div class="card shadow-lg">
-                              <img
-                                class="img-fluid border-0"
-                                alt="100%x280"
-                                src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -204,7 +201,7 @@ export const Home = () => {
           </div>
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
             {team.map(({ name, title, bio, avatar, social }) => (
-              <div className="card team-card shadow-sm m-3">
+              <div className="card teamInfoBox shadow-sm m-3">
                 <img
                   alt=""
                   className="card-img-top metamoversImg shadow-sm mx-auto"
@@ -242,7 +239,7 @@ export const Home = () => {
             ))}
           </div>
         </div>
-        <Footer />
+        <Footer {...footerInfo} />
       </div>
     </>
   );
