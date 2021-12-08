@@ -3,10 +3,12 @@ import React, { useEffect, useContext, useState } from 'react';
 import GithubContext from '../../context/metamovers/context';
 import Loader from '../layout/Loader';
 import Footer from '../layout/Footer';
+import metaGif from '../../imgs/Delroy_Brown.gif';
 const innerHeight = window.innerHeight;
 export const Home = () => {
   const githubContext = useContext(GithubContext);
   const [memberInfo, setMemberInfo] = useState('');
+  const [videoInfo, setVideoInfo] = useState('');
   const {
     loading,
     getHomeInfo,
@@ -17,17 +19,22 @@ export const Home = () => {
     getMetamoversInfo,
     footerInfo,
     getFooterInfo,
+    roadMapInfo,
+    getRoadMapInfo,
   } = githubContext;
   useEffect(() => {
     getHomeInfo();
     getTeamInfo();
     getMetamoversInfo();
     getFooterInfo();
+    getRoadMapInfo();
+    document.addEventListener('click', closeModalOnClickOutside);
+
     //eslint-disable-next-line
   }, []);
 
   if (loading) return <Loader />;
-  const { title, subtitle, videoUrl, features = [] } = homeInfo;
+  const { title, subtitle, videoUrl: mainVideoURL, features = [] } = homeInfo;
   const { title: teamTitle, team = [] } = teamInfo;
   const {
     title: metaTitle,
@@ -37,23 +44,153 @@ export const Home = () => {
   const setMemberInfoFn = (bio) => {
     setMemberInfo(bio);
   };
-  const chunkSize = 3;
+  const chunkSize = 4;
   const chunkMetamovers = [];
 
   for (let i = 0; i < metamovers.length; i += chunkSize) {
     chunkMetamovers.push(metamovers.slice(i, chunkSize + i));
   }
 
+  const { title: roadMapInfoTitle, roadmap = [] } = roadMapInfo;
+
+  const closeModalOnClickOutside = () => {
+    const memberInfoModal = document.getElementById('memberInfoModal');
+    const videoInfoModal = document.getElementById('videoInfoModal');
+    window.onclick = function (event) {
+      if (event.target === memberInfoModal) {
+        setMemberInfo('');
+      }
+
+      if (event.target === videoInfoModal) {
+        setVideoInfo('');
+      }
+    };
+  };
+
+  const animateTimeline = () => {
+    console.log('hi');
+    const line = document.querySelector('.timeline-innerline');
+
+    let i = 0;
+    let i2 = 1;
+    let target1 = document.querySelector('.timeline ul');
+    let target2 = document.querySelectorAll('.timeline ul li');
+
+    const timeline_events = document.querySelectorAll('ul li');
+
+    function showTime(e) {
+      e.setAttribute('done', 'true');
+      e.querySelector('.timeline-point').style.background = 'blue';
+      e.querySelector('.date').style.opacity = '100%';
+      e.querySelector('p').style.opacity = '100%';
+      e.querySelector('p').style.transform = 'translateY(0px)';
+    }
+
+    function hideTime(e) {
+      e.removeAttribute('done');
+      e.querySelector('.timeline-point').style.background =
+        'rgb(228, 228, 228)';
+      e.querySelector('.date').style.opacity = '0%';
+      e.querySelector('p').style.opacity = '0%';
+      e.querySelector('p').style.transform = 'translateY(-10px)';
+    }
+
+    function slowLoop() {
+      setTimeout(function () {
+        showTime(timeline_events[i]);
+        timelineProgress(i + 1);
+        i++;
+        if (i < timeline_events.length) {
+          slowLoop();
+        }
+      }, 800);
+    }
+
+    function timelineProgress(value) {
+      let progress = `${(value / timeline_events.length) * 100}%`;
+      if (window.matchMedia('(min-width: 728px)').matches) {
+        line.style.width = progress;
+        line.style.height = '4px';
+      } else {
+        line.style.height = progress;
+        line.style.width = '4px';
+      }
+    }
+
+    let observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0.9) {
+            if (window.matchMedia('(min-width: 728px)').matches) {
+              slowLoop();
+            } else {
+              showTime(entry.target);
+              timelineProgress(i2);
+              i2++;
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (window.matchMedia('(min-width: 728px)').matches) {
+      observer.observe(target1);
+    } else {
+      target2.forEach((t) => {
+        observer.observe(t);
+      });
+    }
+
+    timeline_events.forEach((li, index) => {
+      li.addEventListener('click', () => {
+        if (li.getAttribute('done')) {
+          timelineProgress(index);
+
+          // hide all timeline events from last upto the point clicked
+          timeline_events.forEach((ev, idx) => {
+            if (idx >= index) {
+              hideTime(ev);
+            }
+          });
+        } else {
+          timelineProgress(index + 1);
+          // show all timeline events from first upto the point clicked
+          timeline_events.forEach((ev, idx) => {
+            if (idx <= index) {
+              showTime(ev);
+            }
+          });
+        }
+      });
+    });
+
+    var doit;
+    window.addEventListener('resize', () => {
+      clearTimeout(doit);
+      doit = setTimeout(resizeEnd, 1200);
+    });
+
+    function resizeEnd() {
+      i = 0;
+      slowLoop();
+    }
+  };
+
   return (
     <>
-      <div id="myModal" class={`modal ${memberInfo ? 'd-block' : 'd-none'}`}>
-        <div class="modal-content">
-          <div class="modal-header">
-            <span onClick={() => setMemberInfo(null)} class="close text-dark">
+      <div
+        id="memberInfoModal"
+        className={`modal ${memberInfo ? 'd-block' : 'd-none'}`}
+      >
+        <div className="modal-content">
+          <div className="modal-header">
+            <span onClick={() => setMemberInfo(null)} className="close text-dark">
               &times;
             </span>
           </div>
-          <div class="modal-body p-2">
+          <div className="modal-body p-2">
             <div className="row">
               <div className="col-md-4 text-center">
                 <img
@@ -77,7 +214,7 @@ export const Home = () => {
                             key={key}
                             onClick={() => window.open(value)}
                           >
-                            <i class={`fab fa-${key}`}></i>
+                            <i className={`fab fa-${key}`}></i>
                           </span>
                         ) : null;
                       }
@@ -95,6 +232,22 @@ export const Home = () => {
       </div>
 
       <div
+        id="videoInfoModal"
+        className={`modal ${videoInfo ? 'd-block' : 'd-none'}`}
+      >
+        <div className="modal-content metamoversVideoModal">
+          <div className="modal-header">
+            <span onClick={() => setVideoInfo(null)} className="close text-dark">
+              &times;
+            </span>
+          </div>
+          <div className="modal-body p-2">
+            <video className="metaMoversVideo" src={videoInfo} controls></video>
+          </div>
+        </div>
+      </div>
+
+      <div
         className="container-fluid homeCoverImg"
         style={{ height: innerHeight }}
       >
@@ -106,15 +259,19 @@ export const Home = () => {
           <div className="subTitle">{subtitle}</div>
         </div>
         <div className="row p-10 w-100 d-flex justify-content-center">
-          <iframe
-            className="shadow-lg"
-            width="90%"
-            height={innerHeight - 102}
-            title={title}
-            src="https://www.youtube.com/embed/OknPSnXlnOY"
-            frameborder="0"
-            allow="accelerometer;fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
+          {mainVideoURL ? (
+            <iframe
+              className="shadow-lg"
+              width="90%"
+              height={innerHeight - 102}
+              title={title}
+              src={`https://www.youtube.com/embed/${
+                mainVideoURL.split('=')[1]
+              }`}
+              frameborder="0"
+              allow="accelerometer;fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          ) : null}
         </div>
         <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
           {features.map(({ title, subtitle, iconUrl }) => (
@@ -136,55 +293,60 @@ export const Home = () => {
           id="metamoversSection"
           className="row themeBgClr mb-5  text-white d-flex justify-content-center"
         >
-          <section class="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-10">
-                  <h1 class="mb-2 font-weight-bold">{metaTitle}</h1>
-                  <h6 class="mb-2 metamoversSubTitle">{metaSubTitle}</h6>
+          <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
+            <div className="container">
+              <div className="row">
+                <div className="col-10">
+                  <h1 className="mb-2 font-weight-bold">{metaTitle}</h1>
+                  <h6 className="mb-2 metamoversSubTitle">{metaSubTitle}</h6>
                 </div>
-                <div class="col-2 text-right">
+                <div className="col-2 text-right">
                   <a
-                    class="btn btn-light text-primary mb-3 mr-1"
+                    className="btn btn-light text-primary mb-3 mr-1"
                     href="#carouselExampleIndicators2"
                     role="button"
                     data-slide="prev"
                   >
-                    <i class="fa fa-arrow-left"></i>
+                    <i className="fa fa-arrow-left"></i>
                   </a>
                   <a
-                    class="btn btn-light text-primary mb-3 "
+                    className="btn btn-light text-primary mb-3 "
                     href="#carouselExampleIndicators2"
                     role="button"
                     data-slide="next"
                   >
-                    <i class="fa fa-arrow-right"></i>
+                    <i className="fa fa-arrow-right"></i>
                   </a>
                 </div>
-                <div class="col-12 mt-3">
+                <div className="col-12 mt-3">
                   <div
                     id="carouselExampleIndicators2"
-                    class="carousel slide"
+                    className="carousel slide"
                     data-ride="carousel"
                   >
-                    <div class="carousel-inner">
+                    <div className="carousel-inner">
                       {chunkMetamovers.map((childChunk, idx) => {
                         const currentItems = childChunk.map((child2) => (
-                          <div class="col-md-4 mb-3">
-                            <div class="card shadow-lg p-2">
-                              <video
-                                className="metamoversVideo"
-                                src={child2.videourl}
-                                controls
-                              ></video>
+                          <div className="col-md-3 mb-3">
+                            <div className="card shadow-lg border-0 text-dark">
+                              <img
+                                className="card-img-top metamoversVideo"
+                                src={
+                                  child2.videoGif
+                                    ? `${child2.videoGif}.gif`
+                                    : metaGif
+                                }
+                                alt={`${child2.name}`}
+                                onClick={() => setVideoInfo(child2.videourl)}
+                              />
                             </div>
                           </div>
                         ));
                         return (
                           <div
-                            class={`carousel-item ${idx === 0 ? 'active' : ''}`}
+                            className={`carousel-item ${idx === 0 ? 'active' : ''}`}
                           >
-                            <div class="row">{currentItems}</div>
+                            <div className="row">{currentItems}</div>
                           </div>
                         );
                       })}
@@ -194,6 +356,34 @@ export const Home = () => {
               </div>
             </div>
           </section>
+        </div>
+        <div id="roadMapSection" onscroll={() => animateTimeline()}>
+          <div className="row d-flex justify-content-center">
+            <h1 className="font-weight-bold border-bottom-1">
+              {roadMapInfoTitle}
+            </h1>
+          </div>
+          <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
+            <div className="col-md-6">
+              <section className="timeline">
+                <div className="timeline-line">
+                  <span className="timeline-innerline"></span>
+                </div>
+                <ul>
+                  {roadmap.map((childRoadMap) => (
+                    <li key={childRoadMap.sno}>
+                      <span className="timeline-point font-weight-bold"></span>
+                      <span className="date font-weight-bold">
+                        {childRoadMap.title}
+                      </span>
+                      <p>{childRoadMap.subtitle}</p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+            <div className="col-md-6">dance</div>
+          </div>
         </div>
         <div id="theTeamSection">
           <div className="row d-flex justify-content-center">
@@ -219,7 +409,7 @@ export const Home = () => {
                           key={key}
                           onClick={() => window.open(value)}
                         >
-                          <i class={`fab fa-${key}`}></i>
+                          <i className={`fab fa-${key}`}></i>
                         </span>
                       ) : null;
                     })}
@@ -227,7 +417,7 @@ export const Home = () => {
 
                   <button
                     type="button"
-                    class="btn btn-primary teamModalTrigger"
+                    className="btn btn-primary teamModalTrigger"
                     onClick={() =>
                       setMemberInfoFn({ name, title, bio, avatar, social })
                     }

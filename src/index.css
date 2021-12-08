@@ -84,6 +84,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: -20px;
+  /* color: #212b56; */
 }
 
 .subTitle {
@@ -102,6 +103,7 @@ body {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* color: #212b56; */
 }
 
 blink_me {
@@ -400,6 +402,7 @@ blink_me {
   border-radius: 5px;
   -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
 }
 
 .metamoversVideo::after {
@@ -417,6 +420,14 @@ blink_me {
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.metamoversVideoModal {
+  width: 400px;
+}
+
+.metaMoversVideo {
+  width: 100%;
+}
+
 .metamoversVideo:hover {
   -webkit-transform: scale(1.09, 1.09);
   transform: scale(1.09, 1.09);
@@ -429,4 +440,5 @@ blink_me {
 .metamoversSubTitle {
   border-left: 5px solid white;
   padding-left: 10px;
+  line-height: 23px;
 }

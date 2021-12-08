@@ -33,7 +33,7 @@ const Footer = ({ logo, social = [] }) => {
           </span>
           <span
             className="navlinks"
-            onClick={() => scrollToSection('roadMapSectioon')}
+            onClick={() => scrollToSection('roadMapSection')}
           >
             Roadmap
           </span>
@@ -50,13 +50,13 @@ const Footer = ({ logo, social = [] }) => {
           <div>
             {Object.entries(updatedSocial).map(([key, value]) => (
               <a
-                class={`btn btn-floating  m-1 text-white ${
+                className={`btn btn-floating  m-1 text-white ${
                   value ? '' : 'd-none'
                 }`}
                 href={value || '#!'}
                 role="button"
               >
-                <i class={`fab fa-${key}`}></i>
+                <i className={`fab fa-${key}`}></i>
               </a>
             ))}
           </div>
