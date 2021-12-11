@@ -5,19 +5,33 @@ import PropTypes from 'prop-types';
 import GithubContext from '../../context/metamovers/context';
 import { isMobile } from 'react-device-detect';
 import loading_url from '../../imgs/Metamovers.png';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ title }) => {
+  const navigate = useNavigate();
   const githubContext = useContext(GithubContext);
   const scrollToSection = (elemId) => {
     var element = document.getElementById(elemId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [blcktxt, setBlacktxt] = useState(false);
+
+  const redirectPage = (url, scrollTo) => {
+    navigate(url);
+    if (scrollTo) scrollToSection(scrollTo);
+    if (['/buyNow'].includes(url)) {
+      setBlacktxt(true);
+    } else {
+      setBlacktxt(false);
+    }
+  };
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light p-5">
         <span
-          onClick={() => scrollToSection('aboutSection')}
+          onClick={() => redirectPage('/', 'aboutSection')}
           className="navbar-brand text-info"
         >
           <img
@@ -43,8 +57,10 @@ const Navbar = ({ title }) => {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item ">
               <span
-                onClick={() => scrollToSection('aboutSection')}
-                className="nav-link hover-underline-animation"
+                onClick={() => redirectPage('/', 'aboutSection')}
+                className={`nav-link hover-underline-animation ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
                 About
               </span>
@@ -52,7 +68,9 @@ const Navbar = ({ title }) => {
             <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('metamoversSection')}
-                className="nav-link hover-underline-animation"
+                className={`nav-link hover-underline-animation ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
                 Metamovers
               </span>
@@ -60,7 +78,9 @@ const Navbar = ({ title }) => {
             <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('roadMapSection')}
-                className="nav-link hover-underline-animation"
+                className={`nav-link hover-underline-animation ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
                 Roadmap
               </span>
@@ -68,13 +88,20 @@ const Navbar = ({ title }) => {
             <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('theTeamSection')}
-                className="nav-link hover-underline-animation"
+                className={`nav-link hover-underline-animation ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
                 The Team
               </span>
             </li>
             <li className="nav-item ">
-              <span className="navbarBtn shadow-sm">BUY NOW</span>
+              <span
+                className="navbarBtn shadow-sm"
+                onClick={() => redirectPage('/buyNow')}
+              >
+                BUY NOW
+              </span>
             </li>
           </ul>
         </div>

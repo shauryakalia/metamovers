@@ -89,7 +89,7 @@ export const Home = () => {
 
     scrolled = (scrolled / 10) * 1.5;
 
-    let dgSrc = 1;
+    let dgSrc = dg1;
     if (scrolled > 1 && scrolled <= 10) dgSrc = dg1;
     if (scrolled > 10 && scrolled <= 20) dgSrc = dg2;
     if (scrolled > 20 && scrolled <= 30) dgSrc = dg3;
@@ -122,7 +122,10 @@ export const Home = () => {
               &times;
             </span>
           </div>
-          <div className="modal-body p-2 infoModalBody">
+          <div
+            className="modal-body p-2"
+            style={{ overflow: 'auto', overflowX: 'hidden' }}
+          >
             <div className="row">
               <div className="col-md-4 text-center">
                 <img
@@ -307,7 +310,7 @@ export const Home = () => {
             <div className="col-md-6">
               <div class="header">
                 <div class="progress-container">
-                  <div class="progress-bar" id="myTimelineBar"></div>
+                  <div class="custom-progress-bar" id="myTimelineBar"></div>
                 </div>
               </div>
               <section className="timeline">

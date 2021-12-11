@@ -64,11 +64,6 @@ body {
   transform-origin: bottom left;
 }
 
-.infoModalBody {
-  overflow: 'auto' !important;
-  overflowx: 'hidden' !important;
-}
-
 .homeCoverImg {
   background-image: url('./imgs/homeBack.png');
   background-position: right;
@@ -83,8 +78,23 @@ body {
 }
 
 .nav-link {
-  color: white !important;
   font-weight: bold;
+}
+
+.buyNowBtn {
+  position: absolute;
+  bottom: 0;
+}
+
+.buyNowBtn2 {
+  position: absolute;
+  bottom: 0;
+  left: 150px;
+}
+
+.byNowImg {
+  position: relative !important;
+  left: -70px !important;
 }
 
 .homeTitle {
@@ -492,7 +502,7 @@ blink_me {
   background: #ccc;
 }
 
-.progress-bar {
+.custom-progress-bar {
   height: 5px;
   background: rgb(43, 53, 226);
   background: linear-gradient(90deg, rgb(43 53 226 / 56%) 23%, #065b9c 46%);
