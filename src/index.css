@@ -472,7 +472,7 @@ blink_me {
 
 .progress-container {
   width: 1%;
-  height: 350px;
+  height: 450px;
   background: #ccc;
 }
 
@@ -484,7 +484,7 @@ blink_me {
 
 .timeline {
   position: relative;
-  top: -350px;
+  top: -480px;
   left: -12px;
 }
 
@@ -495,7 +495,7 @@ blink_me {
 .roadMapSectionStyle {
   position: relative;
   top: 0px;
-  height: 85%;
+  height: 120%;
 }
 
 .timeline ol {
@@ -508,7 +508,7 @@ blink_me {
   margin: 0 0 0.5rem 0;
   counter-increment: my-awesome-counter;
   position: relative;
-  height: 100px;
+  height: 150px;
 }
 
 .timeline ol li::before {

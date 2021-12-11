@@ -181,7 +181,7 @@ export const Home = () => {
             ></iframe>
           ) : null}
         </div>
-        <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
+        <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center featureSection">
           {features.map(({ title, subtitle, iconUrl }) => (
             <div className="card animate-border service-card m-3">
               <img
@@ -275,6 +275,7 @@ export const Home = () => {
               {roadMapInfoTitle}
             </h1>
           </div>
+          <br />
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
             <div className="col-md-6">
               <div class="header">
@@ -299,7 +300,7 @@ export const Home = () => {
             <div className="col-md-6">dance</div>
           </div>
         </div>
-        <div id="theTeamSection">
+        <div id="theTeamSection" className="meetTheTeamSection">
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">{teamTitle}</h1>
           </div>
