@@ -6,7 +6,7 @@ const Loader = () => {
     <img
       src={loading_url}
       alt="metamovers"
-      height="150px"
+      height="200px"
       className="loader"
     />
   );

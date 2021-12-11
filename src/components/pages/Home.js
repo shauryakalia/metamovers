@@ -186,7 +186,10 @@ export const Home = () => {
       >
         <div className="modal-content">
           <div className="modal-header">
-            <span onClick={() => setMemberInfo(null)} className="close text-dark">
+            <span
+              onClick={() => setMemberInfo(null)}
+              className="close text-dark"
+            >
               &times;
             </span>
           </div>
@@ -195,7 +198,7 @@ export const Home = () => {
               <div className="col-md-4 text-center">
                 <img
                   alt=""
-                  className="card-img-top metamoversImg shadow-sm mx-auto"
+                  className="card-img-top meetTheTeamImg shadow-sm mx-auto"
                   src={memberInfo && memberInfo.avatar}
                 />
               </div>
@@ -237,7 +240,10 @@ export const Home = () => {
       >
         <div className="modal-content metamoversVideoModal">
           <div className="modal-header">
-            <span onClick={() => setVideoInfo(null)} className="close text-dark">
+            <span
+              onClick={() => setVideoInfo(null)}
+              className="close text-dark"
+            >
               &times;
             </span>
           </div>
@@ -275,23 +281,23 @@ export const Home = () => {
         </div>
         <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
           {features.map(({ title, subtitle, iconUrl }) => (
-            <div className="card animate-border service-card shadow-sm m-3">
+            <div className="card animate-border service-card m-3">
               <img
                 alt=""
                 className="card-img-top metamoversImg shadow-sm mx-auto"
                 src={iconUrl}
               />
               <div className="card-body">
-                <p className="card-text h4 font-weight-bolder mb-3">{title}</p>
+                <p className="card-text h5 font-weight-bolder mb-3">{title}</p>
                 <hr />
-                <p className="card-text h6 text-secondary">{subtitle}</p>
+                <p className="card-text h6 text-grey">{subtitle}</p>
               </div>
             </div>
           ))}
         </div>
         <div
           id="metamoversSection"
-          className="row themeBgClr mb-5  text-white d-flex justify-content-center"
+          className="row metamoversSectionBg mb-5  text-white d-flex justify-content-center"
         >
           <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
             <div className="container">
@@ -327,14 +333,12 @@ export const Home = () => {
                     <div className="carousel-inner">
                       {chunkMetamovers.map((childChunk, idx) => {
                         const currentItems = childChunk.map((child2) => (
-                          <div className="col-md-3 mb-3">
-                            <div className="card shadow-lg border-0 text-dark">
+                          <div className="col-md-3 mb-3 mt-3">
+                            <div className="card shadow-lg border-0 text-dark rounded">
                               <img
                                 className="card-img-top metamoversVideo"
                                 src={
-                                  child2.videoGif
-                                    ? `${child2.videoGif}.gif`
-                                    : metaGif
+                                  child2.gifUrl ? `${child2.gifUrl}` : metaGif
                                 }
                                 alt={`${child2.name}`}
                                 onClick={() => setVideoInfo(child2.videourl)}
@@ -344,7 +348,9 @@ export const Home = () => {
                         ));
                         return (
                           <div
-                            className={`carousel-item ${idx === 0 ? 'active' : ''}`}
+                            className={`carousel-item ${
+                              idx === 0 ? 'active' : ''
+                            }`}
                           >
                             <div className="row">{currentItems}</div>
                           </div>
@@ -357,8 +363,8 @@ export const Home = () => {
             </div>
           </section>
         </div>
-        <div id="roadMapSection" onscroll={() => animateTimeline()}>
-          <div className="row d-flex justify-content-center">
+        <div id="roadMapSection" className="mb-5" onscroll={() => animateTimeline()}>
+          <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">
               {roadMapInfoTitle}
             </h1>
@@ -386,7 +392,7 @@ export const Home = () => {
           </div>
         </div>
         <div id="theTeamSection">
-          <div className="row d-flex justify-content-center">
+          <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">{teamTitle}</h1>
           </div>
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
@@ -394,7 +400,7 @@ export const Home = () => {
               <div className="card teamInfoBox shadow-sm m-3">
                 <img
                   alt=""
-                  className="card-img-top metamoversImg shadow-sm mx-auto"
+                  className="card-img-top meetTheTeamImg shadow-sm mx-auto"
                   src={avatar}
                 />
                 <div className="card-body">

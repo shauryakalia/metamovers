@@ -1,9 +1,14 @@
+@font-face {
+  font-family: mySFFont;
+  src: url(SFFont.ttf);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: mySFFont;
   background: whitesmoke;
 }
 
@@ -78,8 +83,8 @@ body {
   background: rgb(43, 53, 226);
   background: linear-gradient(
     90deg,
-    rgba(43, 53, 226, 1) 48%,
-    rgba(255, 255, 255, 1) 64%
+    rgba(43, 53, 226, 1) 23%,
+    rgba(5, 13, 47, 1) 46%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -98,8 +103,8 @@ body {
   background: rgb(43, 53, 226);
   background: linear-gradient(
     90deg,
-    rgba(43, 53, 226, 1) 66%,
-    rgba(255, 255, 255, 1) 71%
+    rgba(43, 53, 226, 1) 23%,
+    rgba(5, 13, 47, 1) 46%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,22 +153,28 @@ blink_me {
 }
 
 .service-card {
-  width: 30%;
+  width: 25%;
   min-height: 290px;
   text-align: center;
   padding: 1rem;
   border: 0;
   overflow: auto;
   cursor: default;
-  /* background-color: whitesmoke; */
 }
 
 .metamoversImg {
   height: 80px;
   width: 80px;
-  background: #265ac1;
-  border-radius: 50%;
-  padding: 5px;
+  background: #072884;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.meetTheTeamImg {
+  height: 160px;
+  width: 160px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .animate-border::before {
@@ -362,7 +373,7 @@ blink_me {
   overflow: auto;
   cursor: default;
   background-color: whitesmoke;
-  border: 3px solid #265ac1;
+  border: 1px solid #265ac1;
   position: relative;
   display: inline-block;
   background-color: #fff;
@@ -389,8 +400,25 @@ blink_me {
 }
 
 .teamInfoBox:hover {
-  -webkit-transform: scale(1.09, 1.09);
-  transform: scale(1.09, 1.09);
+  -webkit-transform: scale(1.07, 1.07);
+  transform: scale(1.07, 1.07);
+}
+
+.metamoversSectionBg {
+  background: rgb(20, 82, 214);
+  background: linear-gradient(
+    90deg,
+    rgba(20, 82, 214, 1) 0%,
+    rgba(29, 195, 190, 1) 100%
+  );
+}
+
+.theTeamSectionBg {
+  background: rgb(20, 82, 214);
+  background: linear-gradient(
+    90deg,
+    rgba(29, 195, 190, 1) 0% rgba(20, 82, 214, 1) 100%
+  );
 }
 
 .teamInfoBox:hover::after {
@@ -399,7 +427,6 @@ blink_me {
 
 .metamoversVideo {
   width: 100%;
-  border-radius: 5px;
   -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   cursor: pointer;
