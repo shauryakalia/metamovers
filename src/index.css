@@ -64,11 +64,22 @@ body {
   transform-origin: bottom left;
 }
 
+.infoModalBody {
+  overflow: 'auto' !important;
+  overflowx: 'hidden' !important;
+}
+
 .homeCoverImg {
   background-image: url('./imgs/homeBack.png');
   background-position: right;
   background-repeat: no-repeat;
   margin-top: -12%;
+}
+
+.dancingGirlSectionBg {
+  background-image: url('./imgs/back.png');
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 .nav-link {
@@ -119,6 +130,11 @@ blink_me {
   50% {
     opacity: 0;
   }
+}
+
+.dgImage {
+  height: 655px;
+  margin-top: -20%;
 }
 
 .navbarBtn {

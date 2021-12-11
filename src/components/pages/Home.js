@@ -4,11 +4,24 @@ import GithubContext from '../../context/metamovers/context';
 import Loader from '../layout/Loader';
 import Footer from '../layout/Footer';
 import metaGif from '../../imgs/Delroy_Brown.gif';
+import dg1 from '../../imgs/1.png';
+import dg2 from '../../imgs/2.png';
+import dg3 from '../../imgs/3.png';
+import dg4 from '../../imgs/4.png';
+import dg5 from '../../imgs/5.png';
+import dg6 from '../../imgs/6.png';
+import dg7 from '../../imgs/7.png';
+import dg8 from '../../imgs/8.png';
+import dg9 from '../../imgs/9.png';
+import dg10 from '../../imgs/10.png';
+import dg11 from '../../imgs/11.png';
+
 const innerHeight = window.innerHeight;
 export const Home = () => {
   const githubContext = useContext(GithubContext);
   const [memberInfo, setMemberInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState('');
+  const [dgImageSrc, setDgImageSrc] = useState(dg1);
   const {
     loading,
     getHomeInfo,
@@ -75,8 +88,22 @@ export const Home = () => {
     else scrolled = scrolled - 2000;
 
     scrolled = (scrolled / 10) * 1.5;
-    if (scrolled > 100) scrolled = 100;
 
+    let dgSrc = 1;
+    if (scrolled > 1 && scrolled <= 10) dgSrc = dg1;
+    if (scrolled > 10 && scrolled <= 20) dgSrc = dg2;
+    if (scrolled > 20 && scrolled <= 30) dgSrc = dg3;
+    if (scrolled > 30 && scrolled <= 40) dgSrc = dg4;
+    if (scrolled > 40 && scrolled <= 50) dgSrc = dg5;
+    if (scrolled > 50 && scrolled <= 60) dgSrc = dg6;
+    if (scrolled > 60 && scrolled <= 70) dgSrc = dg7;
+    if (scrolled > 70 && scrolled <= 80) dgSrc = dg8;
+    if (scrolled > 80 && scrolled <= 90) dgSrc = dg9;
+    if (scrolled > 90 && scrolled <= 100) dgSrc = dg10;
+    if (scrolled > 100) dgSrc = dg11;
+    setDgImageSrc(dgSrc);
+
+    if (scrolled > 100) scrolled = 100;
     document.getElementById('myTimelineBar').style.height = scrolled + '%';
   };
 
@@ -95,7 +122,7 @@ export const Home = () => {
               &times;
             </span>
           </div>
-          <div className="modal-body p-2">
+          <div className="modal-body p-2 infoModalBody">
             <div className="row">
               <div className="col-md-4 text-center">
                 <img
@@ -297,7 +324,9 @@ export const Home = () => {
                 </ol>
               </section>
             </div>
-            <div className="col-md-6">dance</div>
+            <div className="col-md-6 dancingGirlSectionBg">
+              <img alt="" className="dgImage" src={dgImageSrc} />
+            </div>
           </div>
         </div>
         <div id="theTeamSection" className="meetTheTeamSection">
