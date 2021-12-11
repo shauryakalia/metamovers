@@ -469,3 +469,62 @@ blink_me {
   padding-left: 10px;
   line-height: 23px;
 }
+
+.progress-container {
+  width: 1%;
+  height: 350px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 5px;
+  background: rgb(43, 53, 226);
+  background: linear-gradient(90deg, rgb(43 53 226 / 56%) 23%, #065b9c 46%);
+}
+
+.timeline {
+  position: relative;
+  top: -350px;
+  left: -12px;
+}
+
+.timeline li {
+  padding-left: 15px;
+}
+
+.roadMapSectionStyle {
+  position: relative;
+  top: 0px;
+  height: 85%;
+}
+
+.timeline ol {
+  counter-reset: my-awesome-counter;
+  list-style: none;
+  padding-left: 40px;
+}
+
+.timeline ol li {
+  margin: 0 0 0.5rem 0;
+  counter-increment: my-awesome-counter;
+  position: relative;
+  height: 100px;
+}
+
+.timeline ol li::before {
+  content: counter(my-awesome-counter);
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  --size: 32px;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  background: gainsboro;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 0 #999;
+}

@@ -29,7 +29,6 @@ export const Home = () => {
     getFooterInfo();
     getRoadMapInfo();
     document.addEventListener('click', closeModalOnClickOutside);
-
     //eslint-disable-next-line
   }, []);
 
@@ -68,114 +67,17 @@ export const Home = () => {
   };
 
   const animateTimeline = () => {
-    console.log('hi');
-    const line = document.querySelector('.timeline-innerline');
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
 
-    let i = 0;
-    let i2 = 1;
-    let target1 = document.querySelector('.timeline ul');
-    let target2 = document.querySelectorAll('.timeline ul li');
+    let scrolled = winScroll;
+    if (scrolled > 3000) scrolled = scrolled - 3000;
+    else scrolled = scrolled - 2000;
 
-    const timeline_events = document.querySelectorAll('ul li');
+    scrolled = (scrolled / 10) * 1.5;
+    if (scrolled > 100) scrolled = 100;
 
-    function showTime(e) {
-      e.setAttribute('done', 'true');
-      e.querySelector('.timeline-point').style.background = 'blue';
-      e.querySelector('.date').style.opacity = '100%';
-      e.querySelector('p').style.opacity = '100%';
-      e.querySelector('p').style.transform = 'translateY(0px)';
-    }
-
-    function hideTime(e) {
-      e.removeAttribute('done');
-      e.querySelector('.timeline-point').style.background =
-        'rgb(228, 228, 228)';
-      e.querySelector('.date').style.opacity = '0%';
-      e.querySelector('p').style.opacity = '0%';
-      e.querySelector('p').style.transform = 'translateY(-10px)';
-    }
-
-    function slowLoop() {
-      setTimeout(function () {
-        showTime(timeline_events[i]);
-        timelineProgress(i + 1);
-        i++;
-        if (i < timeline_events.length) {
-          slowLoop();
-        }
-      }, 800);
-    }
-
-    function timelineProgress(value) {
-      let progress = `${(value / timeline_events.length) * 100}%`;
-      if (window.matchMedia('(min-width: 728px)').matches) {
-        line.style.width = progress;
-        line.style.height = '4px';
-      } else {
-        line.style.height = progress;
-        line.style.width = '4px';
-      }
-    }
-
-    let observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.intersectionRatio > 0.9) {
-            if (window.matchMedia('(min-width: 728px)').matches) {
-              slowLoop();
-            } else {
-              showTime(entry.target);
-              timelineProgress(i2);
-              i2++;
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    if (window.matchMedia('(min-width: 728px)').matches) {
-      observer.observe(target1);
-    } else {
-      target2.forEach((t) => {
-        observer.observe(t);
-      });
-    }
-
-    timeline_events.forEach((li, index) => {
-      li.addEventListener('click', () => {
-        if (li.getAttribute('done')) {
-          timelineProgress(index);
-
-          // hide all timeline events from last upto the point clicked
-          timeline_events.forEach((ev, idx) => {
-            if (idx >= index) {
-              hideTime(ev);
-            }
-          });
-        } else {
-          timelineProgress(index + 1);
-          // show all timeline events from first upto the point clicked
-          timeline_events.forEach((ev, idx) => {
-            if (idx <= index) {
-              showTime(ev);
-            }
-          });
-        }
-      });
-    });
-
-    var doit;
-    window.addEventListener('resize', () => {
-      clearTimeout(doit);
-      doit = setTimeout(resizeEnd, 1200);
-    });
-
-    function resizeEnd() {
-      i = 0;
-      slowLoop();
-    }
+    document.getElementById('myTimelineBar').style.height = scrolled + '%';
   };
 
   return (
@@ -363,7 +265,11 @@ export const Home = () => {
             </div>
           </section>
         </div>
-        <div id="roadMapSection" className="mb-5" onscroll={() => animateTimeline()}>
+        <div
+          id="roadMapSection"
+          className="mb-5 overflowScroll roadMapSectionStyle"
+          onWheelCapture={animateTimeline}
+        >
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">
               {roadMapInfoTitle}
@@ -371,11 +277,13 @@ export const Home = () => {
           </div>
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
             <div className="col-md-6">
-              <section className="timeline">
-                <div className="timeline-line">
-                  <span className="timeline-innerline"></span>
+              <div class="header">
+                <div class="progress-container">
+                  <div class="progress-bar" id="myTimelineBar"></div>
                 </div>
-                <ul>
+              </div>
+              <section className="timeline">
+                <ol>
                   {roadmap.map((childRoadMap) => (
                     <li key={childRoadMap.sno}>
                       <span className="timeline-point font-weight-bold"></span>
@@ -385,7 +293,7 @@ export const Home = () => {
                       <p>{childRoadMap.subtitle}</p>
                     </li>
                   ))}
-                </ul>
+                </ol>
               </section>
             </div>
             <div className="col-md-6">dance</div>
