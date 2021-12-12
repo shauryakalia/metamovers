@@ -29,7 +29,11 @@ const Navbar = ({ title }) => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light p-5">
+      <nav
+        className={`navbar navbar-expand-lg navbar-light p-5 ${
+          blcktxt ? 'sticky-top' : ''
+        }`}
+      >
         <span
           onClick={() => redirectPage('/', 'aboutSection')}
           className="navbar-brand text-info"
