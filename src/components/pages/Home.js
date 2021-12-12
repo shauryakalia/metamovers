@@ -356,7 +356,7 @@ export const Home = () => {
         </div>
         <div
           id="roadMapSection"
-          className="mb-5 overflowScroll roadMapSectionStyle"
+          className="overflowScroll roadMapSectionStyle"
           onWheelCapture={animateTimeline}
         >
           <div className="row d-flex justify-content-center mb-5">
@@ -365,7 +365,7 @@ export const Home = () => {
             </h1>
           </div>
           <br />
-          <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
+          <div className="row pl-5 pr-5 pt-0 d-flex justify-content-center">
             <div className="col-md-7">
               <div className="header">
                 <div className="progress-container">

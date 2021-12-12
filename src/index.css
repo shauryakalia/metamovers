@@ -83,11 +83,10 @@ body {
 }
 
 .dancingGirlSectionBg {
-  height: 600px;
-  background-image: url(/static/media/back.6ac4ab6a.png);
-  background-position: center;
+  background-image: url('./imgs/back.png');
+  background-position: top;
   background-repeat: no-repeat;
-  background-size: 320px;
+  background-size: 350px;
 }
 
 .nav-link {
@@ -152,8 +151,8 @@ blink_me {
 }
 
 .dgImage {
-  height: 750px;
-  margin-top: -35%;
+  height: 850px;
+  margin-top: -55%;
   margin-left: -25%;
 }
 
@@ -545,7 +544,7 @@ blink_me {
 .roadMapSectionStyle {
   position: relative;
   top: 0px;
-  height: 120%;
+  height: 100%;
 }
 
 .timeline ol {

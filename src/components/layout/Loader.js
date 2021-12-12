@@ -1,5 +1,5 @@
 import React from 'react';
-import loading_url from "../../imgs/loading.gif";
+import loading_url from "../../imgs/loading2.gif";
 
 const Loader = () => {
   return (
