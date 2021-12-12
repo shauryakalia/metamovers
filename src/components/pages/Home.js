@@ -324,9 +324,9 @@ export const Home = () => {
           <br />
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
             <div className="col-md-6">
-              <div class="header">
-                <div class="progress-container">
-                  <div class="custom-progress-bar" id="myTimelineBar"></div>
+              <div className="header">
+                <div className="progress-container">
+                  <div className="custom-progress-bar" id="myTimelineBar"></div>
                 </div>
               </div>
               <section className="timeline">
@@ -366,7 +366,6 @@ export const Home = () => {
                   <hr />
                   <p className="card-text h6 d-flex justify-content-center">
                     {Object.entries(social).map(([key, value]) => {
-                      console.log(key);
 
                       return value && key !== 'id' ? (
                         <span

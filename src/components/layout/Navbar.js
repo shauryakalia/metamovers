@@ -105,7 +105,7 @@ const Navbar = ({ title }) => {
                   className={`navbarBtn shadow-sm`}
                   onClick={() => redirectPage('/', 'aboutSection')}
                 >
-                  <i class="fas fa-home"></i>
+                  <i className="fas fa-home"></i>
                 </span>
               ) : (
                 <span
