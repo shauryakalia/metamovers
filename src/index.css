@@ -3,12 +3,22 @@
   src: url(SFFont.ttf);
 }
 
+@font-face {
+  font-family: CREL;
+  src: url(CREL.woff2);
+}
+
+@font-face {
+  font-family: CRR;
+  src: url(CRR.woff2);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: mySFFont;
+  font-family: CRR;
   background: whitesmoke;
 }
 
@@ -100,26 +110,6 @@ body {
 .homeTitle {
   margin-top: 5rem;
   font-size: 115px;
-  font-weight: bold;
-  background: rgb(43, 53, 226);
-  background: linear-gradient(
-    90deg,
-    rgba(43, 53, 226, 1) 23%,
-    rgba(5, 13, 47, 1) 46%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: -20px;
-  /* color: #212b56; */
-}
-
-.subTitle {
-  font-size: 20px;
-  text-align: right;
-  width: 50%;
-  color: #0b4daf;
-  border-right: 5px solid;
-  padding-right: 10px;
   font-weight: bolder;
   background: rgb(43, 53, 226);
   background: linear-gradient(
@@ -129,7 +119,23 @@ body {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: -20px;
+  font-family: mySFFont;
   /* color: #212b56; */
+}
+
+.subTitle {
+  font-size: 19px;
+  font-family: mySFFont;
+  font-weight: bolder;
+  background: rgb(43, 53, 226);
+  background: linear-gradient(
+    90deg,
+    rgba(43, 53, 226, 1) 23%,
+    rgba(5, 13, 47, 1) 46%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 blink_me {
@@ -151,10 +157,11 @@ blink_me {
   background: white;
   color: blue !important;
   padding: 8px 26px;
+  padding-top: 12px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  vertical-align: -webkit-baseline-middle;
+  vertical-align: sub;
 }
 
 .video-content {
@@ -179,7 +186,7 @@ blink_me {
 }
 
 .service-card {
-  width: 25%;
+  width: 30%;
   min-height: 290px;
   text-align: center;
   padding: 1rem;
@@ -189,11 +196,23 @@ blink_me {
 }
 
 .metamoversImg {
-  height: 80px;
-  width: 80px;
-  background: #072884;
-  border-radius: 10px;
-  padding: 10px;
+  width: 75px;
+  height: 75px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #1824ef;
+}
+
+.serviceText {
+  color: #212b56;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.serviceSubText {
+  color: #333;
+  line-height: 26px;
+  text-align: center;
 }
 
 .meetTheTeamImg {
@@ -304,10 +323,14 @@ blink_me {
 .socialBtn {
   padding: 5px 10px;
   font-size: 20px;
-  /* margin: 5px;
-  background: gainsboro;
-  border-radius: 50%; */
+  margin: 5px;
   cursor: pointer;
+  border-radius: 50%;
+  padding-top: 10px;
+}
+
+.socialBtn:hover {
+  background: gainsboro;
 }
 
 /* The Modal (background) */
@@ -321,8 +344,7 @@ blink_me {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: #000000e0; /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -365,12 +387,11 @@ blink_me {
   }
 }
 
-/* The Close Button */
 .close {
-  color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  padding-top: 25px !important;
 }
 
 .close:hover,
@@ -390,7 +411,7 @@ blink_me {
 }
 
 .teamInfoBox {
-  width: 25%;
+  width: 30%;
   min-height: 290px;
   text-align: center;
   padding: 1rem;
@@ -556,9 +577,10 @@ blink_me {
 }
 
 .buyNowContainer {
-  width: 50rem;
+  width: 70rem;
   background: #fffffff2;
-  margin-top: 10%;
+  margin-top: 8%;
+  height: 80%;
 }
 
 #crossfade > img {

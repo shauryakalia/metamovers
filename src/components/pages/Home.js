@@ -79,6 +79,18 @@ export const Home = () => {
     };
   };
 
+  const keySocialMap = {
+    instagram: 'instagram',
+    behance: 'behance',
+    facebook: 'facebook',
+    youtube: 'youtube',
+    twitter: 'twitter',
+    spotify: 'spotify',
+    soundcloud: 'soundcloud',
+    tiktok: 'youtube',
+    youtubesecond: 'youtube',
+  };
+
   const animateTimeline = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
@@ -220,9 +232,13 @@ export const Home = () => {
                 src={iconUrl}
               />
               <div className="card-body">
-                <p className="card-text h5 font-weight-bolder mb-3">{title}</p>
+                <p className="card-text h5 font-weight-bolder mb-3 serviceText">
+                  {title}
+                </p>
                 <hr />
-                <p className="card-text h6 text-grey">{subtitle}</p>
+                <p className="card-text h6 text-grey serviceSubText">
+                  {subtitle}
+                </p>
               </div>
             </div>
           ))}
@@ -350,13 +366,15 @@ export const Home = () => {
                   <hr />
                   <p className="card-text h6 d-flex justify-content-center">
                     {Object.entries(social).map(([key, value]) => {
+                      console.log(key);
+
                       return value && key !== 'id' ? (
                         <span
                           className="socialBtn"
                           key={key}
                           onClick={() => window.open(value)}
                         >
-                          <i className={`fab fa-${key}`}></i>
+                          {<i className={`fab fa-${keySocialMap[key]}`}></i>}
                         </span>
                       ) : null;
                     })}

@@ -100,12 +100,21 @@ const Navbar = ({ title }) => {
               </span>
             </li>
             <li className="nav-item ">
-              <span
-                className="navbarBtn shadow-sm"
-                onClick={() => redirectPage('/buyNow')}
-              >
-                BUY NOW
-              </span>
+              {blcktxt ? (
+                <span
+                  className={`navbarBtn shadow-sm`}
+                  onClick={() => redirectPage('/', 'aboutSection')}
+                >
+                  <i class="fas fa-home"></i>
+                </span>
+              ) : (
+                <span
+                  className={`navbarBtn shadow-sm`}
+                  onClick={() => redirectPage('/buyNow')}
+                >
+                  BUY NOW
+                </span>
+              )}
             </li>
           </ul>
         </div>
