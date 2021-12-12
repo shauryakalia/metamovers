@@ -15,6 +15,11 @@ import dg8 from '../../imgs/8.png';
 import dg9 from '../../imgs/9.png';
 import dg10 from '../../imgs/10.png';
 import dg11 from '../../imgs/11.png';
+import dg12 from '../../imgs/12.png';
+import dg13 from '../../imgs/13.png';
+import dg14 from '../../imgs/14.png';
+import dg15 from '../../imgs/15.png';
+import dg16 from '../../imgs/16.png';
 
 const innerHeight = window.innerHeight;
 export const Home = () => {
@@ -56,7 +61,7 @@ export const Home = () => {
   const setMemberInfoFn = (bio) => {
     setMemberInfo(bio);
   };
-  const chunkSize = 4;
+  const chunkSize = 3;
   const chunkMetamovers = [];
 
   for (let i = 0; i < metamovers.length; i += chunkSize) {
@@ -97,22 +102,27 @@ export const Home = () => {
 
     let scrolled = winScroll;
     if (scrolled > 3000) scrolled = scrolled - 3000;
-    else scrolled = scrolled - 2000;
+    else scrolled = scrolled - 2200;
 
     scrolled = (scrolled / 10) * 1.5;
 
     let dgSrc = dg1;
-    if (scrolled > 1 && scrolled <= 10) dgSrc = dg1;
-    if (scrolled > 10 && scrolled <= 20) dgSrc = dg2;
-    if (scrolled > 20 && scrolled <= 30) dgSrc = dg3;
-    if (scrolled > 30 && scrolled <= 40) dgSrc = dg4;
-    if (scrolled > 40 && scrolled <= 50) dgSrc = dg5;
-    if (scrolled > 50 && scrolled <= 60) dgSrc = dg6;
-    if (scrolled > 60 && scrolled <= 70) dgSrc = dg7;
-    if (scrolled > 70 && scrolled <= 80) dgSrc = dg8;
-    if (scrolled > 80 && scrolled <= 90) dgSrc = dg9;
-    if (scrolled > 90 && scrolled <= 100) dgSrc = dg10;
-    if (scrolled > 100) dgSrc = dg11;
+    if (scrolled > 1 && scrolled <= 6) dgSrc = dg1;
+    if (scrolled > 6 && scrolled <= 12) dgSrc = dg2;
+    if (scrolled > 12 && scrolled <= 18) dgSrc = dg3;
+    if (scrolled > 18 && scrolled <= 24) dgSrc = dg4;
+    if (scrolled > 24 && scrolled <= 35) dgSrc = dg5;
+    if (scrolled > 30 && scrolled <= 36) dgSrc = dg6;
+    if (scrolled > 36 && scrolled <= 42) dgSrc = dg7;
+    if (scrolled > 42 && scrolled <= 48) dgSrc = dg8;
+    if (scrolled > 48 && scrolled <= 54) dgSrc = dg9;
+    if (scrolled > 54 && scrolled <= 60) dgSrc = dg10;
+    if (scrolled > 60 && scrolled <= 66) dgSrc = dg11;
+    if (scrolled > 66 && scrolled <= 72) dgSrc = dg12;
+    if (scrolled > 72 && scrolled <= 78) dgSrc = dg13;
+    if (scrolled > 78 && scrolled <= 84) dgSrc = dg14;
+    if (scrolled > 84 && scrolled <= 90) dgSrc = dg15;
+    if (scrolled > 90) dgSrc = dg16;
     setDgImageSrc(dgSrc);
 
     if (scrolled > 100) scrolled = 100;
@@ -250,28 +260,11 @@ export const Home = () => {
           <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
             <div className="container">
               <div className="row">
-                <div className="col-10">
-                  <h1 className="mb-2 font-weight-bold">{metaTitle}</h1>
+                <div className="col-12 text-center">
+                  <h1 className="mb-4 font-weight-bold">{metaTitle}</h1>
                   <h6 className="mb-2 metamoversSubTitle">{metaSubTitle}</h6>
                 </div>
-                <div className="col-2 text-right">
-                  <a
-                    className="btn btn-light text-primary mb-3 mr-1"
-                    href="#carouselExampleIndicators2"
-                    role="button"
-                    data-slide="prev"
-                  >
-                    <i className="fa fa-arrow-left"></i>
-                  </a>
-                  <a
-                    className="btn btn-light text-primary mb-3 "
-                    href="#carouselExampleIndicators2"
-                    role="button"
-                    data-slide="next"
-                  >
-                    <i className="fa fa-arrow-right"></i>
-                  </a>
-                </div>
+
                 <div className="col-12 mt-3">
                   <div
                     id="carouselExampleIndicators2"
@@ -281,7 +274,7 @@ export const Home = () => {
                     <div className="carousel-inner">
                       {chunkMetamovers.map((childChunk, idx) => {
                         const currentItems = childChunk.map((child2) => (
-                          <div className="col-md-3 mb-3 mt-3">
+                          <div className="col-md-4 mb-3 mt-3">
                             <div className="card shadow-lg border-0 text-dark rounded">
                               <img
                                 className="card-img-top metamoversVideo"
@@ -323,7 +316,7 @@ export const Home = () => {
           </div>
           <br />
           <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-7">
               <div className="header">
                 <div className="progress-container">
                   <div className="custom-progress-bar" id="myTimelineBar"></div>
@@ -334,16 +327,18 @@ export const Home = () => {
                   {roadmap.map((childRoadMap) => (
                     <li key={childRoadMap.sno}>
                       <span className="timeline-point font-weight-bold"></span>
-                      <span className="date font-weight-bold">
+                      <span className="date font-weight-bold ">
                         {childRoadMap.title}
                       </span>
-                      <p>{childRoadMap.subtitle}</p>
+                      <p className="mt-2 timelineContent">
+                        {childRoadMap.subtitle}
+                      </p>
                     </li>
                   ))}
                 </ol>
               </section>
             </div>
-            <div className="col-md-6 dancingGirlSectionBg">
+            <div className="col-md-5 dancingGirlSectionBg">
               <img alt="" className="dgImage" src={dgImageSrc} />
             </div>
           </div>
@@ -366,7 +361,6 @@ export const Home = () => {
                   <hr />
                   <p className="card-text h6 d-flex justify-content-center">
                     {Object.entries(social).map(([key, value]) => {
-
                       return value && key !== 'id' ? (
                         <span
                           className="socialBtn"

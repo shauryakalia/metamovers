@@ -20,6 +20,7 @@ html {
 body {
   font-family: CRR;
   background: whitesmoke;
+  overflow-x: hidden;
 }
 
 .themeClr {
@@ -82,9 +83,11 @@ body {
 }
 
 .dancingGirlSectionBg {
-  background-image: url('./imgs/back.png');
-  background-position: top;
+  height: 600px;
+  background-image: url(/static/media/back.6ac4ab6a.png);
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: 320px;
 }
 
 .nav-link {
@@ -149,8 +152,9 @@ blink_me {
 }
 
 .dgImage {
-  height: 655px;
-  margin-top: -20%;
+  height: 750px;
+  margin-top: -35%;
+  margin-left: -25%;
 }
 
 .navbarBtn {
@@ -452,12 +456,10 @@ blink_me {
 }
 
 .metamoversSectionBg {
-  background: rgb(20, 82, 214);
-  background: linear-gradient(
-    90deg,
-    rgba(20, 82, 214, 1) 0%,
-    rgba(29, 195, 190, 1) 100%
-  );
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #1824ef;
 }
 
 .theTeamSectionBg {
@@ -512,13 +514,14 @@ blink_me {
 }
 
 .metamoversSubTitle {
-  border-left: 5px solid white;
-  padding-left: 10px;
   line-height: 23px;
+  font-size: 14px;
+  font-weight: bolder;
+  letter-spacing: 0.5px;
 }
 
 .progress-container {
-  width: 1%;
+  width: 5px;
   height: 450px;
   background: #ccc;
 }
@@ -561,19 +564,24 @@ blink_me {
 .timeline ol li::before {
   content: counter(my-awesome-counter);
   color: black;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   position: absolute;
-  --size: 32px;
+  padding: 2px;
+  --size: 40px;
   left: calc(-1 * var(--size) - 10px);
   line-height: var(--size);
   width: var(--size);
   height: var(--size);
   top: 0;
+  margin-left: 4px;
   background: gainsboro;
   border-radius: 50%;
   text-align: center;
-  box-shadow: 1px 1px 0 #999;
+}
+
+.timelineContent {
+  line-height: 26px;
 }
 
 .buyNowContainer {
