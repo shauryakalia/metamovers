@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useContext, useState } from 'react';
 import GithubContext from '../../context/metamovers/context';
+import { Link } from 'react-router-dom';
 import Loader from '../layout/Loader';
 import Footer from '../layout/Footer';
 import metaGif from '../../imgs/Delroy_Brown.gif';
@@ -27,6 +28,7 @@ export const Home = () => {
   const [memberInfo, setMemberInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState('');
   const [dgImageSrc, setDgImageSrc] = useState(dg1);
+  const [nextClick, setNextClick] = useState(false);
   const {
     loading,
     getHomeInfo,
@@ -68,6 +70,17 @@ export const Home = () => {
     chunkMetamovers.push(metamovers.slice(i, chunkSize + i));
   }
 
+  if (chunkMetamovers.length) {
+    const lastlen = chunkMetamovers[chunkMetamovers.length - 1].length;
+
+    if (lastlen !== chunkSize) {
+      const remainEle = chunkSize - lastlen;
+      for (let i = 0; i < remainEle; i += 1) {
+        chunkMetamovers[chunkMetamovers.length - 1].push(metamovers[i]);
+      }
+    }
+  }
+
   const { title: roadMapInfoTitle, roadmap = [] } = roadMapInfo;
 
   const closeModalOnClickOutside = () => {
@@ -82,6 +95,12 @@ export const Home = () => {
         setVideoInfo('');
       }
     };
+  };
+
+  const triggerNext = () => {
+    const elem = document.getElementById('courselNextBtn');
+    if (elem) elem.click();
+    setNextClick(true);
   };
 
   const keySocialMap = {
@@ -256,6 +275,7 @@ export const Home = () => {
         <div
           id="metamoversSection"
           className="row metamoversSectionBg mb-5  text-white d-flex justify-content-center"
+          onMouseOver={() => !nextClick && triggerNext()}
         >
           <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
             <div className="container">
@@ -267,7 +287,7 @@ export const Home = () => {
 
                 <div className="col-12 mt-3">
                   <div
-                    id="carouselExampleIndicators2"
+                    id="metaMoversCoursel"
                     className="carousel slide"
                     data-ride="carousel"
                   >
@@ -298,7 +318,37 @@ export const Home = () => {
                         );
                       })}
                     </div>
+                    <a
+                      class="carousel-control-prev"
+                      href="#metaMoversCoursel"
+                      role="button"
+                      data-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a
+                      class="carousel-control-next"
+                      href="#metaMoversCoursel"
+                      role="button"
+                      data-slide="next"
+                      id="courselNextBtn"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="sr-only">Next</span>
+                    </a>
                   </div>
+                </div>
+                <div className="col-md-12 mt-5 text-center">
+                  <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
+                    BUY NOW
+                  </Link>
                 </div>
               </div>
             </div>

@@ -457,8 +457,8 @@ blink_me {
 
 .metamoversSectionBg {
   overflow: hidden;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #1824ef;
 }
 
@@ -675,4 +675,14 @@ blink_me {
   100% {
     opacity: 0;
   }
+}
+
+.carousel-control-prev {
+  margin-left: -12% !important;
+  opacity: 1;
+}
+
+.carousel-control-next {
+  margin-right: -12% !important;
+  opacity: 1;
 }
