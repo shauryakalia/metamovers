@@ -87,7 +87,7 @@ export const BuyNow = () => {
             <hr />
 
             <p className="card-text">
-              Disclaimer! These NFTs are not investments. Please only buy a
+              Disclaimer - These NFTs are not investments. Please only buy a
               Metamover if you believe in our vision and want to support this
               project.
             </p>
