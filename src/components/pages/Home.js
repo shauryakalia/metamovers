@@ -63,7 +63,7 @@ export const Home = () => {
   const setMemberInfoFn = (bio) => {
     setMemberInfo(bio);
   };
-  const chunkSize = 3;
+  const chunkSize = 4;
   const chunkMetamovers = [];
 
   for (let i = 0; i < metamovers.length; i += chunkSize) {
@@ -121,7 +121,7 @@ export const Home = () => {
 
     let scrolled = winScroll;
     if (scrolled > 3000) scrolled = scrolled - 3000;
-    else scrolled = scrolled - 2200;
+    else scrolled = scrolled - 2270;
 
     scrolled = (scrolled / 10) * 1.5;
 
@@ -167,7 +167,7 @@ export const Home = () => {
             className="modal-body p-2"
             style={{ overflow: 'auto', overflowX: 'hidden' }}
           >
-            <div className="row">
+            <div className="row d-flex align-items-center">
               <div className="col-md-4 text-center">
                 <img
                   alt=""
@@ -234,8 +234,10 @@ export const Home = () => {
           id="aboutSection"
           className="row d-flex justify-content-center pt-5"
         >
-          <div className="homeTitle pt-5">{title}</div>
-          <div className="subTitle">{subtitle}</div>
+          <div className="text-center mt-5">
+            <div className="homeTitle pt-5">{title}</div>
+            <div className="subTitle">{subtitle}</div>
+          </div>
         </div>
         <div className="row p-10 w-100 d-flex justify-content-center">
           {mainVideoURL ? (
@@ -278,7 +280,7 @@ export const Home = () => {
           onMouseOver={() => !nextClick && triggerNext()}
         >
           <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <div className="col-12 text-center">
                   <h1 className="mb-4 font-weight-bold">{metaTitle}</h1>
@@ -294,7 +296,7 @@ export const Home = () => {
                     <div className="carousel-inner">
                       {chunkMetamovers.map((childChunk, idx) => {
                         const currentItems = childChunk.map((child2) => (
-                          <div className="col-md-4 mb-3 mt-3">
+                          <div className="col-md-3 mb-3 mt-3">
                             <div className="card shadow-lg border-0 text-dark rounded">
                               <img
                                 className="card-img-top metamoversVideo"
@@ -347,13 +349,14 @@ export const Home = () => {
                 </div>
                 <div className="col-md-12 mt-5 text-center">
                   <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
-                    BUY NOW
+                    Buy Now
                   </Link>
                 </div>
               </div>
             </div>
           </section>
         </div>
+
         <div
           id="roadMapSection"
           className="overflowScroll roadMapSectionStyle"
@@ -393,6 +396,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
+
         <div id="theTeamSection" className="meetTheTeamSection">
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">{teamTitle}</h1>
@@ -425,7 +429,7 @@ export const Home = () => {
 
                   <button
                     type="button"
-                    className="btn btn-primary teamModalTrigger"
+                    className="btn btn-primary teamModalTrigger font-weight-bold"
                     onClick={() =>
                       setMemberInfoFn({ name, title, bio, avatar, social })
                     }

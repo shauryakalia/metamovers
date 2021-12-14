@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Loader from '../layout/Loader';
 import metaGif from '../../imgs/Delroy_Brown.gif';
 import GithubContext from '../../context/metamovers/context';
-const innerHeight = window.innerHeight;
 
 export const BuyNow = () => {
   const githubContext = useContext(GithubContext);
@@ -12,25 +11,68 @@ export const BuyNow = () => {
     //eslint-disable-next-line
   }, []);
   const { metamovers = [] } = metamoversInfo;
+  const [buyNextClick, setbuyNextClick] = useState(false);
+
+  const triggerNext = () => {
+    const elem = document.getElementById('buyCourselNextBtn');
+    if (elem) elem.click();
+    setbuyNextClick(true);
+  };
 
   if (loading) return <Loader />;
   return (
     <div
-      className="container-fluid homeCoverImg p-5"
-      style={{ height: innerHeight }}
+      className="container-fluid homeCoverImg p-5 "
+      onMouseOver={() => !buyNextClick && triggerNext()}
     >
       <div className="row mx-auto buyNowContainer shadow rounded">
         <div className="col-md-5 p-0 d-flex align-items-center">
-          <div id="crossfade">
-            {metamovers.map((child2, idx) => {
-              return (
-                <img
-                  className="d-block mx-auto img-fluid"
-                  src={child2.gifUrl ? `${child2.gifUrl}` : metaGif}
-                  alt={`${child2.name}`}
-                />
-              );
-            })}
+          <div
+            id="buyMetaMoversCoursel"
+            className="carousel slide"
+            data-ride="carousel"
+          >
+            <div className="carousel-inner">
+              {metamovers.map((child2, idx) => {
+                return (
+                  <div className={`carousel-item ${idx === 0 ? 'active' : ''}`}>
+                    <img
+                      className="d-block img-fluid"
+                      src={child2.gifUrl ? `${child2.gifUrl}` : metaGif}
+                      alt={`${child2.name}`}
+                      width="93%"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <a
+              class="carousel-control-prev invisible"
+              style={{ width: '5%' }}
+              href="#buyMetaMoversCoursel"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next invisible"
+              style={{ width: '5%' }}
+              href="#buyMetaMoversCoursel"
+              role="button"
+              data-slide="next"
+              id="buyCourselNextBtn"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
 
@@ -64,7 +106,7 @@ export const BuyNow = () => {
                 style={{ width: '50%' }}
               />
 
-              <button href="#" className="btn btn-info ml-3 shadow-sm">
+              <button href="#" className="btn btn-info ml-3 shadow-sm font-weight-bold">
                 <i className="fas fa-wallet"></i> &nbsp; Connect Wallet
               </button>
             </div>

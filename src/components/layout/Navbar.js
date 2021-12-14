@@ -112,7 +112,7 @@ const Navbar = ({ title }) => {
                   className={`navbarBtn shadow-sm`}
                   onClick={() => redirectPage('/buyNow')}
                 >
-                  BUY NOW
+                  Buy Now
                 </span>
               )}
             </li>
