@@ -120,10 +120,17 @@ export const Home = () => {
       document.body.scrollTop || document.documentElement.scrollTop;
 
     let scrolled = winScroll;
-    if (scrolled > 3000) scrolled = scrolled - 3000;
-    else scrolled = scrolled - 2270;
+    if (window.innerWidth < 2200) {
+      if (scrolled > 3000) scrolled = scrolled - 3000;
+      else scrolled = scrolled - 2270;
 
-    scrolled = (scrolled / 10) * 1.5;
+      scrolled = (scrolled / 10) * 1.5;
+    } else {
+      if (scrolled > 3000) scrolled = scrolled - 3000;
+      else scrolled = scrolled - 2270;
+
+      scrolled = (scrolled / 10) * 1.5;
+    }
 
     let dgSrc = dg1;
     if (scrolled > 1 && scrolled <= 6) dgSrc = dg1;
