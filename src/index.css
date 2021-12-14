@@ -697,10 +697,15 @@ blink_me {
 
   .buyNowContainer {
     margin-top: 15%;
+    width: 100rem;
   }
 
   .dgImage {
     margin-top: -20%;
     margin-left: 10%;
+  }
+
+  .roadMapSectionStyle {
+    height: 55%;
   }
 }

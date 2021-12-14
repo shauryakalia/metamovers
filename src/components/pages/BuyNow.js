@@ -26,7 +26,7 @@ export const BuyNow = () => {
       onMouseOver={() => !buyNextClick && triggerNext()}
     >
       <div className="row mx-auto buyNowContainer shadow rounded">
-        <div className="col-md-5 p-0 d-flex align-items-center">
+        <div className="col-md-5 col-lg-4 p-0 d-flex align-items-center">
           <div
             id="buyMetaMoversCoursel"
             className="carousel slide"
@@ -76,7 +76,7 @@ export const BuyNow = () => {
           </div>
         </div>
 
-        <div className="col-md-7">
+        <div className="col-md-7 col-lg-8 ">
           <div className="card-body font-weight-bold">
             <p className="card-text">
               Here you can mint your Metamovers! These are ERC-1155 tokens and
@@ -98,12 +98,13 @@ export const BuyNow = () => {
 
             <div className="d-flex justify-content-between">
               <input
-                type="number"
+                type="text"
                 className="form-control shadow-sm"
                 id="basic-url"
                 placeholder="Enter amount"
                 aria-describedby="basic-addon3"
                 style={{ width: '50%' }}
+                maxLength="3"
               />
 
               <button href="#" className="btn btn-info ml-3 shadow-sm font-weight-bold">
