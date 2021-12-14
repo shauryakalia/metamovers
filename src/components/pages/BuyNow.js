@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Loader from '../layout/Loader';
-import metaGif from '../../imgs/Delroy_Brown.gif';
+import metaGif from '../../imgs/delroybrown.gif';
 import GithubContext from '../../context/metamovers/context';
 
 export const BuyNow = () => {

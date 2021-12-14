@@ -4,7 +4,7 @@ import GithubContext from '../../context/metamovers/context';
 import { Link } from 'react-router-dom';
 import Loader from '../layout/Loader';
 import Footer from '../layout/Footer';
-import metaGif from '../../imgs/Delroy_Brown.gif';
+import metaGif from '../../imgs/delroybrown.gif';
 import dg1 from '../../imgs/1.png';
 import dg2 from '../../imgs/2.png';
 import dg3 from '../../imgs/3.png';
