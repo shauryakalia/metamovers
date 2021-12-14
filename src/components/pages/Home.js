@@ -276,7 +276,7 @@ export const Home = () => {
         </div>
         <div
           id="metamoversSection"
-          className="row metamoversSectionBg mb-5  text-white d-flex justify-content-center"
+          className="row metamoversSectionBg mb-5  text-white d-flex justify-content-center zIndex10"
           onMouseOver={() => !nextClick && triggerNext()}
         >
           <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
@@ -347,7 +347,7 @@ export const Home = () => {
                     </a>
                   </div>
                 </div>
-                <div className="col-md-12 mt-5 text-center">
+                <div className="col-md-12 mt-5 mb-3 text-center">
                   <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
                     Buy Now
                   </Link>
