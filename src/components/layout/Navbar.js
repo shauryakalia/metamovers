@@ -17,6 +17,10 @@ const Navbar = ({ title }) => {
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
   const [blcktxt, setBlacktxt] = useState(false);
+  useEffect(() => {
+    setBlacktxt(window.location.pathname === '/buyNow');
+    //eslint-disable-next-line
+  }, [window.location.pathname]);
 
   const redirectPage = (url, scrollTo) => {
     navigate(url);

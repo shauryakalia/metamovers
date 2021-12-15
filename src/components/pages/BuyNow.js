@@ -1,6 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Loader from '../layout/Loader';
-import metaGif from '../../imgs/delroybrown.gif';
 import GithubContext from '../../context/metamovers/context';
 
 export const BuyNow = () => {
@@ -11,43 +10,36 @@ export const BuyNow = () => {
     //eslint-disable-next-line
   }, []);
   const { metamovers = [] } = metamoversInfo;
-  const [buyNextClick, setbuyNextClick] = useState(false);
-
-  const triggerNext = () => {
-    const elem = document.getElementById('buyCourselNextBtn');
-    if (elem) elem.click();
-    setbuyNextClick(true);
-  };
-
   if (loading) return <Loader />;
   return (
-    <div
-      className="container-fluid homeCoverImg p-5 "
-      onMouseOver={() => !buyNextClick && triggerNext()}
-    >
+    <div className="container-fluid homeCoverImg p-5">
       <div className="row mx-auto buyNowContainer shadow rounded">
         <div className="col-md-5 col-lg-4 p-0 d-flex align-items-center">
-          <div
-            id="buyMetaMoversCoursel"
-            className="carousel slide"
-            data-ride="carousel"
-          >
+          <div id="buyMetaMoversCoursel" className="carousel slide">
             <div className="carousel-inner">
               {metamovers.map((child2, idx) => {
                 return (
                   <div className={`carousel-item ${idx === 0 ? 'active' : ''}`}>
-                    <img
+                    <video
+                      mute
+                      controls
+                      width="100%"
                       className="d-block img-fluid"
-                      src={child2.gifUrl ? `${child2.gifUrl}` : metaGif}
-                      alt={`${child2.name}`}
-                      width="93%"
-                    />
+                      id={`video-${idx}`}
+                    >
+                      <source
+                        src={child2.videourl}
+                        type="video/mp4"
+                        title={`${child2.name}`}
+                      />
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 );
               })}
             </div>
             <a
-              class="carousel-control-prev invisible"
+              class="carousel-control-prev carousel-control-prev-buy"
               style={{ width: '5%' }}
               href="#buyMetaMoversCoursel"
               role="button"
@@ -60,7 +52,7 @@ export const BuyNow = () => {
               <span class="sr-only">Previous</span>
             </a>
             <a
-              class="carousel-control-next invisible"
+              class="carousel-control-next carousel-control-next-buy"
               style={{ width: '5%' }}
               href="#buyMetaMoversCoursel"
               role="button"
@@ -107,7 +99,10 @@ export const BuyNow = () => {
                 maxLength="3"
               />
 
-              <button href="#" className="btn btn-info ml-3 shadow-sm font-weight-bold">
+              <button
+                href="#"
+                className="btn btn-info ml-3 shadow-sm font-weight-bold"
+              >
                 <i className="fas fa-wallet"></i> &nbsp; Connect Wallet
               </button>
             </div>

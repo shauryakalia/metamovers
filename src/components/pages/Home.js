@@ -4,7 +4,6 @@ import GithubContext from '../../context/metamovers/context';
 import { Link } from 'react-router-dom';
 import Loader from '../layout/Loader';
 import Footer from '../layout/Footer';
-import metaGif from '../../imgs/delroybrown.gif';
 import dg1 from '../../imgs/1.png';
 import dg2 from '../../imgs/2.png';
 import dg3 from '../../imgs/3.png';
@@ -21,6 +20,42 @@ import dg13 from '../../imgs/13.png';
 import dg14 from '../../imgs/14.png';
 import dg15 from '../../imgs/15.png';
 import dg16 from '../../imgs/16.png';
+
+import adelolausman from '../../imgs/adelolausman.gif';
+import almacruz from '../../imgs/almacruz.gif';
+import aquadasilva from '../../imgs/aquadasilva.gif';
+import arohakaiwai from '../../imgs/arohakaiwai.gif';
+import camiladiaz from '../../imgs/camiladiaz.gif';
+import clairefabian from '../../imgs/clairefabian.gif';
+import delroybrown from '../../imgs/delroybrown.gif';
+import emilyemans from '../../imgs/emilyemans.gif';
+import fangzhao from '../../imgs/fangzhao.gif';
+import francisowusu from '../../imgs/francisowusu.gif';
+import hamzaddin from '../../imgs/hamzaddin.gif';
+import jaikhatri from '../../imgs/jaikhatri.gif';
+import lorenzogarcia from '../../imgs/lorenzogarcia.gif';
+import mariaisabelramos from '../../imgs/mariaisabelramos.gif';
+import rinnakamura from '../../imgs/rinnakamura.gif';
+import tevinjackson from '../../imgs/tevinjackson.gif';
+
+const localGifMap = {
+  adelolausman,
+  almacruz,
+  aquadasilva,
+  arohakaiwai,
+  camiladiaz,
+  clairefabian,
+  delroybrown,
+  emilyemans,
+  fangzhao,
+  francisowusu,
+  hamzaddin,
+  jaikhatri,
+  lorenzogarcia,
+  mariaisabelramos,
+  rinnakamura,
+  tevinjackson,
+};
 
 const innerHeight = window.innerHeight;
 
@@ -241,14 +276,8 @@ export const Home = () => {
         </div>
       </div>
 
-      <div
-        className="container-fluid"
-        style={{ height: innerHeight }}
-      >
-        <div
-          id="aboutSection"
-          className="row d-flex justify-content-center"
-        >
+      <div className="container-fluid" style={{ height: innerHeight }}>
+        <div id="aboutSection" className="row d-flex justify-content-center">
           <div className="text-center">
             <div className="homeTitle">{title?.toUpperCase()}</div>
             <div className="subTitle pt-3">{subtitle}</div>
@@ -317,9 +346,7 @@ export const Home = () => {
                             <div className="card shadow-lg border-0 text-dark rounded">
                               <img
                                 className="card-img-top metamoversVideo"
-                                src={
-                                  child2.gifUrl ? `${child2.gifUrl}` : metaGif
-                                }
+                                src={localGifMap[child2.name]}
                                 loading="lazy"
                                 alt={`${child2.name}`}
                                 onClick={() => setVideoInfo(child2.videourl)}
@@ -339,7 +366,7 @@ export const Home = () => {
                       })}
                     </div>
                     <a
-                      class="carousel-control-prev"
+                      class="carousel-control-prev carousel-control-prev-home"
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="prev"
@@ -351,7 +378,7 @@ export const Home = () => {
                       <span class="sr-only">Previous</span>
                     </a>
                     <a
-                      class="carousel-control-next"
+                      class="carousel-control-next carousel-control-next-home"
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="next"
