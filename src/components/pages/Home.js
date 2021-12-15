@@ -23,7 +23,14 @@ import dg15 from '../../imgs/15.png';
 import dg16 from '../../imgs/16.png';
 
 const innerHeight = window.innerHeight;
+
+function useForceUpdate() {
+  const [value, setValue] = useState(0);
+  return () => setValue((value) => value + 1);
+}
+
 export const Home = () => {
+  const forceUpdate = useForceUpdate();
   const githubContext = useContext(GithubContext);
   const [memberInfo, setMemberInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState('');
@@ -49,6 +56,9 @@ export const Home = () => {
     getFooterInfo();
     getRoadMapInfo();
     document.addEventListener('click', closeModalOnClickOutside);
+    window.addEventListener('resize', forceUpdate);
+    window.addEventListener('scroll', animateTimeline);
+
     //eslint-disable-next-line
   }, []);
 
@@ -120,39 +130,37 @@ export const Home = () => {
       document.body.scrollTop || document.documentElement.scrollTop;
 
     let scrolled = winScroll;
-    if (window.innerWidth < 2200) {
+    if (scrolled > 2000 && scrolled < 3010) {
       if (scrolled > 3000) scrolled = scrolled - 3000;
       else scrolled = scrolled - 2270;
-
       scrolled = (scrolled / 10) * 1.5;
-    } else {
-      if (scrolled > 3000) scrolled = scrolled - 3000;
-      else scrolled = scrolled - 2270;
+      if (scrolled <= 2) return;
 
-      scrolled = (scrolled / 10) * 1.5;
+      let dgSrc = dg1;
+      if (scrolled > 1 && scrolled <= 6) dgSrc = dg1;
+      if (scrolled > 6 && scrolled <= 12) dgSrc = dg2;
+      if (scrolled > 12 && scrolled <= 18) dgSrc = dg3;
+      if (scrolled > 18 && scrolled <= 24) dgSrc = dg4;
+      if (scrolled > 24 && scrolled <= 35) dgSrc = dg5;
+      if (scrolled > 30 && scrolled <= 36) dgSrc = dg6;
+      if (scrolled > 36 && scrolled <= 42) dgSrc = dg7;
+      if (scrolled > 42 && scrolled <= 48) dgSrc = dg8;
+      if (scrolled > 48 && scrolled <= 54) dgSrc = dg9;
+      if (scrolled > 54 && scrolled <= 60) dgSrc = dg10;
+      if (scrolled > 60 && scrolled <= 66) dgSrc = dg11;
+      if (scrolled > 66 && scrolled <= 72) dgSrc = dg12;
+      if (scrolled > 72 && scrolled <= 78) dgSrc = dg13;
+      if (scrolled > 78 && scrolled <= 84) dgSrc = dg14;
+      if (scrolled > 84 && scrolled <= 90) dgSrc = dg15;
+      if (scrolled > 90 && scrolled <= 96) dgSrc = dg16;
+      if (scrolled > 96 && scrolled <= 102) dgSrc = dg1;
+      if (scrolled > 102 && scrolled <= 108) dgSrc = dg2;
+      if (scrolled > 108 && scrolled <= 114) dgSrc = dg3;
+      if (scrolled > 114 && scrolled <= 120) dgSrc = dg4;
+      setDgImageSrc(dgSrc);
+      if (scrolled > 100) scrolled = 100;
+      document.getElementById('myTimelineBar').style.height = scrolled + '%';
     }
-
-    let dgSrc = dg1;
-    if (scrolled > 1 && scrolled <= 6) dgSrc = dg1;
-    if (scrolled > 6 && scrolled <= 12) dgSrc = dg2;
-    if (scrolled > 12 && scrolled <= 18) dgSrc = dg3;
-    if (scrolled > 18 && scrolled <= 24) dgSrc = dg4;
-    if (scrolled > 24 && scrolled <= 35) dgSrc = dg5;
-    if (scrolled > 30 && scrolled <= 36) dgSrc = dg6;
-    if (scrolled > 36 && scrolled <= 42) dgSrc = dg7;
-    if (scrolled > 42 && scrolled <= 48) dgSrc = dg8;
-    if (scrolled > 48 && scrolled <= 54) dgSrc = dg9;
-    if (scrolled > 54 && scrolled <= 60) dgSrc = dg10;
-    if (scrolled > 60 && scrolled <= 66) dgSrc = dg11;
-    if (scrolled > 66 && scrolled <= 72) dgSrc = dg12;
-    if (scrolled > 72 && scrolled <= 78) dgSrc = dg13;
-    if (scrolled > 78 && scrolled <= 84) dgSrc = dg14;
-    if (scrolled > 84 && scrolled <= 90) dgSrc = dg15;
-    if (scrolled > 90) dgSrc = dg16;
-    setDgImageSrc(dgSrc);
-
-    if (scrolled > 100) scrolled = 100;
-    document.getElementById('myTimelineBar').style.height = scrolled + '%';
   };
 
   return (
@@ -246,10 +254,11 @@ export const Home = () => {
             <div className="subTitle">{subtitle}</div>
           </div>
         </div>
-        <div className="row p-10 w-100 d-flex justify-content-center">
+        <div className="row p-10 d-flex justify-content-center">
           {mainVideoURL ? (
             <iframe
               className="shadow-lg"
+              loading="lazy"
               width="90%"
               height={innerHeight - 102}
               title={title}
@@ -268,6 +277,7 @@ export const Home = () => {
                 alt=""
                 className="card-img-top metamoversImg shadow-sm mx-auto"
                 src={iconUrl}
+                loading="lazy"
               />
               <div className="card-body">
                 <p className="card-text h5 font-weight-bolder mb-3 serviceText">
@@ -310,6 +320,7 @@ export const Home = () => {
                                 src={
                                   child2.gifUrl ? `${child2.gifUrl}` : metaGif
                                 }
+                                loading="lazy"
                                 alt={`${child2.name}`}
                                 onClick={() => setVideoInfo(child2.videourl)}
                               />
@@ -364,11 +375,7 @@ export const Home = () => {
           </section>
         </div>
 
-        <div
-          id="roadMapSection"
-          className="overflowScroll roadMapSectionStyle"
-          onWheelCapture={animateTimeline}
-        >
+        <div id="roadMapSection" className="overflowScroll roadMapSectionStyle">
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">
               {roadMapInfoTitle}

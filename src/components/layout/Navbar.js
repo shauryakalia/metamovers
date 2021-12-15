@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext } from 'react';
-import { a } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import GithubContext from '../../context/metamovers/context';
 import { isMobile } from 'react-device-detect';
@@ -9,12 +10,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ title }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const githubContext = useContext(GithubContext);
   const scrollToSection = (elemId) => {
     var element = document.getElementById(elemId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
-
   const [blcktxt, setBlacktxt] = useState(false);
 
   const redirectPage = (url, scrollTo) => {

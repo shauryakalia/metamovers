@@ -32,7 +32,7 @@ body {
 }
 
 .p-10 {
-  padding: 10%;
+  padding: 100px;
 }
 
 .p-15-10 {
@@ -79,7 +79,7 @@ body {
   background-image: url('./imgs/homeback2.png');
   background-position: top right;
   background-repeat: no-repeat;
-  margin-top: -12%;
+  margin-top: -160px;
 }
 
 .dancingGirlSectionBg {
@@ -112,7 +112,7 @@ body {
 
 .homeTitle {
   margin-top: 5rem;
-  font-size: 5rem;
+  font-size: 4.1rem;
   font-weight: bolder;
   color: #1824ef;
   margin-bottom: -20px;
@@ -120,7 +120,7 @@ body {
 }
 
 .subTitle {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   font-family: mySFFont;
   font-weight: bolder;
   color: #212b56;
@@ -534,7 +534,7 @@ blink_me {
 .roadMapSectionStyle {
   position: relative;
   top: 0px;
-  height: 110%;
+  height: 725px;
 }
 
 .timeline ol {
@@ -682,30 +682,21 @@ blink_me {
 }
 
 @media screen and (min-width: 1600px) {
-  .homeCoverImg {
-    margin-top: -6%;
-  }
-
   .homeTitle {
     margin-top: 15%;
-    font-size: 6rem;
+    font-size: 5rem;
   }
 
   .subTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .buyNowContainer {
     margin-top: 15%;
     width: 100rem;
   }
-
   .dgImage {
     margin-top: -20%;
     margin-left: 10%;
-  }
-
-  .roadMapSectionStyle {
-    height: 55%;
   }
 }
