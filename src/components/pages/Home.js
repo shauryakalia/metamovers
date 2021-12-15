@@ -242,16 +242,16 @@ export const Home = () => {
       </div>
 
       <div
-        className="container-fluid homeCoverImg"
+        className="container-fluid"
         style={{ height: innerHeight }}
       >
         <div
           id="aboutSection"
-          className="row d-flex justify-content-center pt-5"
+          className="row d-flex justify-content-center"
         >
-          <div className="text-center mt-5">
-            <div className="homeTitle pt-5">{title}</div>
-            <div className="subTitle">{subtitle}</div>
+          <div className="text-center">
+            <div className="homeTitle">{title?.toUpperCase()}</div>
+            <div className="subTitle pt-3">{subtitle}</div>
           </div>
         </div>
         <div className="row p-10 d-flex justify-content-center">
