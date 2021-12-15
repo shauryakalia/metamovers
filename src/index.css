@@ -87,6 +87,8 @@ body {
   background-position: top;
   background-repeat: no-repeat;
   background-size: 350px;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-link {
@@ -138,8 +140,7 @@ blink_me {
 
 .dgImage {
   height: 850px;
-  margin-top: -55%;
-  margin-left: -35%;
+  margin-top: -270px;
 }
 
 .navbarBtn {
@@ -705,8 +706,5 @@ blink_me {
     margin-top: 15%;
     width: 100rem;
   }
-  .dgImage {
-    margin-top: -20%;
-    margin-left: 10%;
-  }
+
 }

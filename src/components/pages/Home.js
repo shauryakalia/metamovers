@@ -433,7 +433,11 @@ export const Home = () => {
               </section>
             </div>
             <div className="col-md-5 dancingGirlSectionBg">
-              <img alt="" className="dgImage" src={dgImageSrc} />
+              <img
+                alt=""
+                className="dgImage"
+                src={dgImageSrc}
+              />
             </div>
           </div>
         </div>
