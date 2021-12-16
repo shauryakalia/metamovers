@@ -21,42 +21,6 @@ import dg14 from '../../imgs/14.png';
 import dg15 from '../../imgs/15.png';
 import dg16 from '../../imgs/16.png';
 
-import adelolausman from '../../imgs/adelolausman.gif';
-import almacruz from '../../imgs/almacruz.gif';
-import aquadasilva from '../../imgs/aquadasilva.gif';
-import arohakaiwai from '../../imgs/arohakaiwai.gif';
-import camiladiaz from '../../imgs/camiladiaz.gif';
-import clairefabian from '../../imgs/clairefabian.gif';
-import delroybrown from '../../imgs/delroybrown.gif';
-import emilyemans from '../../imgs/emilyemans.gif';
-import fangzhao from '../../imgs/fangzhao.gif';
-import francisowusu from '../../imgs/francisowusu.gif';
-import hamzaddin from '../../imgs/hamzaddin.gif';
-import jaikhatri from '../../imgs/jaikhatri.gif';
-import lorenzogarcia from '../../imgs/lorenzogarcia.gif';
-import mariaisabelramos from '../../imgs/mariaisabelramos.gif';
-import rinnakamura from '../../imgs/rinnakamura.gif';
-import tevinjackson from '../../imgs/tevinjackson.gif';
-
-const localGifMap = {
-  adelolausman,
-  almacruz,
-  aquadasilva,
-  arohakaiwai,
-  camiladiaz,
-  clairefabian,
-  delroybrown,
-  emilyemans,
-  fangzhao,
-  francisowusu,
-  hamzaddin,
-  jaikhatri,
-  lorenzogarcia,
-  mariaisabelramos,
-  rinnakamura,
-  tevinjackson,
-};
-
 const innerHeight = window.innerHeight;
 
 function useForceUpdate() {
@@ -343,14 +307,27 @@ export const Home = () => {
                       {chunkMetamovers.map((childChunk, idx) => {
                         const currentItems = childChunk.map((child2) => (
                           <div className="col-md-3 mb-3 mt-3">
-                            <div className="card shadow-lg border-0 text-dark rounded">
-                              <img
-                                className="card-img-top metamoversVideo"
-                                src={localGifMap[child2.name]}
-                                loading="lazy"
-                                alt={`${child2.name}`}
-                                onClick={() => setVideoInfo(child2.videourl)}
-                              />
+                            <div
+                              className="card shadow-lg border-0 text-dark rounded"
+                              alt={`${child2.name}`}
+                              onClick={() => setVideoInfo(child2.videourl)}
+                            >
+                              <video
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                width="100%"
+                                className="d-block img-fluid"
+                                id={`video-${idx}`}
+                              >
+                                <source
+                                  src={child2.videourl}
+                                  type="video/mp4"
+                                  title={`${child2.name}`}
+                                />
+                                Your browser does not support the video tag.
+                              </video>
                             </div>
                           </div>
                         ));
@@ -433,11 +410,7 @@ export const Home = () => {
               </section>
             </div>
             <div className="col-md-5 dancingGirlSectionBg">
-              <img
-                alt=""
-                className="dgImage"
-                src={dgImageSrc}
-              />
+              <img alt="" className="dgImage" src={dgImageSrc} />
             </div>
           </div>
         </div>
