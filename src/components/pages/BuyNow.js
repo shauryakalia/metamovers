@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import Loader from '../layout/Loader';
 import GithubContext from '../../context/metamovers/context';
+import { isMobile } from 'react-device-detect';
 
 export const BuyNow = () => {
   const githubContext = useContext(GithubContext);
@@ -13,8 +14,12 @@ export const BuyNow = () => {
   if (loading) return <Loader />;
   return (
     <div className="container-fluid homeCoverImg p-5">
-      <div className="row mx-auto buyNowContainer shadow rounded">
-        <div className="col-md-5 col-lg-4 p-0 d-flex align-items-center">
+      <div
+        className={`row mx-auto buyNowContainer shadow rounded ${
+          isMobile ? 'mt300px' : 'mt70rem'
+        }`}
+      >
+        <div className="col-md-5 col-lg-4 col-xs-12 p-0 d-flex align-items-center">
           <div id="buyMetaMoversCoursel" className="carousel slide">
             <div className="carousel-inner">
               {metamovers.map((child2, idx) => {
@@ -24,7 +29,7 @@ export const BuyNow = () => {
                       mute
                       controls
                       width="100%"
-                      className="d-block img-fluid"
+                      className="d-block img-fluid img-responsive"
                       id={`video-${idx}`}
                     >
                       <source
@@ -68,7 +73,7 @@ export const BuyNow = () => {
           </div>
         </div>
 
-        <div className="col-md-7 col-lg-8 ">
+        <div className="col-md-7 col-lg-8 col-xs-12 ">
           <div className="card-body font-weight-bold">
             <p className="card-text">
               Here you can mint your Metamovers! These are ERC-1155 tokens and
@@ -88,20 +93,23 @@ export const BuyNow = () => {
               Enter amount of metamovers you’d like to mint (3 max)
             </p>
 
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between row">
               <input
                 type="text"
-                className="form-control shadow-sm"
+                className={`form-control shadow-sm mt-1 ${
+                  isMobile ? 'w-100' : 'col-md-3'
+                }`}
                 id="basic-url"
                 placeholder="Enter amount"
                 aria-describedby="basic-addon3"
-                style={{ width: '50%' }}
                 maxLength="3"
               />
 
               <button
                 href="#"
-                className="btn btn-info ml-3 shadow-sm font-weight-bold"
+                className={`btn btn-info mt-1 shadow-sm font-weight-bold  ${
+                  isMobile ? 'w-100' : 'col-md-3 ml-3'
+                }`}
               >
                 <i className="fas fa-wallet"></i> &nbsp; Connect Wallet
               </button>

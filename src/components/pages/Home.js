@@ -20,6 +20,7 @@ import dg13 from '../../imgs/13.png';
 import dg14 from '../../imgs/14.png';
 import dg15 from '../../imgs/15.png';
 import dg16 from '../../imgs/16.png';
+import { isMobile } from 'react-device-detect';
 
 const innerHeight = window.innerHeight;
 
@@ -247,7 +248,11 @@ export const Home = () => {
             <div className="subTitle pt-3">{subtitle}</div>
           </div>
         </div>
-        <div className="row p-10 d-flex justify-content-center">
+        <div
+          className={`row ${
+            isMobile ? 'pt-5' : 'p-10'
+          } d-flex justify-content-center`}
+        >
           {mainVideoURL ? (
             <iframe
               className="shadow-lg"
@@ -263,9 +268,17 @@ export const Home = () => {
             ></iframe>
           ) : null}
         </div>
-        <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center featureSection">
+        <div
+          className={`row pt-0 pb-5 d-flex justify-content-center featureSection ${
+            isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
+          }`}
+        >
           {features.map(({ title, subtitle, iconUrl }) => (
-            <div className="card animate-border service-card m-3">
+            <div
+              className={`card animate-border service-card ${
+                isMobile ? '' : 'width30'
+              } col-xs-12 m-3`}
+            >
               <img
                 alt=""
                 className="card-img-top metamoversImg shadow-sm mx-auto"
@@ -308,7 +321,7 @@ export const Home = () => {
                         const currentItems = childChunk.map((child2) => (
                           <div className="col-md-3 mb-3 mt-3">
                             <div
-                              className="card shadow-lg border-0 text-dark rounded"
+                              className="card shadow-lg border-0 text-dark rounded metamoversVideo"
                               alt={`${child2.name}`}
                               onClick={() => setVideoInfo(child2.videourl)}
                             >
@@ -387,7 +400,7 @@ export const Home = () => {
           </div>
           <br />
           <div className="row pl-5 pr-5 pt-0 d-flex justify-content-center">
-            <div className="col-md-7">
+            <div className="col-md-7 col-x-12">
               <div className="header">
                 <div className="progress-container">
                   <div className="custom-progress-bar" id="myTimelineBar"></div>
@@ -409,7 +422,11 @@ export const Home = () => {
                 </ol>
               </section>
             </div>
-            <div className="col-md-5 dancingGirlSectionBg">
+            <div
+              className={`col-md-5 dancingGirlSectionBg ${
+                isMobile ? 'd-none' : ''
+              }`}
+            >
               <img alt="" className="dgImage" src={dgImageSrc} />
             </div>
           </div>
@@ -419,9 +436,17 @@ export const Home = () => {
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">{teamTitle}</h1>
           </div>
-          <div className="row pl-5 pr-5 pt-0 pb-5 d-flex justify-content-center">
+          <div
+            className={`row pt-0 pb-5 d-flex justify-content-center ${
+              isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
+            }`}
+          >
             {team.map(({ name, title, bio, avatar, social }) => (
-              <div className="card teamInfoBox shadow-sm m-3">
+              <div
+                className={`card teamInfoBox col-xs-12 shadow-sm m-3 ${
+                  isMobile ? '' : 'width30'
+                }`}
+              >
                 <img
                   alt=""
                   className="card-img-top meetTheTeamImg shadow-sm mx-auto"

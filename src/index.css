@@ -180,7 +180,6 @@ blink_me {
 }
 
 .service-card {
-  width: 30%;
   min-height: 290px;
   text-align: center;
   padding: 1rem;
@@ -404,8 +403,11 @@ blink_me {
   padding: 2px 16px;
 }
 
+.width30 {
+  width: 30% !important;
+}
+
 .teamInfoBox {
-  width: 30%;
   min-height: 290px;
   text-align: center;
   padding: 1rem;
@@ -574,10 +576,16 @@ blink_me {
   line-height: 26px;
 }
 
+.mt70rem {
+  margin-top: 7rem;
+}
+
+.mt300px {
+  margin-top: 150px;
+}
+
 .buyNowContainer {
-  width: 70rem;
   background: #fffffff2;
-  margin-top: 8%;
   height: 80%;
 }
 
@@ -706,5 +714,4 @@ blink_me {
     margin-top: 15%;
     width: 100rem;
   }
-
 }

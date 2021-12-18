@@ -35,9 +35,9 @@ const Navbar = ({ title }) => {
   return (
     <React.Fragment>
       <nav
-        className={`navbar navbar-expand-lg navbar-light p-5 ${
-          blcktxt ? 'sticky-top' : ''
-        }`}
+        className={`navbar navbar-expand-lg navbar-light ${
+          isMobile ? 'p-1 d-flex justify-content-center' : 'p-5'
+        } ${blcktxt ? 'sticky-top' : ''}`}
       >
         <span
           onClick={() => redirectPage('/', 'aboutSection')}
@@ -51,7 +51,7 @@ const Navbar = ({ title }) => {
           />
         </span>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler d-none"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
