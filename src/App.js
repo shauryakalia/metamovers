@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import BuyNow from './components/pages/BuyNow';
 import NotFound from './components/pages/NotFound';
+import ComingSoon from './components/pages/ComingSoon';
 
 import GithubState from './context/metamovers/actions';
 
@@ -16,6 +17,7 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/buyNow" element={<BuyNow />} />
+            <Route exact path="/comingSoon" element={<ComingSoon />} />
             <Route element={<NotFound />} />
           </Routes>
         </div>

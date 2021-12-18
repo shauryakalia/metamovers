@@ -31,8 +31,13 @@ body {
   background-color: #1824ef;
 }
 
+.b-radius-10 {
+  border-radius: 10px;
+}
+
 .p-10 {
-  padding: 100px;
+  margin: 70px 0;
+  padding: 0 70px;
 }
 
 .p-15-10 {
@@ -48,6 +53,7 @@ body {
 
 .nav-item {
   padding: 0 20px;
+  text-transform: uppercase;
 }
 
 .hover-underline-animation {
@@ -80,6 +86,15 @@ body {
   background-position: bottom right;
   background-repeat: no-repeat;
   margin-top: -160px;
+  padding-top: 90px;
+}
+
+.mHomeCoverImg {
+  background-image: url('./imgs/homeback.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  margin-top: -160px;
+  padding-top: 150px;
 }
 
 .dancingGirlSectionBg {
@@ -112,20 +127,37 @@ body {
   left: -70px !important;
 }
 
-.homeTitle {
-  margin-top: 5rem;
-  font-size: 3rem;
+.mobileTitleContainer {
+  margin-top: 50px;
+}
+
+.mHomeTitle {
+  color: #212c58;
+  font-size: 40px;
+  line-height: 6vw;
+  font-weight: bold;
+}
+
+.mSubTitle {
+  color: #212c58;
+  font-size: 22px;
   font-weight: bolder;
+}
+
+.homeTitle {
+  font-family: 'Circe Extra Bold';
   color: #1824ef;
-  margin-bottom: -20px;
-  font-family: mySFFont;
+  font-size: 5vw;
+  line-height: 6vw;
+  font-weight: 700;
 }
 
 .subTitle {
-  font-size: 0.9rem;
-  font-family: mySFFont;
+  margin-bottom: 30px;
+  color: #9d9cab;
+  font-size: 1.5vw;
+  line-height: 1.5vw;
   font-weight: bolder;
-  color: #212b56;
 }
 
 blink_me {
@@ -188,6 +220,11 @@ blink_me {
   cursor: default;
 }
 
+.highlight-card:hover {
+  background: #1824ef;
+  color: white !important;
+}
+
 .metamoversImg {
   width: 75px;
   height: 75px;
@@ -197,13 +234,11 @@ blink_me {
 }
 
 .serviceText {
-  color: #212b56;
   font-size: 18px;
   font-weight: bold;
 }
 
 .serviceSubText {
-  color: #333;
   line-height: 26px;
   text-align: center;
 }
@@ -347,7 +382,6 @@ blink_me {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 50%;
   max-height: 500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;

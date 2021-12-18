@@ -18,14 +18,14 @@ const Navbar = ({ title }) => {
   };
   const [blcktxt, setBlacktxt] = useState(false);
   useEffect(() => {
-    setBlacktxt(window.location.pathname === '/buyNow');
+    setBlacktxt(['/buyNow', '/comingSoon'].includes(window.location.pathname));
     //eslint-disable-next-line
   }, [window.location.pathname]);
 
   const redirectPage = (url, scrollTo) => {
     navigate(url);
     if (scrollTo) scrollToSection(scrollTo);
-    if (['/buyNow'].includes(url)) {
+    if (['/buyNow', '/comingSoon'].includes(url)) {
       setBlacktxt(true);
     } else {
       setBlacktxt(false);
@@ -115,7 +115,7 @@ const Navbar = ({ title }) => {
               ) : (
                 <span
                   className={`navbarBtn shadow-sm`}
-                  onClick={() => redirectPage('/buyNow')}
+                  onClick={() => redirectPage('/comingSoon')}
                 >
                   Buy Now
                 </span>

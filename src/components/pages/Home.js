@@ -65,6 +65,7 @@ export const Home = () => {
   if (loading) return <Loader />;
   const { title, subtitle, videoUrl: mainVideoURL, features = [] } = homeInfo;
   const { title: teamTitle, team = [] } = teamInfo;
+  const updatedTeam = [...team].reverse();
   const {
     title: metaTitle,
     subtitle: metaSubTitle,
@@ -73,7 +74,7 @@ export const Home = () => {
   const setMemberInfoFn = (bio) => {
     setMemberInfo(bio);
   };
-  const chunkSize = 4;
+  const chunkSize = isMobile ? 1 : 4;
   const chunkMetamovers = [];
 
   for (let i = 0; i < metamovers.length; i += chunkSize) {
@@ -132,7 +133,7 @@ export const Home = () => {
     let scrolled = winScroll;
     if (scrolled > 2000 && scrolled < 3010) {
       if (scrolled > 3000) scrolled = scrolled - 3000;
-      else scrolled = scrolled - 2270;
+      else scrolled = scrolled - 2000;
       scrolled = (scrolled / 10) * 1.5;
       if (scrolled <= 2) return;
 
@@ -152,11 +153,7 @@ export const Home = () => {
       if (scrolled > 72 && scrolled <= 78) dgSrc = dg13;
       if (scrolled > 78 && scrolled <= 84) dgSrc = dg14;
       if (scrolled > 84 && scrolled <= 90) dgSrc = dg15;
-      if (scrolled > 90 && scrolled <= 96) dgSrc = dg16;
-      if (scrolled > 96 && scrolled <= 102) dgSrc = dg1;
-      if (scrolled > 102 && scrolled <= 108) dgSrc = dg2;
-      if (scrolled > 108 && scrolled <= 114) dgSrc = dg3;
-      if (scrolled > 114 && scrolled <= 120) dgSrc = dg4;
+      if (scrolled > 90) dgSrc = dg16;
       setDgImageSrc(dgSrc);
       if (scrolled > 100) scrolled = 100;
       document.getElementById('myTimelineBar').style.height = scrolled + '%';
@@ -169,7 +166,7 @@ export const Home = () => {
         id="memberInfoModal"
         className={`modal ${memberInfo ? 'd-block' : 'd-none'}`}
       >
-        <div className="modal-content">
+        <div className={`modal-content ${isMobile ? 'w-75' : 'w-50'}`}>
           <div className="modal-header">
             <span
               onClick={() => setMemberInfo(null)}
@@ -190,12 +187,22 @@ export const Home = () => {
                   src={memberInfo && memberInfo.avatar}
                 />
               </div>
-              <div className="col-md-6 text-left">
+              <div
+                className={`col-md-6 ${
+                  isMobile ? ' pt-2 text-center' : 'text-left'
+                }`}
+              >
                 <p className="card-text h4 font-weight-bolder mb-1">
                   {memberInfo && memberInfo.name}
                 </p>
                 <p className="card-text h5">{memberInfo && memberInfo.title}</p>
-                <p className="card-text h6 p-0 d-flex justify-content-start">
+                <p
+                  className={`card-text h6 p-0 d-flex ${
+                    isMobile
+                      ? 'justify-content-center'
+                      : 'justify-content-start'
+                  }`}
+                >
                   {memberInfo &&
                     Object.entries(memberInfo && memberInfo.social).map(
                       ([key, value]) => {
@@ -205,7 +212,7 @@ export const Home = () => {
                             key={key}
                             onClick={() => window.open(value)}
                           >
-                            <i className={`fab fa-${key}`}></i>
+                            <i className={`fab fa-${keySocialMap[key]}`}></i>
                           </span>
                         ) : null;
                       }
@@ -214,7 +221,11 @@ export const Home = () => {
               </div>
             </div>
             <div>
-              <p className="card-text h6 p-3 overflow-auto">
+              <p
+                className={`card-text h6 p-3 overflow-auto ${
+                  isMobile ? 'text-center' : ''
+                }`}
+              >
                 {memberInfo && memberInfo.bio}
               </p>
             </div>
@@ -241,33 +252,48 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="container-fluid" style={{ height: innerHeight }}>
+      <div
+        className={`container-fluid ${
+          isMobile ? 'mHomeCoverImg' : 'homeCoverImg'
+        }`}
+        style={{ height: innerHeight }}
+      >
         <div id="aboutSection" className="row d-flex justify-content-center">
-          <div className="text-center">
-            <div className="homeTitle">{title?.toUpperCase()}</div>
-            <div className="subTitle pt-3">{subtitle}</div>
+          <div className="col-md-4 col-xs-12 d-flex justify-content-center align-items-center">
+            {isMobile ? (
+              <div className="text-center mobileTitleContainer">
+                <div className="mHomeTitle">{title}</div>
+                <div className="mSubTitle pt-3">{subtitle}</div>
+              </div>
+            ) : (
+              <div className="text-left pl-5">
+                <div className="homeTitle">{title}</div>
+                <div className="subTitle pt-3">{subtitle}</div>
+              </div>
+            )}
+          </div>
+          <div
+            className={`col-md-8 col-xs-12 ${
+              isMobile ? 'pt-5' : 'p-10'
+            } d-flex justify-content-center `}
+          >
+            {mainVideoURL ? (
+              <iframe
+                className="shadow b-radius-10"
+                loading="lazy"
+                width="100%"
+                height={418}
+                title={title}
+                src={`https://www.youtube.com/embed/${
+                  mainVideoURL.split('=')[1]
+                }`}
+                frameborder="0"
+                allow="accelerometer;fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+            ) : null}
           </div>
         </div>
-        <div
-          className={`row ${
-            isMobile ? 'pt-5' : 'p-10'
-          } d-flex justify-content-center`}
-        >
-          {mainVideoURL ? (
-            <iframe
-              className="shadow-lg"
-              loading="lazy"
-              width="90%"
-              height={innerHeight - 102}
-              title={title}
-              src={`https://www.youtube.com/embed/${
-                mainVideoURL.split('=')[1]
-              }`}
-              frameborder="0"
-              allow="accelerometer;fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
-          ) : null}
-        </div>
+
         <div
           className={`row pt-0 pb-5 d-flex justify-content-center featureSection ${
             isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
@@ -275,9 +301,9 @@ export const Home = () => {
         >
           {features.map(({ title, subtitle, iconUrl }) => (
             <div
-              className={`card animate-border service-card ${
-                isMobile ? '' : 'width30'
-              } col-xs-12 m-3`}
+              className={`card service-card ${
+                isMobile ? 'highlight-card' : 'animate-border '
+              } shadow-sm ${isMobile ? '' : 'width30'} col-xs-12 m-3`}
             >
               <img
                 alt=""
@@ -302,11 +328,17 @@ export const Home = () => {
           className="row metamoversSectionBg mb-5  text-white d-flex justify-content-center zIndex10"
           onMouseOver={() => !nextClick && triggerNext()}
         >
-          <section className="pt-5 pb-5 pl-5 pr-5 pt-0 pb-5">
+          <section
+            className={`pt-5 pb-5 pt-0 pb-5 ${
+              isMobile ? 'pl-2 pr-2' : 'pl-5 pr-5'
+            }`}
+          >
             <div className="container-fluid">
               <div className="row">
                 <div className="col-12 text-center">
-                  <h1 className="mb-4 font-weight-bold">{metaTitle}</h1>
+                  <h1 className="mb-4 font-weight-bold">
+                    {metaTitle && metaTitle.toUpperCase()}
+                  </h1>
                   <h6 className="mb-2 metamoversSubTitle">{metaSubTitle}</h6>
                 </div>
 
@@ -356,7 +388,9 @@ export const Home = () => {
                       })}
                     </div>
                     <a
-                      class="carousel-control-prev carousel-control-prev-home"
+                      class={`carousel-control-prev ${
+                        isMobile ? 'invisible' : 'carousel-control-prev-home'
+                      }`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="prev"
@@ -368,7 +402,9 @@ export const Home = () => {
                       <span class="sr-only">Previous</span>
                     </a>
                     <a
-                      class="carousel-control-next carousel-control-next-home"
+                      class={`carousel-control-next ${
+                        isMobile ? 'invisible' : 'carousel-control-next-home'
+                      }`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="next"
@@ -383,7 +419,10 @@ export const Home = () => {
                   </div>
                 </div>
                 <div className="col-md-12 mt-5 mb-3 text-center">
-                  <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
+                  <Link
+                    to="/comingSoon"
+                    className={`navbarBtn shadow-sm btn-lg`}
+                  >
                     Buy Now
                   </Link>
                 </div>
@@ -395,12 +434,16 @@ export const Home = () => {
         <div id="roadMapSection" className="overflowScroll roadMapSectionStyle">
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">
-              {roadMapInfoTitle}
+              {roadMapInfoTitle && roadMapInfoTitle.toUpperCase()}
             </h1>
           </div>
           <br />
-          <div className="row pl-5 pr-5 pt-0 d-flex justify-content-center">
-            <div className="col-md-7 col-x-12">
+          <div
+            className={`row pt-0 d-flex justify-content-center ${
+              isMobile ? 'pl-3 pr-1' : 'pl-5 pr-5'
+            }`}
+          >
+            <div className="col-md-7 col-xs-12">
               <div className="header">
                 <div className="progress-container">
                   <div className="custom-progress-bar" id="myTimelineBar"></div>
@@ -414,7 +457,9 @@ export const Home = () => {
                       <span className="date font-weight-bold ">
                         {childRoadMap.title}
                       </span>
-                      <p className="mt-2 timelineContent">
+                      <p
+                        className={`mt-2 ${isMobile ? '' : 'timelineContent'}`}
+                      >
                         {childRoadMap.subtitle}
                       </p>
                     </li>
@@ -433,18 +478,20 @@ export const Home = () => {
         </div>
 
         <div id="theTeamSection" className="meetTheTeamSection">
-          <div className="row d-flex justify-content-center mb-5">
-            <h1 className="font-weight-bold border-bottom-1">{teamTitle}</h1>
+          <div className="row d-flex justify-content-center mb-3">
+            <h1 className="font-weight-bold border-bottom-1">
+              {teamTitle && teamTitle.toUpperCase()}
+            </h1>
           </div>
           <div
-            className={`row pt-0 pb-5 d-flex justify-content-center ${
+            className={`row pt-0 pb-5 d-flex justify-content-center flex-wrap-reverse ${
               isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
             }`}
           >
-            {team.map(({ name, title, bio, avatar, social }) => (
+            {updatedTeam.map(({ name, title, bio, avatar, social }) => (
               <div
                 className={`card teamInfoBox col-xs-12 shadow-sm m-3 ${
-                  isMobile ? '' : 'width30'
+                  isMobile ? 'w-100' : 'width30'
                 }`}
               >
                 <img

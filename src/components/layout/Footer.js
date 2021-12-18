@@ -46,8 +46,10 @@ const Footer = ({ logo, social = [] }) => {
         </div>
         <hr className="border" />
         <div className="d-flex justify-content-between align-items-center">
-          <div>Copyright © 2021 Metamovers. All right reserved.</div>
-          <div>
+          <div className="col-md-6 col-xs-12">
+            Copyright © 2021 Metamovers. All right reserved.
+          </div>
+          <div className="col-md-6 col-xs-12 text-right">
             {Object.entries(updatedSocial).map(([key, value]) => (
               <a
                 className={`btn btn-floating  m-1 text-white ${
