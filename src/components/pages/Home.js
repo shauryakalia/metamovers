@@ -237,7 +237,11 @@ export const Home = () => {
         id="videoInfoModal"
         className={`modal ${videoInfo ? 'd-block' : 'd-none'}`}
       >
-        <div className="modal-content metamoversVideoModal">
+        <div
+          className={`modal-content ${
+            isMobile ? 'w-75' : 'metamoversVideoModal'
+          }`}
+        >
           <div className="modal-header">
             <span
               onClick={() => setVideoInfo(null)}
@@ -388,9 +392,9 @@ export const Home = () => {
                       })}
                     </div>
                     <a
-                      class={`carousel-control-prev ${
-                        isMobile ? 'invisible' : 'carousel-control-prev-home'
-                      }`}
+                      class={`carousel-control-prev 
+                      ${videoInfo ? 'invisible' : ' '}
+                      ${isMobile ? '' : 'carousel-control-prev-home'}`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="prev"
@@ -402,9 +406,9 @@ export const Home = () => {
                       <span class="sr-only">Previous</span>
                     </a>
                     <a
-                      class={`carousel-control-next ${
-                        isMobile ? 'invisible' : 'carousel-control-next-home'
-                      }`}
+                      class={`carousel-control-next 
+                      ${videoInfo ? 'invisible' : ' '}
+                      ${isMobile ? '' : 'carousel-control-next-home'}`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="next"
