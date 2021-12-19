@@ -21,6 +21,7 @@ import dg14 from '../../imgs/14.png';
 import dg15 from '../../imgs/15.png';
 import dg16 from '../../imgs/16.png';
 import { isMobile } from 'react-device-detect';
+import desktop from '../../imgs/desktop.png';
 
 const innerHeight = window.innerHeight;
 
@@ -34,6 +35,7 @@ export const Home = () => {
   const githubContext = useContext(GithubContext);
   const [memberInfo, setMemberInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState('');
+  const [comingSoonModal, setComingSoonModal] = useState(false);
   const [dgImageSrc, setDgImageSrc] = useState(dg1);
   const [nextClick, setNextClick] = useState(false);
   const {
@@ -97,6 +99,7 @@ export const Home = () => {
   const closeModalOnClickOutside = () => {
     const memberInfoModal = document.getElementById('memberInfoModal');
     const videoInfoModal = document.getElementById('videoInfoModal');
+    const comingSoonModal = document.getElementById('comingSoonModal');
     window.onclick = function (event) {
       if (event.target === memberInfoModal) {
         setMemberInfo('');
@@ -104,6 +107,10 @@ export const Home = () => {
 
       if (event.target === videoInfoModal) {
         setVideoInfo('');
+      }
+
+      if (event.target === comingSoonModal) {
+        setComingSoonModal(false);
       }
     };
   };
@@ -115,23 +122,28 @@ export const Home = () => {
   };
 
   const keySocialMap = {
-    instagram: 'instagram',
-    behance: 'behance',
-    facebook: 'facebook',
-    youtube: 'youtube',
-    twitter: 'twitter',
-    spotify: 'spotify',
-    soundcloud: 'soundcloud',
-    tiktok: 'youtube',
-    youtubesecond: 'youtube',
+    instagram: 'fab fa-instagram',
+    behance: 'fab fa-behance',
+    facebook: 'fab fa-facebook',
+    youtube: 'fab fa-youtube',
+    twitter: 'fab fa-twitter',
+    spotify: 'fab fa-spotify',
+    soundcloud: 'fab fa-soundcloud',
+    tiktok: 'fab fa-youtube',
+    youtubesecond: 'fab fa-youtube',
+    id: 'fas fa-globe',
+    personalweb: 'fas fa-globe',
   };
+
 
   const animateTimeline = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
 
     let scrolled = winScroll;
-    if (scrolled > 2000 && scrolled < 3010) {
+    let scrolledCondition = scrolled > 2000 && scrolled < 3010;
+    if (isMobile) scrolledCondition = scrolled > 3000 && scrolled < 5010;
+    if (scrolledCondition) {
       if (scrolled > 3000) scrolled = scrolled - 3000;
       else scrolled = scrolled - 2000;
       scrolled = (scrolled / 10) * 1.5;
@@ -212,7 +224,7 @@ export const Home = () => {
                             key={key}
                             onClick={() => window.open(value)}
                           >
-                            <i className={`fab fa-${keySocialMap[key]}`}></i>
+                            <i className={`${keySocialMap[key]}`}></i>
                           </span>
                         ) : null;
                       }
@@ -252,6 +264,29 @@ export const Home = () => {
           </div>
           <div className="modal-body p-2">
             <video className="metaMoversVideo" src={videoInfo} controls></video>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="comingSoonModal"
+        className={`modal ${comingSoonModal ? 'd-block' : 'd-none'}`}
+      >
+        <div className={`modal-content w-75`}>
+          <div className="modal-header">
+            <span
+              onClick={() => setComingSoonModal(false)}
+              className="close text-dark"
+            >
+              &times;
+            </span>
+          </div>
+          <div className="modal-body p-2 text-center">
+            <img src={desktop} alt="desktop" height="150px" className="mb-2" />
+
+            <h5 className="font-weight-bold">
+              Please access website on desktop for buying metamovers.
+            </h5>
           </div>
         </div>
       </div>
@@ -394,6 +429,7 @@ export const Home = () => {
                     <a
                       class={`carousel-control-prev 
                       ${videoInfo ? 'invisible' : ' '}
+                      ${comingSoonModal ? 'd-none' : ' '}
                       ${isMobile ? '' : 'carousel-control-prev-home'}`}
                       href="#metaMoversCoursel"
                       role="button"
@@ -408,6 +444,7 @@ export const Home = () => {
                     <a
                       class={`carousel-control-next 
                       ${videoInfo ? 'invisible' : ' '}
+                      ${comingSoonModal ? 'd-none' : ' '}
                       ${isMobile ? '' : 'carousel-control-next-home'}`}
                       href="#metaMoversCoursel"
                       role="button"
@@ -423,12 +460,21 @@ export const Home = () => {
                   </div>
                 </div>
                 <div className="col-md-12 mt-5 mb-3 text-center">
-                  <Link
-                    to="/comingSoon"
-                    className={`navbarBtn shadow-sm btn-lg`}
-                  >
-                    Buy Now
-                  </Link>
+                  {isMobile ? (
+                    <span
+                      onClick={() => setComingSoonModal(true)}
+                      className={`navbarBtn shadow-sm btn-lg`}
+                    >
+                      Buy Now
+                    </span>
+                  ) : (
+                    <Link
+                      to="/comingSoon"
+                      className={`navbarBtn shadow-sm btn-lg`}
+                    >
+                      Buy Now
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -515,7 +561,7 @@ export const Home = () => {
                           key={key}
                           onClick={() => window.open(value)}
                         >
-                          {<i className={`fab fa-${keySocialMap[key]}`}></i>}
+                          {<i className={`${keySocialMap[key]}`}></i>}
                         </span>
                       ) : null;
                     })}

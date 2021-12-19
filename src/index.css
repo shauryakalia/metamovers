@@ -83,7 +83,7 @@ body {
 
 .homeCoverImg {
   background-image: url('./imgs/homeback.png');
-  background-position: bottom right;
+  background-position: top right;
   background-repeat: no-repeat;
   margin-top: -160px;
   padding-top: 90px;
@@ -91,7 +91,7 @@ body {
 
 .mHomeCoverImg {
   background-image: url('./imgs/homeback.png');
-  background-position: right;
+  background-position: top right;
   background-repeat: no-repeat;
   margin-top: -160px;
   padding-top: 150px;
