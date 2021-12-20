@@ -135,11 +135,9 @@ export const Home = () => {
     personalweb: 'fas fa-globe',
   };
 
-
   const animateTimeline = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
-
     let scrolled = winScroll;
     let scrolledCondition = scrolled > 2000 && scrolled < 3010;
     if (isMobile) scrolledCondition = scrolled > 3000 && scrolled < 5010;

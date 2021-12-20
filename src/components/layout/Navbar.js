@@ -105,7 +105,7 @@ const Navbar = ({ title }) => {
         className={`navbar navbar-expand-lg navbar-light ${
           isMobile
             ? 'shadow-sm pl-3 pr-3 d-flex justify-content-between'
-            : 'pl-5 pr-5 pb-5 pt-5'
+            : 'pl-5 pr-5 pb-5 pt-3'
         } ${blcktxt ? 'sticky-top' : ''}`}
       >
         <span

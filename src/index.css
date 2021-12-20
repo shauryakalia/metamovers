@@ -96,7 +96,7 @@ body {
   background-image: url('./imgs/homeback.png');
   background-position: top right;
   background-repeat: no-repeat;
-  margin-top: -160px;
+  margin-top: -125px;
   padding-top: 90px;
 }
 
@@ -759,10 +759,6 @@ blink_me {
 .overlayNavbarBtn {
   display: inline-block !important;
   padding: 10px 70px !important;
-}
-
-.pb25 {
-  padding-bottom: 25px;
 }
 
 .overlay {
