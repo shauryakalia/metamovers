@@ -41,8 +41,8 @@ body {
 }
 
 .p-10 {
-  margin: 70px 0;
-  padding: 0 70px;
+  margin: 65px 0;
+  padding: 0 65px;
 }
 
 .p-15-10 {
@@ -152,7 +152,7 @@ body {
 
 .mSubTitle {
   color: #212c58;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bolder;
 }
 
@@ -167,8 +167,7 @@ body {
 .subTitle {
   margin-bottom: 30px;
   color: #9d9cab;
-  font-size: 1.5vw;
-  line-height: 1.5vw;
+  font-size: 1.3vw;
   font-weight: bolder;
 }
 

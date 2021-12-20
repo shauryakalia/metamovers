@@ -59,7 +59,7 @@ export const Home = () => {
     getRoadMapInfo();
     document.addEventListener('click', closeModalOnClickOutside);
     window.addEventListener('resize', forceUpdate);
-    window.addEventListener('scroll', animateTimeline);
+    window.addEventListener('scroll', () => animateTimeline(document.body));
 
     //eslint-disable-next-line
   }, []);
@@ -135,36 +135,44 @@ export const Home = () => {
     personalweb: 'fas fa-globe',
   };
 
-  const animateTimeline = () => {
+  const animateTimeline = (elm) => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     let scrolled = winScroll;
+    const p = elm.parentNode;
+    const scrollPerc =
+      ((elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight)) *
+      100;
+
+    if (scrollPerc >= 42 && scrollPerc < 72) {
+      let dgSrc = dg1;
+      if (scrollPerc > 42 && scrollPerc <= 44) dgSrc = dg1;
+      if (scrollPerc > 44 && scrollPerc <= 46) dgSrc = dg2;
+      if (scrollPerc > 46 && scrollPerc <= 48) dgSrc = dg3;
+      if (scrollPerc > 48 && scrollPerc <= 50) dgSrc = dg4;
+      if (scrollPerc > 50 && scrollPerc <= 52) dgSrc = dg5;
+      if (scrollPerc > 52 && scrollPerc <= 54) dgSrc = dg6;
+      if (scrollPerc > 54 && scrollPerc <= 56) dgSrc = dg7;
+      if (scrollPerc > 56 && scrollPerc <= 58) dgSrc = dg8;
+      if (scrollPerc > 58 && scrollPerc <= 60) dgSrc = dg9;
+      if (scrollPerc > 60 && scrollPerc <= 62) dgSrc = dg10;
+      if (scrollPerc > 62 && scrollPerc <= 64) dgSrc = dg11;
+      if (scrollPerc > 64 && scrollPerc <= 66) dgSrc = dg12;
+      if (scrollPerc > 66 && scrollPerc <= 68) dgSrc = dg13;
+      if (scrollPerc > 68 && scrollPerc <= 70) dgSrc = dg14;
+      if (scrollPerc > 70 && scrollPerc <= 72) dgSrc = dg16;
+      setDgImageSrc(dgSrc);
+    }
+
     let scrolledCondition = scrolled > 2000 && scrolled < 3010;
     if (isMobile) scrolledCondition = scrolled > 3000 && scrolled < 5010;
+
     if (scrolledCondition) {
       if (scrolled > 3000) scrolled = scrolled - 3000;
       else scrolled = scrolled - 2000;
       scrolled = (scrolled / 10) * 1.5;
       if (scrolled <= 2) return;
 
-      let dgSrc = dg1;
-      if (scrolled > 1 && scrolled <= 6) dgSrc = dg1;
-      if (scrolled > 6 && scrolled <= 12) dgSrc = dg2;
-      if (scrolled > 12 && scrolled <= 18) dgSrc = dg3;
-      if (scrolled > 18 && scrolled <= 24) dgSrc = dg4;
-      if (scrolled > 24 && scrolled <= 35) dgSrc = dg5;
-      if (scrolled > 30 && scrolled <= 36) dgSrc = dg6;
-      if (scrolled > 36 && scrolled <= 42) dgSrc = dg7;
-      if (scrolled > 42 && scrolled <= 48) dgSrc = dg8;
-      if (scrolled > 48 && scrolled <= 54) dgSrc = dg9;
-      if (scrolled > 54 && scrolled <= 60) dgSrc = dg10;
-      if (scrolled > 60 && scrolled <= 66) dgSrc = dg11;
-      if (scrolled > 66 && scrolled <= 72) dgSrc = dg12;
-      if (scrolled > 72 && scrolled <= 78) dgSrc = dg13;
-      if (scrolled > 78 && scrolled <= 84) dgSrc = dg14;
-      if (scrolled > 84 && scrolled <= 90) dgSrc = dg15;
-      if (scrolled > 90) dgSrc = dg16;
-      setDgImageSrc(dgSrc);
       if (scrolled > 100) scrolled = 100;
       document.getElementById('myTimelineBar').style.height = scrolled + '%';
     }
