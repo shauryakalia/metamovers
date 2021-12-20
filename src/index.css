@@ -13,6 +13,11 @@
   src: url(CRR.woff2);
 }
 
+@font-face {
+  font-family: CEB;
+  src: url(CEB.ttf);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -56,6 +61,12 @@ body {
   text-transform: uppercase;
 }
 
+.mobile-nav-item {
+  padding: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
 .hover-underline-animation {
   display: inline-block;
   position: relative;
@@ -71,7 +82,7 @@ body {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: black;
+  background-color: white;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -91,10 +102,11 @@ body {
 
 .mHomeCoverImg {
   background-image: url('./imgs/homeback.png');
-  background-position: top right;
+  background-position: right;
   background-repeat: no-repeat;
   margin-top: -160px;
   padding-top: 150px;
+  background-size: 1700px;
 }
 
 .dancingGirlSectionBg {
@@ -108,7 +120,6 @@ body {
 
 .nav-link {
   font-weight: bold;
-  color: black !important;
 }
 
 .buyNowBtn {
@@ -133,9 +144,10 @@ body {
 
 .mHomeTitle {
   color: #212c58;
-  font-size: 35px;
-  line-height: 6vw;
-  font-weight: bold;
+  font-family: CEB;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-family: CEB;
 }
 
 .mSubTitle {
@@ -145,11 +157,11 @@ body {
 }
 
 .homeTitle {
-  font-family: 'Circe Extra Bold';
+  font-family: CEB;
   color: #1824ef;
-  font-size: 5vw;
-  line-height: 6vw;
+  font-size: 4.5vw;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .subTitle {
@@ -732,6 +744,21 @@ blink_me {
 .carousel-control-next,
 .carousel-control-prev {
   width: 20%;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-link {
+    font-weight: bold;
+    color: black !important;
+  }
+
+  .mobileTitleContainer {
+    margin-top: 25px;
+  }
+
+  .hover-underline-animation:after {
+    background-color: black;
+  }
 }
 
 @media screen and (min-width: 1600px) {
