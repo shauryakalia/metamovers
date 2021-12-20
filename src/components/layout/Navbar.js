@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import GithubContext from '../../context/metamovers/context';
 import { isMobile } from 'react-device-detect';
 import loading_url from '../../imgs/Metamovers.png';
+import desktop from '../../imgs/desktop.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ title }) => {
@@ -17,6 +18,9 @@ const Navbar = ({ title }) => {
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
   const [blcktxt, setBlacktxt] = useState(false);
+  const [open, setNav] = useState(false);
+  const [comingSoonModal, setComingSoonModal] = useState(false);
+
   useEffect(() => {
     setBlacktxt(['/buyNow', '/comingSoon'].includes(window.location.pathname));
     //eslint-disable-next-line
@@ -24,6 +28,7 @@ const Navbar = ({ title }) => {
 
   const redirectPage = (url, scrollTo) => {
     navigate(url);
+    if (isMobile) setNav(!open);
     if (scrollTo) scrollToSection(scrollTo);
     if (['/buyNow', '/comingSoon'].includes(url)) {
       setBlacktxt(true);
@@ -32,11 +37,75 @@ const Navbar = ({ title }) => {
     }
   };
 
+  const setComingSoonModalFn = (status) => {
+    if (isMobile) setNav(!open);
+    setComingSoonModal(status);
+  };
+
   return (
     <React.Fragment>
+      <div
+        id="comingSoonModal"
+        className={`modal ${comingSoonModal ? 'd-block' : 'd-none'}`}
+      >
+        <div className={`modal-content w-75`}>
+          <div className="modal-header">
+            <span
+              onClick={() => setComingSoonModal(false)}
+              className="close text-dark"
+            >
+              &times;
+            </span>
+          </div>
+          <div className="modal-body p-2 text-center">
+            <img src={desktop} alt="desktop" height="150px" className="mb-2" />
+
+            <h5 className="font-weight-bold">
+              Please access website on desktop for buying metamovers.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div id="myNav" className={`overlay ${open ? 'w-100' : ''}`}>
+        <div className="overlay-content">
+          <span
+            onClick={() => redirectPage('/', 'aboutSection')}
+            className="text-white font-weight-bold text-uppercase"
+          >
+            <span>About </span>
+          </span>
+          <span
+            onClick={() => redirectPage('/', 'metamoversSection')}
+            className="text-white font-weight-bold text-uppercase"
+          >
+            <span>Metamovers </span>
+          </span>
+          <span
+            onClick={() => redirectPage('/', 'roadMapSection')}
+            className="text-white font-weight-bold text-uppercase"
+          >
+            <span>Roadmap </span>
+          </span>
+          <span
+            onClick={() => redirectPage('/', 'theTeamSection')}
+            className="text-white font-weight-bold text-uppercase"
+          >
+            <span>The Team </span>
+          </span>
+          <span
+            className={`navbarBtn shadow-sm overlayNavbarBtn`}
+            // onClick={() => redirectPage('/comingSoon')}
+            onClick={() => setComingSoonModalFn(true)}
+          >
+            Buy Now
+          </span>
+        </div>
+      </div>
       <nav
         className={`navbar navbar-expand-lg navbar-light ${
-          isMobile ? 'p-1 d-flex justify-content-center' : 'p-5'
+          isMobile
+            ? 'shadow-sm pl-3 pr-3 d-flex justify-content-between'
+            : 'pl-5 pr-5 pb-5 pt-5'
         } ${blcktxt ? 'sticky-top' : ''}`}
       >
         <span
@@ -46,83 +115,91 @@ const Navbar = ({ title }) => {
           <img
             src={loading_url}
             alt="metamovers"
-            style={isMobile ? { marginTop: '5%' } : { marginLeft: '10%' }}
+            style={isMobile ? null : { marginLeft: '10%' }}
             height="50px"
           />
         </span>
         <button
-          className="navbar-toggler d-none"
+          className="navbar-toggler customToggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          {open ? (
+            <i
+              className={`fas fa-times text-white`}
+              onClick={() => setNav(!open)}
+            ></i>
+          ) : (
+            <i
+              className={`fas fa-bars ${blcktxt ? '' : 'text-dark'}`}
+              onClick={() => setNav(!open)}
+            ></i>
+          )}
         </button>
 
-        <ul
-          className={`navbar-nav ${isMobile ? 'd-flex flex-row' : 'ml-auto'} `}
-        >
-          <li className={`${isMobile ? 'mobile-nav-item' : 'nav-item'}`}>
-            <span
-              onClick={() => redirectPage('/', 'aboutSection')}
-              className={`nav-link hover-underline-animation ${
-                blcktxt ? 'd-none' : 'text-white'
-              }`}
-            >
-              About
-            </span>
-          </li>
-          <li className={`${isMobile ? 'mobile-nav-item' : 'nav-item'}`}>
-            <span
-              onClick={() => scrollToSection('metamoversSection')}
-              className={`nav-link hover-underline-animation ${
-                blcktxt ? 'd-none' : 'text-white'
-              }`}
-            >
-              Metamovers
-            </span>
-          </li>
-          <li className={`${isMobile ? 'mobile-nav-item' : 'nav-item'}`}>
-            <span
-              onClick={() => scrollToSection('roadMapSection')}
-              className={`nav-link hover-underline-animation ${
-                blcktxt ? 'd-none' : 'text-white'
-              }`}
-            >
-              Roadmap
-            </span>
-          </li>
-          <li className={`${isMobile ? 'mobile-nav-item' : 'nav-item'}`}>
-            <span
-              onClick={() => scrollToSection('theTeamSection')}
-              className={`nav-link hover-underline-animation ${
-                blcktxt ? 'd-none' : 'text-white'
-              }`}
-            >
-              The Team
-            </span>
-          </li>
-          <li className={`${isMobile ? 'd-none' : 'nav-item'}`}>
-            {blcktxt ? (
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item ">
               <span
-                className={`navbarBtn shadow-sm`}
                 onClick={() => redirectPage('/', 'aboutSection')}
+                className={`nav-link hover-underline-animation pb25 ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
-                <i className="fas fa-home"></i>
+                About
               </span>
-            ) : (
+            </li>
+            <li className="nav-item ">
               <span
-                className={`navbarBtn shadow-sm`}
-                onClick={() => redirectPage('/comingSoon')}
+                onClick={() => scrollToSection('metamoversSection')}
+                className={`nav-link hover-underline-animation pb25 ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
               >
-                Buy Now
+                Metamovers
               </span>
-            )}
-          </li>
-        </ul>
+            </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => scrollToSection('roadMapSection')}
+                className={`nav-link hover-underline-animation pb25 ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
+              >
+                Roadmap
+              </span>
+            </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => scrollToSection('theTeamSection')}
+                className={`nav-link hover-underline-animation pb25 ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
+              >
+                The Team
+              </span>
+            </li>
+            <li className="nav-item ">
+              {blcktxt ? (
+                <span
+                  className={`navbarBtn shadow-sm`}
+                  onClick={() => redirectPage('/', 'aboutSection')}
+                >
+                  <i className="fas fa-home"></i>
+                </span>
+              ) : (
+                <span
+                  className={`navbarBtn shadow-sm`}
+                  onClick={() => redirectPage('/comingSoon')}
+                >
+                  Buy Now
+                </span>
+              )}
+            </li>
+          </ul>
+        </div>
       </nav>
     </React.Fragment>
   );

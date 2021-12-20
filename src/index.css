@@ -746,6 +746,66 @@ blink_me {
   width: 20%;
 }
 
+.customToggler {
+  border: none;
+  font-size: 30px;
+  z-index: 2;
+}
+
+.customToggler:focus {
+  outline: none;
+}
+
+.overlayNavbarBtn {
+  display: inline-block !important;
+  padding: 10px 70px !important;
+}
+
+.pb25 {
+  padding-bottom: 25px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  color: white;
+  transition: 0.4s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay span {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay span:hover,
+.overlay span:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-link {
     font-weight: bold;
@@ -753,7 +813,7 @@ blink_me {
   }
 
   .mobileTitleContainer {
-    margin-top: 25px;
+    margin-top: 50px;
   }
 
   .hover-underline-animation:after {
