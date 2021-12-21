@@ -90,7 +90,7 @@ export const BuyNow = () => {
             </p>
             <hr />
             <p className="card-text">
-              Enter amount of metamovers you’d like to mint (3 max)
+              Enter amount of metamovers you’d like to mint (10 max)
             </p>
 
             <div className="d-flex justify-content-between row">
