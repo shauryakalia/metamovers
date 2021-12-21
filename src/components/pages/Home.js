@@ -474,10 +474,7 @@ export const Home = () => {
                       Buy Now
                     </span>
                   ) : (
-                    <Link
-                      to="/comingSoon"
-                      className={`navbarBtn shadow-sm btn-lg`}
-                    >
+                    <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
                       Buy Now
                     </Link>
                   )}
