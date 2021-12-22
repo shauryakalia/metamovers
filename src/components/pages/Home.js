@@ -33,6 +33,7 @@ function useForceUpdate() {
 export const Home = () => {
   const forceUpdate = useForceUpdate();
   const githubContext = useContext(GithubContext);
+  const [isReady, setIsReady] = useState(false);
   const [memberInfo, setMemberInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState('');
   const [comingSoonModal, setComingSoonModal] = useState(false);
@@ -60,6 +61,9 @@ export const Home = () => {
     document.addEventListener('click', closeModalOnClickOutside);
     window.addEventListener('resize', forceUpdate);
     window.addEventListener('scroll', () => animateTimeline(document.body));
+    document.fonts.ready.then(() => {
+      setIsReady(true);
+    });
 
     //eslint-disable-next-line
   }, []);
@@ -310,12 +314,13 @@ export const Home = () => {
                 <div className="mHomeTitle">{title}</div>
                 <div className="mSubTitle pt-3">{subtitle}</div>
               </div>
-            ) : (
-              <div className="text-left pl-5">
+            ) : null}
+            {!isMobile && isReady ? (
+              <div className={`text-left pl-5 `}>
                 <div className="homeTitle">{title}</div>
                 <div className="subTitle pt-3">{subtitle}</div>
               </div>
-            )}
+            ) : null}
           </div>
           <div
             className={`col-md-8 col-xs-12 ${
