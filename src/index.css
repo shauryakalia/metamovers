@@ -568,7 +568,6 @@ blink_me {
 
 .timeline li {
   padding-left: 15px;
-  width: 300px;
 }
 
 .roadMapSectionStyle {
@@ -805,6 +804,19 @@ blink_me {
 
   .hover-underline-animation:after {
     background-color: black;
+  }
+
+  .timeline li {
+    width: 300px;
+  }
+
+  .timeline ol li {
+    height: fit-content;
+    margin-bottom: -40px;
+  }
+
+  .timeline ol li::before {
+    top: -10px;
   }
 }
 
