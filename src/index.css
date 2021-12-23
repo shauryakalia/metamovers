@@ -816,7 +816,7 @@ blink_me {
   }
 
   .timeline ol li::before {
-    top: -10px;
+    top: -8px;
   }
 }
 
