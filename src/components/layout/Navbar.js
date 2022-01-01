@@ -13,6 +13,11 @@ const Navbar = ({ title }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const githubContext = useContext(GithubContext);
+  const {
+    connectionStatus,
+    getConnectionStatus,
+    walletLoading,
+  } = githubContext;
   const scrollToSection = (elemId) => {
     var element = document.getElementById(elemId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -40,6 +45,10 @@ const Navbar = ({ title }) => {
   const setComingSoonModalFn = (status) => {
     if (isMobile) setNav(!open);
     setComingSoonModal(status);
+  };
+
+  const setConnectionStatusFn = (status) => {
+    getConnectionStatus(status);
   };
 
   return (
@@ -181,14 +190,24 @@ const Navbar = ({ title }) => {
                 The Team
               </span>
             </li>
-            <li className="nav-item ">
+            <li className="nav-item grow">
               {blcktxt ? (
-                <span
-                  className={`navbarBtn shadow-sm`}
-                  onClick={() => redirectPage('/', 'aboutSection')}
-                >
-                  <i className="fas fa-home"></i>
-                </span>
+                <>
+                  <span
+                    className={`${walletLoading ? 'navLoader' : 'd-none'}`}
+                  />
+                  <span
+                    className={`navbarBtn shadow-sm connectWallet ${
+                      connectionStatus === 'success' ? 'connected' : ''
+                    }`}
+                    onClick={() => setConnectionStatusFn()}
+                  >
+                    <i className="fas fa-wallet"></i> &nbsp;{' '}
+                    {connectionStatus === 'success'
+                      ? 'Wallet Connected'
+                      : 'Connect Wallet'}
+                  </span>
+                </>
               ) : (
                 <span
                   className={`navbarBtn shadow-sm`}
