@@ -3,6 +3,15 @@ import Loader from '../layout/Loader';
 import GithubContext from '../../context/metamovers/context';
 import { isMobile } from 'react-device-detect';
 
+import { ethers } from "ethers";
+import { useEagerConnect } from '../hooks/useEagerConnect'
+import { truncateAccount } from "../utils/format.js";
+import { useContract } from "../hooks/useContract.js";
+import { useReadContract } from "../hooks/useRead.js";
+import { useCsvWhitelist } from "../hooks/useCsvWhitelist.js";
+import { usePublicMint, useIsWhitelist, useWhitelistMint } from "../hooks/useMint.js";
+import { InjectedConnector } from '@web3-react/injected-connector';
+
 const mintMsgObj = {
   pending: 'Your transaction has been submitted, Please wait.',
   success: 'You have successfully minted your NFTs!',
@@ -27,19 +36,62 @@ export const BuyNow = () => {
   }, []);
   const { metamovers = [] } = metamoversInfo;
   const [amount, setAmount] = useState(1);
-  const [mintAmount, setMintAmount] = useState(0);
 
   const setAmountFn = (e) => {
     const val = e.target.value;
-    if ((val <= 10 && val >= 1) || val === '') {
+    if ((val <= 16 && val >= 1) || val === '') {
       setAmount(val);
     }
   };
 
-  const setMintAmountFn = () => {
-    setMintAmount(mintAmount + 1);
-    getMintStatus();
+  const { account, activate } = useEagerConnect();
+  const contract = useContract();
+
+  const { currentSupply, mintPrice, maxSupply, whitelistStarted, error: readError } = useReadContract();
+
+  const { wl, error: wlError } = useCsvWhitelist();
+
+  const {pending: wlPending, receipt: wlReceipt, error: wlTxError, mintWhitelist} = useWhitelistMint()
+
+  const { status, isWhitelist } = useIsWhitelist();
+  const hasMetamask =
+      typeof window !== 'undefined' &&
+      !!window.ethereum &&
+      !!window.ethereum.isMetaMask;
+
+  const handleMetamaskClick = async () => {
+    if (!account) {
+      if (hasMetamask) {
+        const injected = new InjectedConnector({
+          supportedChainIds: [1, 4],
+        });
+        await activate(injected);
+      } else {
+        window.open('https://metamask.io/', '_blank');
+      }
+    }
   };
+
+  const handleMint = async () => {
+    if (whitelistStarted) {
+      if (status) {
+        await mintWhitelist(amount, mintPrice);
+      }
+    }
+  }
+
+  const renderAlert = () => {
+    if (wlPending) {
+      return "Transaction In Progress.."
+    }
+    if (wlTxError) {
+      return "Error"
+    }
+    if (wlReceipt) {
+      return "Mint Successfull"
+    }
+  }
+
   if (loading) return <Loader />;
   return (
     <div className="container-fluid homeCoverImg p-5">
@@ -119,7 +171,7 @@ export const BuyNow = () => {
             </p>
             <hr />
             <p className="card-text">
-              Enter amount of metamovers you’d like to mint ( 10 max )
+              Enter amount of metamovers you’d like to mint ( 16 max )
             </p>
             <div className="d-flex justify-content-start mt-2">
               <div class="input-group">
@@ -139,7 +191,7 @@ export const BuyNow = () => {
                     class="input-group-text font-weight-bold"
                     id="btnGroupAddon"
                   >
-                    {amount * 0.04} Eth
+                    {ethers.utils.formatEther(ethers.utils.parseEther("0.045").mul(amount))} Eth
                   </div>
                 </div>
               </div>
@@ -148,28 +200,23 @@ export const BuyNow = () => {
             <div className={`d-flex justify-content-between mt-3 `}>
               <button
                 href="#"
-                title={
-                  connectionStatus === 'success'
-                    ? 'Please connect your wallet to mint'
-                    : 'Click to mint'
-                }
                 className={`btn shadow-sm font-weight-bold  ${
                   isMobile ? 'w-100' : 'col-md-2'
                 } ${
-                  connectionStatus === 'success'
+                 whitelistStarted && status
                     ? ' btn-info'
                     : 'disabled  btn-secondary cursorDisabled'
                 }`}
-                onClick={() => setMintAmountFn()}
+                onClick={handleMint}
               >
-                <i className="fab fa-ethereum"></i> &nbsp; Mint
+                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Closed"}
                 <span
                   className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
                 />
               </button>
 
               <button type="button" class="btn btn-info font-weight-bold">
-                {`${mintAmount} / 4800 minted`}
+                {`${currentSupply} / 4800 minted`}
               </button>
             </div>
           </div>
@@ -177,7 +224,7 @@ export const BuyNow = () => {
       </div>
       <div
         class={`snackbar shadow ${
-          connectionStatus === 'error' ? 'show' : 'hide'
+          account && !status ? 'show' : 'hide'
         } `}
       >
         <div className="d-flex justify-content-between">
@@ -191,25 +238,12 @@ export const BuyNow = () => {
               <u>https://discord.gg/qxRb2wMYsp</u>
             </b>
           </div>
-          <div className="text-right ml-2">
-            <i
-              className={`fas fa-times text-white c-pointer toastCloseBtn`}
-              onClick={() => getConnectionStatus(' ')}
-            ></i>
-          </div>
         </div>
       </div>
-      <div class={`snackbar shadow ${mintStatus === false ? 'hide' : 'show'} `}>
+      <div class={`snackbar shadow ${!wlPending && !wlTxError && !wlReceipt ? 'hide' : 'show'} `}>
         <div className="d-flex justify-content-between">
           <div className="text-center">
-            <div className="text-capitalize">{mintStatus}</div>
-            <div>{mintMsgObj[mintStatus]}</div>
-          </div>
-          <div className="text-right ml-2">
-            <i
-              className={`fas fa-times text-white c-pointer toastCloseBtn`}
-              onClick={() => getMintStatus(false)}
-            ></i>
+            <div className="text-capitalize">{renderAlert()}</div>
           </div>
         </div>
       </div>

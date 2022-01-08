@@ -8,21 +8,30 @@ import ComingSoon from './components/pages/ComingSoon';
 
 import GithubState from './context/metamovers/actions';
 
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers';
+
+function getLibrary(provider, connector) {
+  return new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
+}
+
 const App = () => {
   return (
-    <GithubState>
-      <Router>
-        <div className="App">
-          <Navbar title="Metamovers" />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/buyNow" element={<BuyNow />} />
-            <Route exact path="/comingSoon" element={<ComingSoon />} />
-            <Route element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
-    </GithubState>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <GithubState>
+        <Router>
+          <div className="App">
+            <Navbar title="Metamovers" />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/buyNow" element={<BuyNow />} />
+              <Route exact path="/comingSoon" element={<ComingSoon />} />
+              <Route element={<NotFound />} />
+            </Routes>
+          </div>
+        </Router>
+      </GithubState>
+    </Web3ReactProvider>
   );
 };
 
