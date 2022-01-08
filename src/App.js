@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import BuyNow from './components/pages/BuyNow';
+import Admin from './components/pages/Admin';
 import NotFound from './components/pages/NotFound';
 import ComingSoon from './components/pages/ComingSoon';
 
@@ -25,6 +26,7 @@ const App = () => {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/buyNow" element={<BuyNow />} />
+              <Route exact path="/admin" element={<Admin />} />
               <Route exact path="/comingSoon" element={<ComingSoon />} />
               <Route element={<NotFound />} />
             </Routes>
