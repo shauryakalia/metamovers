@@ -157,10 +157,7 @@ export const BuyNow = () => {
         <div className="col-md-7 col-lg-8 col-xs-12 ">
           <div className="card-body font-weight-bold">
             <p className="card-text">
-              Here you can mint your Metamovers! These are ERC-1155 tokens and
-              there are 300 identical editions of each Metamover, so if you get
-              more than one, it’s possible that you get 2 of the same
-              characters. (total of 16 characters).
+              Here you can mint your Metamovers! These are ERC-1155 tokens and there are 300 identical editions of each Metamover (total of 16 Metamovers). If you wish to mint more than 1 Metamover, you are guaranteed to a set of different characters. So if you mint 5, you will get 5 different characters. If you mint 16.. you will get all 16 characters  &#128521;
             </p>
             <hr />
 
