@@ -8,6 +8,9 @@ import { isMobile } from 'react-device-detect';
 import loading_url from '../../imgs/Metamovers.png';
 import desktop from '../../imgs/desktop.png';
 import { useNavigate } from 'react-router-dom';
+import { useEagerConnect } from '../hooks/useEagerConnect'
+import { InjectedConnector } from '@web3-react/injected-connector';
+import { truncateAccount } from "../utils/format.js";
 
 const Navbar = ({ title }) => {
   const navigate = useNavigate();
@@ -25,6 +28,25 @@ const Navbar = ({ title }) => {
   const [blcktxt, setBlacktxt] = useState(false);
   const [open, setNav] = useState(false);
   const [comingSoonModal, setComingSoonModal] = useState(false);
+
+  const { account, activate } = useEagerConnect();
+  const hasMetamask =
+      typeof window !== 'undefined' &&
+      !!window.ethereum &&
+      !!window.ethereum.isMetaMask;
+
+  const handleMetamaskClick = async () => {
+    if (!account) {
+      if (hasMetamask) {
+        const injected = new InjectedConnector({
+          supportedChainIds: [1, 4],
+        });
+        await activate(injected);
+      } else {
+        window.open('https://metamask.io/', '_blank');
+      }
+    }
+  };
 
   useEffect(() => {
     setBlacktxt(['/buyNow', '/comingSoon'].includes(window.location.pathname));
@@ -47,8 +69,19 @@ const Navbar = ({ title }) => {
     setComingSoonModal(status);
   };
 
-  const setConnectionStatusFn = (status) => {
+  const setConnectionStatusFn = async (status) => {
     getConnectionStatus(status);
+
+    if (!account) {
+      if (hasMetamask) {
+        const injected = new InjectedConnector({
+          supportedChainIds: [1, 4],
+        });
+        await activate(injected);
+      } else {
+        window.open('https://metamask.io/', '_blank');
+      }
+    }
   };
 
   return (
@@ -200,11 +233,11 @@ const Navbar = ({ title }) => {
                     className={`navbarBtn shadow-sm connectWallet ${
                       connectionStatus === 'success' ? 'connected' : ''
                     }`}
-                    onClick={() => setConnectionStatusFn()}
+                    onClick={handleMetamaskClick}
                   >
                     <i className="fas fa-wallet"></i> &nbsp;{' '}
-                    {connectionStatus === 'success'
-                      ? 'Wallet Connected'
+                    {account
+                      ? truncateAccount(account)
                       : 'Connect Wallet'}
                   </span>
                 </>
