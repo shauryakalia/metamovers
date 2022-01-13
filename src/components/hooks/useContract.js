@@ -6,10 +6,10 @@ import ABI from "../../abis/Metamovers.json";
 import OPENSEA_SPLIT_ABI from "../../abis/OpenseaSplit.json";
 
 const RINKEBY_ADDRESS = "0x63e6d5Ee456836aa62CCe1cf1E20b612Df99Bda0";
-const MAINNET_ADDRESS = "";
+const MAINNET_ADDRESS = "0x0f308b379a9Bc997f5B252E31AC59f30D19F8D8f";
 
 const OPENSEA_SPLIT_RINKEBY_ADDRESS = "0x426707F991CFa69feC10cA1DbC4E770C048Aff5F";
-const OPENSEA_SPLIT_MAINNET_ADDRESS = "";
+const OPENSEA_SPLIT_MAINNET_ADDRESS = "0x0f308b379a9Bc997f5B252E31AC59f30D19F8D8f";
 
 // account is optional
 function getContract({
