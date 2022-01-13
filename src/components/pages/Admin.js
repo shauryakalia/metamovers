@@ -141,19 +141,11 @@ export const BuyNow = () => {
 
         <div className="col-md-7 col-lg-8 col-xs-12 ">
           <div className="card-body font-weight-bold">
-            <h1> Primary Sales </h1>
+            <h1> Primary Sales + OS Royalties </h1>
             <p className="card-text">
               Current Balance in the contract: {currentBalance} ETH <br/>
               Total Withdraw (By Everyone): { alreadyReleasedTotal } ETH <br/>
               Total Withdraw by you ({truncateAccount(account)}): {alreadyReleasedAccount} ETH <br/>
-            </p>
-            <hr />
-
-            <h1> Opensea Secondary Sales </h1>
-            <p className="card-text">
-              Current Balance in the contract: {currentBalanceOS} ETH <br/>
-              Total Withdraw (By Everyone): { alreadyReleasedTotalOS } ETH <br/>
-              Total Withdraw by you ({truncateAccount(account)}): {alreadyReleasedAccountOS} ETH <br/>
             </p>
             <hr />
             <div className={`d-flex justify-content-between mt-3 `}>
@@ -165,21 +157,7 @@ export const BuyNow = () => {
                 `}
                 onClick={handleReleasePrimary}
               >
-                <i className="fab fa-ethereum"></i> &nbsp; Withdraw Primary
-                <span
-                  className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
-                />
-              </button>
-
-              <button
-                href="#"
-                className={`btn shadow-sm font-weight-bold btn-info ${
-                  isMobile ? 'w-100' : 'col-md-2'
-                }
-                `}
-                onClick={handleReleaseOS}
-              >
-                <i className="fab fa-ethereum"></i> &nbsp; Withdraw Opensea
+                <i className="fab fa-ethereum"></i> &nbsp; Withdraw
                 <span
                   className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
                 />
