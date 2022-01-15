@@ -39,25 +39,21 @@ const GFaction = (props) => {
   }
 
   async function getTeamInfo() {
-    setloading();
     let res = await axios.get(`${hostName}/team-section`);
     dispatch({ type: SET_TEAM_INFO, payload: res.data });
   }
 
   async function getMetamoversInfo() {
-    setloading();
     let res = await axios.get(`${hostName}/metamovers-section`);
     dispatch({ type: SET_META_INFO, payload: res.data });
   }
 
   async function getRoadMapInfo() {
-    setloading();
     let res = await axios.get(`${hostName}/roadmap-section`);
     dispatch({ type: SET_ROADMAP_INFO, payload: res.data });
   }
 
   async function getFooterInfo() {
-    setloading();
     let res = await axios.get(`${hostName}/footer`);
     dispatch({ type: SET_FOOTER_INFO, payload: res.data });
   }
