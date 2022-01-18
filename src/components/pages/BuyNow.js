@@ -88,7 +88,7 @@ export const BuyNow = () => {
       return "Error"
     }
     if (wlReceipt) {
-      return "Mint Successfull"
+      return "Mint Successful"
     }
   }
 
