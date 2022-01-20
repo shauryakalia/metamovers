@@ -13,12 +13,14 @@ import {
   SET_FOOTER_INFO,
   SET_CONNECTION_STATUS,
   SET_MINT_STATUS,
+  SET_OUR_STORY_INFO,
 } from '../Types';
 
 const GFaction = (props) => {
   const initialState = {
     homeInfo: {},
     teamInfo: {},
+    ourStoryInfo: [],
     metamoversInfo: {},
     roadMapInfo: {},
     footerInfo: {},
@@ -58,6 +60,31 @@ const GFaction = (props) => {
     dispatch({ type: SET_FOOTER_INFO, payload: res.data });
   }
 
+  async function getOurStoryInfo() {
+    // let res = await axios.get(`${hostName}/our-story`);
+    dispatch({
+      type: SET_OUR_STORY_INFO,
+      payload: [
+        {
+          title: 'In Begining',
+          content:
+            'Hey guys! It’s Dylan Mayoral here, founder and director of Metamovers. I wanted to share a bit of my story with you all and how we got here Since 2016, I have been organizing dance events for my home town London, UK. I started to do this because I truly love my community and know we have something special here. I also wanted to bring teachers from other countries to share their knowledge and energy with our community. ',
+          mediaUrl:
+            'https://res.cloudinary.com/metamovers/image/upload/v1642610567/ourStory/DSC-8331_cirqio.jpg',
+          nftUrl: null,
+        },
+        {
+          title: 'In Begining',
+          content:
+            'Hey guys! It’s Dylan Mayoral here, founder and director of Metamovers. I wanted to share a bit of my story with you all and how we got here Since 2016, I have been organizing dance events for my home town London, UK. I started to do this because I truly love my community and know we have something special here. I also wanted to bring teachers from other countries to share their knowledge and energy with our community. ',
+          mediaUrl:
+            'https://res.cloudinary.com/metamovers/image/upload/v1642610567/ourStory/DSC-8331_cirqio.jpg',
+          nftUrl: null,
+        },
+      ],
+    });
+  }
+
   async function getConnectionStatus(status) {
     setWalletLoading();
     if (status) {
@@ -93,6 +120,7 @@ const GFaction = (props) => {
         mintStatus: state.mintStatus,
         walletLoading: state.walletLoading,
         mintLoading: state.mintLoading,
+        ourStoryInfo: state.ourStoryInfo,
         getHomeInfo,
         getTeamInfo,
         getMetamoversInfo,
@@ -100,6 +128,7 @@ const GFaction = (props) => {
         getFooterInfo,
         getConnectionStatus,
         getMintStatus,
+        getOurStoryInfo,
       }}
     >
       {props.children}

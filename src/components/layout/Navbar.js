@@ -49,7 +49,9 @@ const Navbar = ({ title }) => {
   };
 
   useEffect(() => {
-    setBlacktxt(['/buyNow', '/comingSoon'].includes(window.location.pathname));
+    setBlacktxt(
+      ['/buyNow', '/comingSoon', '/OurStory'].includes(window.location.pathname)
+    );
     //eslint-disable-next-line
   }, [window.location.pathname]);
 
@@ -57,7 +59,7 @@ const Navbar = ({ title }) => {
     navigate(url);
     if (isMobile) setNav(!open);
     if (scrollTo) scrollToSection(scrollTo);
-    if (['/buyNow', '/comingSoon'].includes(url)) {
+    if (['/buyNow', '/comingSoon', '/OurStory'].includes(url)) {
       setBlacktxt(true);
     } else {
       setBlacktxt(false);
@@ -148,7 +150,7 @@ const Navbar = ({ title }) => {
           isMobile
             ? 'shadow-sm pl-3 pr-3 d-flex justify-content-between'
             : 'pl-5 pr-5 pb-5 pt-3'
-        } ${blcktxt ? 'sticky-top' : ''}`}
+        }`}
       >
         <span
           onClick={() => redirectPage('/', 'aboutSection')}
@@ -225,7 +227,13 @@ const Navbar = ({ title }) => {
             </li>
             <li className="nav-item grow">
               {blcktxt ? (
-                <>
+                <div
+                  className={
+                    window.location.pathname.includes('/OurStory')
+                      ? 'd-none'
+                      : ''
+                  }
+                >
                   <span
                     className={`${walletLoading ? 'navLoader' : 'd-none'}`}
                   />
@@ -240,7 +248,7 @@ const Navbar = ({ title }) => {
                       ? truncateAccount(account)
                       : 'Connect Wallet'}
                   </span>
-                </>
+                </div>
               ) : (
                 <span
                   className={`navbarBtn shadow-sm`}

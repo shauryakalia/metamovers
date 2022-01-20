@@ -9,6 +9,7 @@ import {
   SET_MINT_STATUS,
   SET_MINT_LOADING,
   SET_WALLET_LOADING,
+  SET_OUR_STORY_INFO,
 } from '../Types';
 export default (state, action) => {
   switch (action.type) {
@@ -36,6 +37,8 @@ export default (state, action) => {
       return { ...state, walletLoading: true };
     case SET_MINT_LOADING:
       return { ...state, mintLoading: true };
+    case SET_OUR_STORY_INFO:
+      return { ...state, ourStoryInfo: action.payload, loading: false };
     default:
       return state;
   }
