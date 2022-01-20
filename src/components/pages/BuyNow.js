@@ -206,7 +206,7 @@ export const BuyNow = () => {
                 }`}
                 onClick={handleMint}
               >
-                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Plese Connect Wallet"}
+                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Closed"}
                 <span
                   className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
                 />
