@@ -206,15 +206,18 @@ export const BuyNow = () => {
                 }`}
                 onClick={handleMint}
               >
-                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Closed"}
+                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Plese Connect Wallet"}
                 <span
                   className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
                 />
               </button>
 
-              <button type="button" class="btn btn-info font-weight-bold">
-                {`${currentSupply} / 4800 minted`}
-              </button>
+              {account ? (
+                <button type="button" class="btn btn-info font-weight-bold">
+                  {`${currentSupply} / 4800 minted`}
+                </button>
+              ) : <div/>
+              }
             </div>
           </div>
         </div>
