@@ -36,7 +36,12 @@ export const OurStory = () => {
                     alt={mediaUrl}
                   />
                 ) : (
-                  <video controls preload="none" poster={thumbnail} width="50%">
+                  <video
+                    controls
+                    preload="none"
+                    poster={thumbnail}
+                    width={isMobile ? '100%' : '50%'}
+                  >
                     <source src={mediaUrl} type="video/mp4" />
                   </video>
                 )}
