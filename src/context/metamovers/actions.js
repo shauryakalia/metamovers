@@ -107,6 +107,8 @@ const GFaction = (props) => {
             And there is. The vision is very clear to me. I want to create a yearly Dance show where every performance is minted on the blockchain, thus immortalizing the art/performance. I want to open a dance studio in London that will support the London community and also use the space to create Dance NFTs with the best the UK has to offer. I want to create a Metaverse Dance Agency that empowers Dancers using blockchain technology. I want to be here building till the day I die.
             
             Below, you’ll see a video of me performing in Canada. Now what if you could own this performance, this moment in time. What if there was a show that produced countless epic moments like these and minted them on the blockchain for the community to own and trade, allowing the creators to monetise their art (dance) in a way that was unimaginable just a few years ago. 
+
+            This is metamovers.
             `,
           mediaUrl:
             'https://res.cloudinary.com/metamovers/video/upload/v1642610771/ourStory/Judge_Showcase_Dylan_Mayoral_-_The_Release_Dance_Competition_2019_l7ygjo.mp4',
