@@ -67,7 +67,7 @@ const GFaction = (props) => {
       payload: [
         {
           content:
-            'Hey guys! It’s Dylan Mayoral here, founder and director of Metamovers. I wanted to share a bit of my story with you all and how we got here Since 2016, I have been organizing dance events for my home town London, UK. I started to do this because I truly love my community and know we have something special here. I also wanted to bring teachers from other countries to share their knowledge and energy with our community. ',
+            'Hey guys! It’s Dylan Mayoral here, founder and director of Metamovers. I wanted to share a bit of my story with you all and how we got here. Since 2016, I have been organizing dance events for my home town London, UK. I started to do this because I truly love my community and know we have something special here. I also wanted to bring teachers from other countries to share their knowledge and energy with our community. ',
           mediaUrl:
             'https://res.cloudinary.com/metamovers/image/upload/v1642610567/ourStory/DSC-8331_cirqio.jpg',
           nftUrl: null,
@@ -106,7 +106,7 @@ const GFaction = (props) => {
 
             And there is. The vision is very clear to me. I want to create a yearly Dance show where every performance is minted on the blockchain, thus immortalizing the art/performance. I want to open a dance studio in London that will support the London community and also use the space to create Dance NFTs with the best the UK has to offer. I want to create a Metaverse Dance Agency that empowers Dancers using blockchain technology. I want to be here building till the day I die.
             
-            Below, you’ll see a video of me performing in Canada. Now what if you could own this performance, this moment in time. What if there was a show that produced countless epic moments like these and minted them on the blockchain for the community to own and trade, allowing the creators to monetise their art (dance) in a way that was unimaginable just a few years ago. 
+            In this section, you’ll see a video of me performing in Canada. Now what if you could own this performance, this moment in time. What if there was a show that produced countless epic moments like these and minted them on the blockchain for the community to own and trade, allowing the creators to monetise their art (dance) in a way that was unimaginable just a few years ago. 
 
             `,
           endTitle: ' That is Metamovers . ',

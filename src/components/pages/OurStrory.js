@@ -55,11 +55,11 @@ export const OurStory = () => {
 
                   {nftUrl && (
                     <ul class="postcard__tagbox">
-                      <li class="tag__item">
-                        <i
-                          class="fas fa-tag mr-2"
-                          onClick={() => window.open(nftUrl, '_blank')}
-                        ></i>
+                      <li 
+                        class="tag__item"
+                        onClick={() => window.open(nftUrl, '_blank')}
+                      >
+                        <i class="fas fa-tag mr-2"></i>
                         Check out the NFT here
                       </li>
                     </ul>
