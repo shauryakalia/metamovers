@@ -8,9 +8,9 @@ import { isMobile } from 'react-device-detect';
 import loading_url from '../../imgs/Metamovers.png';
 import desktop from '../../imgs/desktop.png';
 import { useNavigate } from 'react-router-dom';
-import { useEagerConnect } from '../hooks/useEagerConnect'
+import { useEagerConnect } from '../hooks/useEagerConnect';
 import { InjectedConnector } from '@web3-react/injected-connector';
-import { truncateAccount } from "../utils/format.js";
+import { truncateAccount } from '../utils/format.js';
 
 const Navbar = ({ title }) => {
   const navigate = useNavigate();
@@ -31,9 +31,9 @@ const Navbar = ({ title }) => {
 
   const { account, activate } = useEagerConnect();
   const hasMetamask =
-      typeof window !== 'undefined' &&
-      !!window.ethereum &&
-      !!window.ethereum.isMetaMask;
+    typeof window !== 'undefined' &&
+    !!window.ethereum &&
+    !!window.ethereum.isMetaMask;
 
   const handleMetamaskClick = async () => {
     if (!account) {
@@ -137,6 +137,12 @@ const Navbar = ({ title }) => {
             <span>The Team </span>
           </span>
           <span
+            onClick={() => redirectPage('/OurStory')}
+            className="text-white font-weight-bold text-uppercase"
+          >
+            <span>Our Story </span>
+          </span>
+          <span
             className={`navbarBtn shadow-sm overlayNavbarBtn`}
             // onClick={() => redirectPage('/comingSoon')}
             onClick={() => setComingSoonModalFn(true)}
@@ -225,6 +231,16 @@ const Navbar = ({ title }) => {
                 The Team
               </span>
             </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => redirectPage('/OurStory')}
+                className={`nav-link hover-underline-animation pb25 ${
+                  blcktxt ? 'd-none' : 'text-white'
+                }`}
+              >
+                Our Story
+              </span>
+            </li>
             <li className="nav-item grow">
               {blcktxt ? (
                 <div
@@ -244,9 +260,7 @@ const Navbar = ({ title }) => {
                     onClick={handleMetamaskClick}
                   >
                     <i className="fas fa-wallet"></i> &nbsp;{' '}
-                    {account
-                      ? truncateAccount(account)
-                      : 'Connect Wallet'}
+                    {account ? truncateAccount(account) : 'Connect Wallet'}
                   </span>
                 </div>
               ) : (
