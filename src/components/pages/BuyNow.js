@@ -212,9 +212,12 @@ export const BuyNow = () => {
                 />
               </button>
 
-              <button type="button" class="btn btn-info font-weight-bold">
-                {`${currentSupply} / 4800 minted`}
-              </button>
+              {account ? (
+                <button type="button" class="btn btn-info font-weight-bold">
+                  {`${currentSupply} / 4800 minted`}
+                </button>
+              ) : <div/>
+              }
             </div>
           </div>
         </div>
