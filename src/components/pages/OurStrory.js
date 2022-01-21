@@ -26,7 +26,7 @@ export const OurStory = () => {
           </div>
 
           {ourStoryInfo.map(
-            ({ content, mediaUrl, nftUrl, mediaType, thumbnail }) => (
+            ({ content, mediaUrl, nftUrl, mediaType, thumbnail, endTitle }) => (
               <article class="postcard light blue">
                 {mediaType ? (
                   <img
@@ -44,6 +44,10 @@ export const OurStory = () => {
                 <div class="postcard__text t-dark">
                   <div class="postcard__bar"></div>
                   <div class="postcard__preview-txt">{content}</div>
+                  <div class="mt-4 text-center font-weight-bold">
+                    {endTitle}
+                  </div>
+
                   {nftUrl && (
                     <ul class="postcard__tagbox">
                       <li class="tag__item">

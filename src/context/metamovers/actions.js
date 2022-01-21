@@ -108,8 +108,8 @@ const GFaction = (props) => {
             
             Below, you’ll see a video of me performing in Canada. Now what if you could own this performance, this moment in time. What if there was a show that produced countless epic moments like these and minted them on the blockchain for the community to own and trade, allowing the creators to monetise their art (dance) in a way that was unimaginable just a few years ago. 
 
-            This is metamovers.
             `,
+          endTitle: ' This is metamovers . ',
           mediaUrl:
             'https://res.cloudinary.com/metamovers/video/upload/v1642610771/ourStory/Judge_Showcase_Dylan_Mayoral_-_The_Release_Dance_Competition_2019_l7ygjo.mp4',
           thumbnail:
