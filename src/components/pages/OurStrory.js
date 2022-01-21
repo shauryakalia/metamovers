@@ -13,11 +13,11 @@ export const OurStory = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="container-fluid homeCoverImg">
-      <section class="light">
+    <div className="container-fluid">
+      <section>
         <div class="container py-2">
           <div
-            class={`h1 text-center font-weight-bold text-white ${
+            class={`h1 text-center font-weight-bold text-dark ${
               isMobile ? 'pt-5' : ''
             }`}
             id="pageHeaderTitle"
@@ -26,32 +26,22 @@ export const OurStory = () => {
           </div>
 
           {ourStoryInfo.map(
-            ({ title, content, mediaUrl, date, nftUrl, type }) => (
+            ({ content, mediaUrl, nftUrl, mediaType, thumbnail }) => (
               <article class="postcard light blue">
-                <a class="postcard__img_link" href="/">
-                  {type === 'image' ? (
-                    <img class="postcard__img" src={mediaUrl} alt={title} />
-                  ) : (
-                    <video
-                      controls
-                      preload="none"
-                      poster="img/cover.jpg"
-                      width="300"
-                    >
-                      <source src={mediaUrl} type="video/mp4" />
-                    </video>
-                  )}
-                </a>
+                {mediaType ? (
+                  <img
+                    preload
+                    class="postcard__img"
+                    src={mediaUrl}
+                    alt={mediaUrl}
+                  />
+                ) : (
+                  <video controls preload="none" poster={thumbnail} width="50%">
+                    <source src={mediaUrl} type="video/mp4" />
+                  </video>
+                )}
+
                 <div class="postcard__text t-dark">
-                  <h1 class="postcard__title blue">
-                    <a href="/">{title}</a>
-                  </h1>
-                  <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                      <i class="fas fa-calendar-alt mr-2"></i>
-                      {date}
-                    </time>
-                  </div>
                   <div class="postcard__bar"></div>
                   <div class="postcard__preview-txt">{content}</div>
                   {nftUrl && (

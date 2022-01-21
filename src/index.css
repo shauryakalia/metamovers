@@ -980,7 +980,8 @@ blink_me {
 }
 
 .light {
-  background: transparent;
+  background-image: url('./imgs/ourStory.png');
+  background-repeat: no-repeat;
 }
 
 .text-white {
@@ -1013,6 +1014,7 @@ a:hover {
 
 .postcard.light {
   background-color: whitesmoke;
+  min-height: 350px;
 }
 
 .postcard .t-dark {
@@ -1123,15 +1125,15 @@ a:hover {
     justify-content: start;
   }
   .postcard .postcard__img {
-    max-width: 300px;
+    max-width: 50%;
     max-height: 100%;
     transition: transform 0.3s ease;
   }
   .postcard .postcard__text {
     padding: 3rem;
-    width: 100%;
+    width: 50%;
   }
-  .postcard .media.postcard__text:before {
+  /* .postcard .media.postcard__text:before {
     content: '';
     position: absolute;
     display: block;
@@ -1139,7 +1141,7 @@ a:hover {
     top: -20%;
     height: 130%;
     width: 55px;
-  }
+  } */
   .postcard:hover .postcard__img {
     transform: scale(1.1);
   }
@@ -1149,14 +1151,14 @@ a:hover {
   .postcard:nth-child(2n + 0) {
     flex-direction: row-reverse;
   }
-  .postcard:nth-child(2n + 1) .postcard__text::before {
+  /* .postcard:nth-child(2n + 1) .postcard__text::before {
     left: -12px !important;
     transform: rotate(4deg);
   }
   .postcard:nth-child(2n + 0) .postcard__text::before {
     right: -12px !important;
     transform: rotate(-4deg);
-  }
+  } */
 }
 
 @media screen and (min-width: 1024px) {
@@ -1164,7 +1166,7 @@ a:hover {
     padding: 2rem 3.5rem;
   }
 
-  .postcard__text:before {
+  /* .postcard__text:before {
     content: '';
     position: absolute;
     display: block;
@@ -1179,7 +1181,7 @@ a:hover {
 
   .postcard.light .postcard__text:before {
     background: whitesmoke;
-  }
+  } */
 }
 
 .postcard .postcard__tagbox .green.play:hover {
