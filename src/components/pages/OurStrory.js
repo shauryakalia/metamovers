@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Loader from '../layout/Loader';
 import GithubContext from '../../context/metamovers/context';
+import { isMobile } from 'react-device-detect';
 
 export const OurStory = () => {
   const { getOurStoryInfo, ourStoryInfo, loading } = useContext(GithubContext);
@@ -13,40 +14,60 @@ export const OurStory = () => {
 
   return (
     <div className="container-fluid">
-      <section class="light">
+      <section>
         <div class="container py-2">
-          <div class="h1 text-center text-dark" id="pageHeaderTitle">
+          <div
+            class={`h1 text-center font-weight-bold text-dark ${
+              isMobile ? 'pt-5' : ''
+            }`}
+            id="pageHeaderTitle"
+          >
             Our Story
           </div>
 
-          {ourStoryInfo.map(({ title, content, mediaUrl, nftUrl }) => (
-            <article class="postcard light blue">
-              <a class="postcard__img_link" href="/">
-                <img
-                  class="postcard__img"
-                  src="https://picsum.photos/1000/1000"
-                  alt="Title"
-                />
-              </a>
-              <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue">
-                  <a href="/">{title}</a>
-                </h1>
-                <div class="postcard__subtitle small">
-                  <time datetime="2020-05-25 12:00:00">
-                    <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
-                  </time>
+          {ourStoryInfo.map(
+            ({ content, mediaUrl, nftUrl, mediaType, thumbnail, endTitle }) => (
+              <article class="postcard light blue">
+                {mediaType ? (
+                  <img
+                    preload
+                    class="postcard__img"
+                    src={mediaUrl}
+                    alt={mediaUrl}
+                  />
+                ) : (
+                  <video
+                    controls
+                    preload="none"
+                    poster={thumbnail}
+                    width={isMobile ? '100%' : '50%'}
+                  >
+                    <source src={mediaUrl} type="video/mp4" />
+                  </video>
+                )}
+
+                <div class="postcard__text t-dark">
+                  <div class="postcard__bar"></div>
+                  <div class="postcard__preview-txt">{content}</div>
+                  <div class="mt-4 text-center font-weight-bold">
+                    {endTitle}
+                  </div>
+
+                  {nftUrl && (
+                    <ul class="postcard__tagbox">
+                      <li 
+                        class="tag__item"
+                        onClick={() => window.open(nftUrl, '_blank')}
+                      >
+                        <i class="fas fa-tag mr-2"></i>
+                        Check out the NFT here
+                      </li>
+                    </ul>
+                  )}
                 </div>
-                <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">{content}</div>
-                <ul class="postcard__tagbox">
-                  <li class="tag__item">
-                    <i class="fas fa-tag mr-2"></i>Check out the NFT here
-                  </li>
-                </ul>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          )}
         </div>
       </section>
     </div>
