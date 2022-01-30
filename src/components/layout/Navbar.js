@@ -266,7 +266,8 @@ const Navbar = ({ title }) => {
               ) : (
                 <span
                   className={`navbarBtn shadow-sm`}
-                  onClick={() => redirectPage('/buyNow')}
+                  // onClick={() => redirectPage('/buyNow')}
+                  onClick={() => redirectPage('/comingSoon')}
                 >
                   Buy Now
                 </span>
