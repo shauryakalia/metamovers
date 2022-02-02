@@ -8,7 +8,6 @@ import { useEagerConnect } from '../hooks/useEagerConnect'
 import { truncateAccount } from "../utils/format.js";
 import { useContract } from "../hooks/useContract.js";
 import { useReadContract } from "../hooks/useRead.js";
-import { useCsvWhitelist } from "../hooks/useCsvWhitelist.js";
 import { usePublicMint, useIsWhitelist, useWhitelistMint } from "../hooks/useMint.js";
 import { InjectedConnector } from '@web3-react/injected-connector';
 
@@ -49,11 +48,8 @@ export const BuyNow = () => {
 
   const { currentSupply, mintPrice, maxSupply, whitelistStarted, error: readError } = useReadContract();
 
-  const { wl, error: wlError } = useCsvWhitelist();
-
   const {pending: wlPending, receipt: wlReceipt, error: wlTxError, mintWhitelist} = useWhitelistMint()
 
-  const { status, isWhitelist } = useIsWhitelist();
   const hasMetamask =
       typeof window !== 'undefined' &&
       !!window.ethereum &&
@@ -74,9 +70,7 @@ export const BuyNow = () => {
 
   const handleMint = async () => {
     if (whitelistStarted) {
-      if (status) {
-        await mintWhitelist(amount, mintPrice);
-      }
+      await mintWhitelist(amount, mintPrice);
     }
   }
 
@@ -196,7 +190,7 @@ export const BuyNow = () => {
             </div>
             <hr />
             {whitelistStarted ? <div /> : (
-              <div className={`d-flex justify-content-between mt-3 `}>Please connect your wallet if you are on the whitelist for our current wave</div>
+              <div className={`d-flex justify-content-between mt-3 `}>Please connect your wallet</div>
             )}
             <div className={`d-flex justify-content-between mt-3 `}>
               <button
@@ -204,7 +198,7 @@ export const BuyNow = () => {
                 className={`btn shadow-sm font-weight-bold  ${
                   isMobile ? 'w-100' : 'col-md-2'
                 } ${
-                 whitelistStarted && status
+                 whitelistStarted
                     ? ' btn-info'
                     : 'disabled  btn-secondary cursorDisabled'
                 }`}
@@ -223,24 +217,6 @@ export const BuyNow = () => {
               ) : <div/>
               }
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class={`snackbar shadow ${
-          account && !status ? 'show' : 'hide'
-        } `}
-      >
-        <div className="d-flex justify-content-between">
-          <div className="text-center">
-            This wallet isn’t on the whitelist ! To join the whitelist and mint
-            our project please join our discord:{' '}
-            <b
-              className="c-pointer text-info"
-              onClick={() => window.open('https://discord.gg/qxRb2wMYsp')}
-            >
-              <u>https://discord.gg/qxRb2wMYsp</u>
-            </b>
           </div>
         </div>
       </div>
