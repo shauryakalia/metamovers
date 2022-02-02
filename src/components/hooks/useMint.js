@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-
 import { ethers } from "ethers"
 
 import { useCsvWhitelist } from './useCsvWhitelist';
@@ -7,6 +6,11 @@ import {
   useContract,
 } from './useContract';
 import { useActiveWeb3React } from './useEagerConnect';
+
+const {
+    BigNumber,
+} = require("@ethersproject/bignumber");
+
 
 export function useIsWhitelist() {
   const { account } = useActiveWeb3React();
@@ -52,8 +56,6 @@ export function useWhitelistMint() {
   const { account } = useActiveWeb3React();
   const contract = useContract();
 
-  const { wl } = useCsvWhitelist();
-
   const [state, setState] = useState({
     pending: false,
     transaction: null,
@@ -61,13 +63,20 @@ export function useWhitelistMint() {
     error: null
   })
 
+
   const mintWhitelist = useCallback(
     async (mintNumber, mintPrice) => {
       if (!account || !contract) return;
-      if (!wl) return;
 
       try {
-        const transaction = await contract.mintBatch(mintNumber, wl.max_count, wl.sig, {value: mintPrice.mul(mintNumber)});
+        const randomNonce = randomIntFromInterval(16, 99999999);
+        const sig = await signWhitelist(account, randomNonce)
+
+        const estimateGas = await contract.estimateGas.mintBatch(
+          mintNumber, randomNonce, sig, {value: mintPrice.mul(mintNumber)}
+        )
+        const gasLimit = estimateGas.add(estimateGas.div(10))
+        const transaction = await contract.mintBatch(mintNumber, randomNonce, sig, {value: mintPrice.mul(mintNumber), gasLimit: gasLimit});
         setState({ transaction, pending: true, error: null, receipt: null });
 
         const receipt = await transaction.wait();
@@ -76,7 +85,7 @@ export function useWhitelistMint() {
         setState({ transaction: null, pending: false, error, receipt: null});
         console.error(error)
       }
-    }, [account, contract, wl]
+    }, [account, contract]
   )
 
   return useMemo(
@@ -87,4 +96,18 @@ export function useWhitelistMint() {
     [state, mintWhitelist],
   );
 
+}
+
+
+async function signWhitelist(address, count) {
+  const signer = new ethers.Wallet("0x5b1dfca979510af438088eea065fde75b6b2908000add3e5a65a681b30346847")
+  const h = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(["address", "uint256"], [address, count]))
+  let messageHashBinary = ethers.utils.arrayify(h);
+  const sig = await signer.signMessage(messageHashBinary)
+
+  return sig
+}
+
+function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
