@@ -167,9 +167,6 @@ export const BuyNow = () => {
               project.
             </p>
             <hr />
-            <p>
-              Minting will be done in weekly waves with only users that have joined our whitelist. Please join the whitelist for the next wave via our <a href="https://discord.gg/XJTd3SMrdA" target="__blank">discord</a>
-            </p>
             <hr />
             <p className="card-text">
               Enter amount of metamovers you’d like to mint ( 16 max )
