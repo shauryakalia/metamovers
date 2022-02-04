@@ -161,7 +161,6 @@ export const BuyNow = () => {
               project.
             </p>
             <hr />
-            <hr />
             <p className="card-text">
               Enter amount of metamovers you’d like to mint ( 16 max )
             </p>
