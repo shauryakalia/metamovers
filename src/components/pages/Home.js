@@ -1,27 +1,27 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useContext, useState } from 'react';
-import GithubContext from '../../context/metamovers/context';
-import { Link } from 'react-router-dom';
-import Loader from '../layout/Loader';
-import Footer from '../layout/Footer';
-import dg1 from '../../imgs/1.png';
-import dg2 from '../../imgs/2.png';
-import dg3 from '../../imgs/3.png';
-import dg4 from '../../imgs/4.png';
-import dg5 from '../../imgs/5.png';
-import dg6 from '../../imgs/6.png';
-import dg7 from '../../imgs/7.png';
-import dg8 from '../../imgs/8.png';
-import dg9 from '../../imgs/9.png';
-import dg10 from '../../imgs/10.png';
-import dg11 from '../../imgs/11.png';
-import dg12 from '../../imgs/12.png';
-import dg13 from '../../imgs/13.png';
-import dg14 from '../../imgs/14.png';
-import dg15 from '../../imgs/15.png';
-import dg16 from '../../imgs/16.png';
-import { isMobile } from 'react-device-detect';
-import desktop from '../../imgs/desktop.png';
+import React, { useEffect, useContext, useState } from "react";
+import GithubContext from "../../context/metamovers/context";
+import { Link } from "react-router-dom";
+import Loader from "../layout/Loader";
+import Footer from "../layout/Footer";
+import dg1 from "../../imgs/1.png";
+import dg2 from "../../imgs/2.png";
+import dg3 from "../../imgs/3.png";
+import dg4 from "../../imgs/4.png";
+import dg5 from "../../imgs/5.png";
+import dg6 from "../../imgs/6.png";
+import dg7 from "../../imgs/7.png";
+import dg8 from "../../imgs/8.png";
+import dg9 from "../../imgs/9.png";
+import dg10 from "../../imgs/10.png";
+import dg11 from "../../imgs/11.png";
+import dg12 from "../../imgs/12.png";
+import dg13 from "../../imgs/13.png";
+import dg14 from "../../imgs/14.png";
+import dg15 from "../../imgs/15.png";
+import dg16 from "../../imgs/16.png";
+import { isMobile } from "react-device-detect";
+import desktop from "../../imgs/desktop.png";
 
 const innerHeight = window.innerHeight;
 
@@ -34,8 +34,8 @@ export const Home = () => {
   const forceUpdate = useForceUpdate();
   const githubContext = useContext(GithubContext);
   const [isReady, setIsReady] = useState(false);
-  const [memberInfo, setMemberInfo] = useState('');
-  const [videoInfo, setVideoInfo] = useState('');
+  const [memberInfo, setMemberInfo] = useState("");
+  const [videoInfo, setVideoInfo] = useState("");
   const [comingSoonModal, setComingSoonModal] = useState(false);
   const [dgImageSrc, setDgImageSrc] = useState(dg1);
   const [nextClick, setNextClick] = useState(false);
@@ -58,9 +58,9 @@ export const Home = () => {
     getMetamoversInfo();
     getFooterInfo();
     getRoadMapInfo();
-    document.addEventListener('click', closeModalOnClickOutside);
-    window.addEventListener('resize', forceUpdate);
-    window.addEventListener('scroll', () => animateTimeline(document.body));
+    document.addEventListener("click", closeModalOnClickOutside);
+    window.addEventListener("resize", forceUpdate);
+    window.addEventListener("scroll", () => animateTimeline(document.body));
     document.fonts.ready.then(() => {
       setIsReady(true);
     });
@@ -101,16 +101,16 @@ export const Home = () => {
   const { title: roadMapInfoTitle, roadmap = [] } = roadMapInfo;
 
   const closeModalOnClickOutside = () => {
-    const memberInfoModal = document.getElementById('memberInfoModal');
-    const videoInfoModal = document.getElementById('videoInfoModal');
-    const comingSoonModal = document.getElementById('comingSoonModal');
+    const memberInfoModal = document.getElementById("memberInfoModal");
+    const videoInfoModal = document.getElementById("videoInfoModal");
+    const comingSoonModal = document.getElementById("comingSoonModal");
     window.onclick = function (event) {
       if (event.target === memberInfoModal) {
-        setMemberInfo('');
+        setMemberInfo("");
       }
 
       if (event.target === videoInfoModal) {
-        setVideoInfo('');
+        setVideoInfo("");
       }
 
       if (event.target === comingSoonModal) {
@@ -120,23 +120,23 @@ export const Home = () => {
   };
 
   const triggerNext = () => {
-    const elem = document.getElementById('courselNextBtn');
+    const elem = document.getElementById("courselNextBtn");
     if (elem) elem.click();
     setNextClick(true);
   };
 
   const keySocialMap = {
-    instagram: 'fab fa-instagram',
-    behance: 'fab fa-behance',
-    facebook: 'fab fa-facebook',
-    youtube: 'fab fa-youtube',
-    twitter: 'fab fa-twitter',
-    spotify: 'fab fa-spotify',
-    soundcloud: 'fab fa-soundcloud',
-    tiktok: 'fab fa-youtube',
-    youtubesecond: 'fab fa-youtube',
-    id: 'fas fa-globe',
-    personalweb: 'fas fa-globe',
+    instagram: "fab fa-instagram",
+    behance: "fab fa-behance",
+    facebook: "fab fa-facebook",
+    youtube: "fab fa-youtube",
+    twitter: "fab fa-twitter",
+    spotify: "fab fa-spotify",
+    soundcloud: "fab fa-soundcloud",
+    tiktok: "fab fa-youtube",
+    youtubesecond: "fab fa-youtube",
+    id: "fas fa-globe",
+    personalweb: "fas fa-globe",
   };
 
   const animateTimeline = (elm) => {
@@ -178,7 +178,7 @@ export const Home = () => {
       if (scrolled <= 2) return;
 
       if (scrolled > 100) scrolled = 100;
-      document.getElementById('myTimelineBar').style.height = scrolled + '%';
+      document.getElementById("myTimelineBar").style.height = scrolled + "%";
     }
   };
 
@@ -186,9 +186,9 @@ export const Home = () => {
     <>
       <div
         id="memberInfoModal"
-        className={`modal ${memberInfo ? 'd-block' : 'd-none'}`}
+        className={`modal ${memberInfo ? "d-block" : "d-none"}`}
       >
-        <div className={`modal-content ${isMobile ? 'w-75' : 'w-50'}`}>
+        <div className={`modal-content ${isMobile ? "w-75" : "w-50"}`}>
           <div className="modal-header">
             <span
               onClick={() => setMemberInfo(null)}
@@ -199,7 +199,7 @@ export const Home = () => {
           </div>
           <div
             className="modal-body p-2"
-            style={{ overflow: 'auto', overflowX: 'hidden' }}
+            style={{ overflow: "auto", overflowX: "hidden" }}
           >
             <div className="row d-flex align-items-center">
               <div className="col-md-4 text-center">
@@ -211,7 +211,7 @@ export const Home = () => {
               </div>
               <div
                 className={`col-md-6 ${
-                  isMobile ? ' pt-2 text-center' : 'text-left'
+                  isMobile ? " pt-2 text-center" : "text-left"
                 }`}
               >
                 <p className="card-text h4 font-weight-bolder mb-1">
@@ -221,14 +221,14 @@ export const Home = () => {
                 <p
                   className={`card-text h6 p-0 d-flex ${
                     isMobile
-                      ? 'justify-content-center'
-                      : 'justify-content-start'
+                      ? "justify-content-center"
+                      : "justify-content-start"
                   }`}
                 >
                   {memberInfo &&
                     Object.entries(memberInfo && memberInfo.social).map(
                       ([key, value]) => {
-                        return value && key !== 'id' ? (
+                        return value && key !== "id" ? (
                           <span
                             className="socialBtn"
                             key={key}
@@ -245,7 +245,7 @@ export const Home = () => {
             <div>
               <p
                 className={`card-text h6 p-3 overflow-auto ${
-                  isMobile ? 'text-center' : ''
+                  isMobile ? "text-center" : ""
                 }`}
               >
                 {memberInfo && memberInfo.bio}
@@ -257,11 +257,11 @@ export const Home = () => {
 
       <div
         id="videoInfoModal"
-        className={`modal ${videoInfo ? 'd-block' : 'd-none'}`}
+        className={`modal ${videoInfo ? "d-block" : "d-none"}`}
       >
         <div
           className={`modal-content ${
-            isMobile ? 'w-75' : 'metamoversVideoModal'
+            isMobile ? "w-75" : "metamoversVideoModal"
           }`}
         >
           <div className="modal-header">
@@ -280,7 +280,7 @@ export const Home = () => {
 
       <div
         id="comingSoonModal"
-        className={`modal ${comingSoonModal ? 'd-block' : 'd-none'}`}
+        className={`modal ${comingSoonModal ? "d-block" : "d-none"}`}
       >
         <div className={`modal-content w-75`}>
           <div className="modal-header">
@@ -303,7 +303,7 @@ export const Home = () => {
 
       <div
         className={`container-fluid ${
-          isMobile ? 'mHomeCoverImg' : 'homeCoverImg'
+          isMobile ? "mHomeCoverImg" : "homeCoverImg"
         }`}
         style={{ height: innerHeight }}
       >
@@ -324,7 +324,7 @@ export const Home = () => {
           </div>
           <div
             className={`col-md-8 col-xs-12 ${
-              isMobile ? 'pt-5' : 'p-10'
+              isMobile ? "pt-5" : "p-10"
             } d-flex justify-content-center `}
           >
             {mainVideoURL ? (
@@ -335,7 +335,7 @@ export const Home = () => {
                 height={418}
                 title={title}
                 src={`https://www.youtube.com/embed/${
-                  mainVideoURL.split('=')[1]
+                  mainVideoURL.split("=")[1]
                 }`}
                 frameborder="0"
                 allow="accelerometer;fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -346,14 +346,14 @@ export const Home = () => {
 
         <div
           className={`row pt-0 pb-5 d-flex justify-content-center featureSection ${
-            isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
+            isMobile ? "pl-1 pr-1" : "pl-5 pr-5"
           }`}
         >
           {features.map(({ title, subtitle, iconUrl }) => (
             <div
               className={`card service-card ${
-                isMobile ? 'highlight-card' : 'animate-border '
-              } shadow-sm ${isMobile ? '' : 'width30'} col-xs-12 m-3`}
+                isMobile ? "highlight-card" : "animate-border "
+              } shadow-sm ${isMobile ? "" : "width30"} col-xs-12 m-3`}
             >
               <img
                 alt=""
@@ -380,7 +380,7 @@ export const Home = () => {
         >
           <section
             className={`pt-5 pb-5 pt-0 pb-5 ${
-              isMobile ? 'pl-2 pr-2' : 'pl-5 pr-5'
+              isMobile ? "pl-2 pr-2" : "pl-5 pr-5"
             }`}
           >
             <div className="container-fluid">
@@ -429,7 +429,7 @@ export const Home = () => {
                         return (
                           <div
                             className={`carousel-item ${
-                              idx === 0 ? 'active' : ''
+                              idx === 0 ? "active" : ""
                             }`}
                           >
                             <div className="row">{currentItems}</div>
@@ -439,9 +439,9 @@ export const Home = () => {
                     </div>
                     <a
                       class={`carousel-control-prev 
-                      ${videoInfo ? 'invisible' : ' '}
-                      ${comingSoonModal ? 'd-none' : ' '}
-                      ${isMobile ? '' : 'carousel-control-prev-home'}`}
+                      ${videoInfo ? "invisible" : " "}
+                      ${comingSoonModal ? "d-none" : " "}
+                      ${isMobile ? "" : "carousel-control-prev-home"}`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="prev"
@@ -454,9 +454,9 @@ export const Home = () => {
                     </a>
                     <a
                       class={`carousel-control-next 
-                      ${videoInfo ? 'invisible' : ' '}
-                      ${comingSoonModal ? 'd-none' : ' '}
-                      ${isMobile ? '' : 'carousel-control-next-home'}`}
+                      ${videoInfo ? "invisible" : " "}
+                      ${comingSoonModal ? "d-none" : " "}
+                      ${isMobile ? "" : "carousel-control-next-home"}`}
                       href="#metaMoversCoursel"
                       role="button"
                       data-slide="next"
@@ -479,10 +479,7 @@ export const Home = () => {
                       Buy Now
                     </span>
                   ) : (
-                    <Link
-                      to="/buyNow"
-                      className={`navbarBtn shadow-sm btn-lg`}
-                    >
+                    <Link to="/buyNow" className={`navbarBtn shadow-sm btn-lg`}>
                       Buy Now
                     </Link>
                   )}
@@ -501,7 +498,7 @@ export const Home = () => {
           <br />
           <div
             className={`row pt-0 d-flex justify-content-center ${
-              isMobile ? 'pl-3 pr-1' : 'pl-5 pr-5'
+              isMobile ? "pl-3 pr-1" : "pl-5 pr-5"
             }`}
           >
             <div className="col-md-7 col-xs-12">
@@ -519,7 +516,7 @@ export const Home = () => {
                         {childRoadMap.title}
                       </span>
                       <p
-                        className={`mt-2 ${isMobile ? '' : 'timelineContent'}`}
+                        className={`mt-2 ${isMobile ? "" : "timelineContent"}`}
                       >
                         {childRoadMap.subtitle}
                       </p>
@@ -530,13 +527,14 @@ export const Home = () => {
             </div>
             <div
               className={`col-md-5 dancingGirlSectionBg ${
-                isMobile ? 'd-none' : ''
+                isMobile ? "d-none" : ""
               }`}
             >
               <img alt="" className="dgImage" src={dgImageSrc} />
             </div>
           </div>
         </div>
+        {isMobile ? <div className="mt-5"></div> : ""}
 
         <div id="theTeamSection" className="meetTheTeamSection">
           <div className="row d-flex justify-content-center mb-3">
@@ -546,13 +544,13 @@ export const Home = () => {
           </div>
           <div
             className={`row pt-0 pb-5 d-flex justify-content-center flex-wrap-reverse ${
-              isMobile ? 'pl-1 pr-1' : 'pl-5 pr-5'
+              isMobile ? "pl-1 pr-1" : "pl-5 pr-5"
             }`}
           >
             {updatedTeam.map(({ name, title, bio, avatar, social }) => (
               <div
                 className={`card teamInfoBox col-xs-12 shadow-sm m-3 ${
-                  isMobile ? 'w-100' : 'width30'
+                  isMobile ? "w-100" : "width30"
                 }`}
               >
                 <img
@@ -566,7 +564,7 @@ export const Home = () => {
                   <hr />
                   <p className="card-text h6 d-flex justify-content-center">
                     {Object.entries(social).map(([key, value]) => {
-                      return value && key !== 'id' ? (
+                      return value && key !== "id" ? (
                         <span
                           className="socialBtn"
                           key={key}
