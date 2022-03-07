@@ -534,7 +534,16 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        {isMobile ? <div className="mt-5"></div> : ""}
+        {isMobile ? (
+          <div className="mt-5">
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        ) : (
+          ""
+        )}
 
         <div id="theTeamSection" className="meetTheTeamSection">
           <div className="row d-flex justify-content-center mb-3">
