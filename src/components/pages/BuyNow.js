@@ -165,7 +165,7 @@ export const BuyNow = () => {
               Enter amount of metamovers you’d like to mint ( 16 max )
             </p>
             <div className="d-flex justify-content-start mt-2">
-              <div class="input-group">
+              <div className="input-group">
                 <input
                   type="number"
                   className={`form-control noFocus ${
@@ -177,9 +177,9 @@ export const BuyNow = () => {
                   value={amount}
                   onChange={(e) => setAmountFn(e)}
                 />
-                <div class="input-group-suffix w85px">
+                <div className="input-group-suffix w85px">
                   <div
-                    class="input-group-text font-weight-bold"
+                    className="input-group-text font-weight-bold"
                     id="btnGroupAddon"
                   >
                     {ethers.utils.formatEther(ethers.utils.parseEther("0.045").mul(amount))} Eth
@@ -210,7 +210,7 @@ export const BuyNow = () => {
               </button>
 
               {account ? (
-                <button type="button" class="btn btn-info font-weight-bold">
+                <button type="button" className="btn btn-info font-weight-bold">
                   {`${currentSupply} / 4800 minted`}
                 </button>
               ) : <div/>
@@ -219,7 +219,7 @@ export const BuyNow = () => {
           </div>
         </div>
       </div>
-      <div class={`snackbar shadow ${!wlPending && !wlTxError && !wlReceipt ? 'hide' : 'show'} `}>
+      <div className={`snackbar shadow ${!wlPending && !wlTxError && !wlReceipt ? 'hide' : 'show'} `}>
         <div className="d-flex justify-content-between">
           <div className="text-center">
             <div className="text-capitalize">{renderAlert()}</div>

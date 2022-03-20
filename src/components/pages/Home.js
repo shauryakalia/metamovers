@@ -23,6 +23,8 @@ import dg16 from '../../imgs/16.png';
 import { isMobile } from 'react-device-detect';
 import desktop from '../../imgs/desktop.png';
 
+import ReactMarkdown from "react-markdown"
+
 const innerHeight = window.innerHeight;
 
 function useForceUpdate() {
@@ -49,15 +51,15 @@ export const Home = () => {
     getMetamoversInfo,
     footerInfo,
     getFooterInfo,
-    roadMapInfo,
-    getRoadMapInfo,
+    // roadMapInfo,
+    // getRoadMapInfo,
   } = githubContext;
   useEffect(() => {
     getHomeInfo();
     getTeamInfo();
     getMetamoversInfo();
     getFooterInfo();
-    getRoadMapInfo();
+    // getRoadMapInfo();
     document.addEventListener('click', closeModalOnClickOutside);
     window.addEventListener('resize', forceUpdate);
     window.addEventListener('scroll', () => animateTimeline(document.body));
@@ -98,7 +100,7 @@ export const Home = () => {
     }
   }
 
-  const { title: roadMapInfoTitle, roadmap = [] } = roadMapInfo;
+  // const { title: roadMapInfoTitle, roadmap = [] } = roadMapInfo;
 
   const closeModalOnClickOutside = () => {
     const memberInfoModal = document.getElementById('memberInfoModal');
@@ -366,9 +368,9 @@ export const Home = () => {
                   {title}
                 </p>
                 <hr />
-                <p className="card-text h6 text-grey serviceSubText">
+                <ReactMarkdown className="card-text h6 text-grey serviceSubText">
                   {subtitle}
-                </p>
+                </ReactMarkdown>
               </div>
             </div>
           ))}
@@ -438,7 +440,7 @@ export const Home = () => {
                       })}
                     </div>
                     <a
-                      class={`carousel-control-prev 
+                      className={`carousel-control-prev 
                       ${videoInfo ? 'invisible' : ' '}
                       ${comingSoonModal ? 'd-none' : ' '}
                       ${isMobile ? '' : 'carousel-control-prev-home'}`}
@@ -447,13 +449,13 @@ export const Home = () => {
                       data-slide="prev"
                     >
                       <span
-                        class="carousel-control-prev-icon"
+                        className="carousel-control-prev-icon"
                         aria-hidden="true"
                       ></span>
-                      <span class="sr-only">Previous</span>
+                      <span className="sr-only">Previous</span>
                     </a>
                     <a
-                      class={`carousel-control-next 
+                      className={`carousel-control-next 
                       ${videoInfo ? 'invisible' : ' '}
                       ${comingSoonModal ? 'd-none' : ' '}
                       ${isMobile ? '' : 'carousel-control-next-home'}`}
@@ -463,10 +465,10 @@ export const Home = () => {
                       id="courselNextBtn"
                     >
                       <span
-                        class="carousel-control-next-icon"
+                        className="carousel-control-next-icon"
                         aria-hidden="true"
                       ></span>
-                      <span class="sr-only">Next</span>
+                      <span className="sr-only">Next</span>
                     </a>
                   </div>
                 </div>
@@ -492,7 +494,7 @@ export const Home = () => {
           </section>
         </div>
 
-        <div id="roadMapSection" className="overflowScroll roadMapSectionStyle">
+        {/* <div id="roadMapSection" className="overflowScroll roadMapSectionStyle">
           <div className="row d-flex justify-content-center mb-5">
             <h1 className="font-weight-bold border-bottom-1">
               {roadMapInfoTitle && roadMapInfoTitle.toUpperCase()}
@@ -536,7 +538,7 @@ export const Home = () => {
               <img alt="" className="dgImage" src={dgImageSrc} />
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div id="theTeamSection" className="meetTheTeamSection">
           <div className="row d-flex justify-content-center mb-3">

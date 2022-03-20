@@ -48,12 +48,12 @@ const Footer = ({ logo, social = [] }) => {
             >
               Metamovers
             </span>
-            <span
+            {/* <span
               className="navlinks"
               onClick={() => scrollToSection('roadMapSection')}
             >
               Roadmap
-            </span>
+            </span> */}
             <span
               className="navlinks"
               onClick={() => scrollToSection('theTeamSection')}

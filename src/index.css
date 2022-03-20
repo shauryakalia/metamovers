@@ -242,7 +242,8 @@ blink_me {
 
 .serviceSubText {
   line-height: 26px;
-  text-align: center;
+  text-align: left;
+  font-size: 1.1rem;
 }
 
 .meetTheTeamImg {

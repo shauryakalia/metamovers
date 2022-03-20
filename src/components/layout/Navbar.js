@@ -124,12 +124,12 @@ const Navbar = ({ title }) => {
           >
             <span>Metamovers </span>
           </span>
-          <span
+          {/* <span
             onClick={() => redirectPage('/', 'roadMapSection')}
             className="text-white font-weight-bold text-uppercase"
           >
             <span>Roadmap </span>
-          </span>
+          </span> */}
           <span
             onClick={() => redirectPage('/', 'theTeamSection')}
             className="text-white font-weight-bold text-uppercase"
@@ -211,7 +211,7 @@ const Navbar = ({ title }) => {
                 Metamovers
               </span>
             </li>
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('roadMapSection')}
                 className={`nav-link hover-underline-animation pb25 ${
@@ -220,7 +220,7 @@ const Navbar = ({ title }) => {
               >
                 Roadmap
               </span>
-            </li>
+            </li> */}
             <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('theTeamSection')}

@@ -166,7 +166,7 @@ export const BuyNow = () => {
           </div>
         </div>
       </div>
-      <div class={`snackbar shadow ${!pending && !error && !receipt ? 'hide' : 'show'} `}>
+      <div className={`snackbar shadow ${!pending && !error && !receipt ? 'hide' : 'show'} `}>
         <div className="d-flex justify-content-between">
           <div className="text-center">
             <div className="text-capitalize">{renderAlert()}</div>
