@@ -23,7 +23,8 @@ import dg16 from "../../imgs/16.png";
 import { isMobile } from "react-device-detect";
 import desktop from "../../imgs/desktop.png";
 
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
 
 const innerHeight = window.innerHeight;
 
@@ -354,7 +355,7 @@ export const Home = () => {
           {features.map(({ title, subtitle, iconUrl }) => (
             <div
               className={`card service-card ${
-                isMobile ? "highlight-card" : "animate-border "
+                isMobile ? "highlight-card" : " "
               } shadow-sm ${isMobile ? "" : "width30"} col-xs-12 m-3`}
             >
               <img
@@ -368,7 +369,7 @@ export const Home = () => {
                   {title}
                 </p>
                 <hr />
-                <ReactMarkdown className="card-text h6 text-grey serviceSubText">
+                <ReactMarkdown className="card-text h6 text-grey serviceSubText" remarkPlugins={[remarkGfm]} >
                   {subtitle}
                 </ReactMarkdown>
               </div>
