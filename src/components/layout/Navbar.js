@@ -67,7 +67,7 @@ const Navbar = ({ title }) => {
         </div>
       </div>
       <div id="myNav" className={`overlay ${open ? 'w-100' : ''}`}>
-        <div className="overlay-content">
+        {/* <div className="overlay-content">
           <span
             onClick={() => redirectPage('/', 'aboutSection')}
             className="text-white font-weight-bold text-uppercase"
@@ -99,7 +99,7 @@ const Navbar = ({ title }) => {
           >
             Buy Now
           </span>
-        </div>
+        </div> */}
       </div>
       <nav
         className={`navbar navbar-expand-lg navbar-light ${
@@ -140,7 +140,7 @@ const Navbar = ({ title }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
+          {/* <ul className="navbar-nav ml-auto">
             <li className="nav-item ">
               <span
                 onClick={() => redirectPage('/', 'aboutSection')}
@@ -198,7 +198,7 @@ const Navbar = ({ title }) => {
                 </span>
               )}
             </li>
-          </ul>
+          </ul> */}
         </div>
       </nav>
     </React.Fragment>

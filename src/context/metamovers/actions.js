@@ -38,8 +38,8 @@ const GFaction = (props) => {
 
   async function getMetamoversInfo() {
     setloading();
-    let res = await axios.get(`${hostName}/metamovers-section`);
-    dispatch({ type: SET_META_INFO, payload: res.data });
+    // let res = await axios.get(`${hostName}/metamovers-section`);
+    dispatch({ type: SET_META_INFO, payload: [] });
   }
 
   async function getRoadMapInfo() {
