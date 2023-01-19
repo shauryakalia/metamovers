@@ -5,11 +5,7 @@ import { isMobile } from 'react-device-detect';
 
 export const BuyNow = () => {
   const githubContext = useContext(GithubContext);
-  const { loading, metamoversInfo, getMetamoversInfo } = githubContext;
-  useEffect(() => {
-    getMetamoversInfo();
-    //eslint-disable-next-line
-  }, []);
+  const { loading, metamoversInfo } = githubContext;
   const { metamovers = [] } = metamoversInfo;
   if (loading) return <Loader />;
   return (
@@ -33,9 +29,9 @@ export const BuyNow = () => {
                       id={`video-${idx}`}
                     >
                       <source
-                        src={child2.videourl}
+                        src={child2}
                         type="video/mp4"
-                        title={`${child2.name}`}
+                        title={`${child2}`}
                       />
                       Your browser does not support the video tag.
                     </video>
