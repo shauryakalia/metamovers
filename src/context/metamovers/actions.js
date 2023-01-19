@@ -11,11 +11,30 @@ import {
   SET_FOOTER_INFO,
 } from '../Types';
 
+const videoUrls = [
+  "https://res.cloudinary.com/metamovers/video/upload/v1639493914/metamovers/Lorenzo_Garcia_wkocpq.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1639406346/metamovers/Jai_Khatri_y5xz7y.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1639406343/metamovers/Camila_Diaz_gya0de.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1639406329/metamovers/Adelola_Usman_qjey76.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1639406327/metamovers/Alma_Cruz_axa8mg.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1639406324/metamovers/Aroha_Kaiwai_xddvbo.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622674/metamovers/Delroy_Brown_he3xky.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622668/metamovers/Fang_Zhao_eecbif.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622667/metamovers/Hamza_Adin_xjgl9i.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622666/metamovers/Tevin_Jackson_kfef0o.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622666/metamovers/Emily_Evans_V2_jcnjsl.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622665/metamovers/Rin_Nakamura_dupqn7.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622662/metamovers/Maria_Isabel_Ramos_xtmrx5.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622659/metamovers/Claire_Fabian_apa7y1.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622659/metamovers/Francis_Owusu_x1wbip.mp4",
+  "https://res.cloudinary.com/metamovers/video/upload/v1638622659/metamovers/aqua_da_silva_1_jeunxg.mp4",
+];
+
 const GFaction = (props) => {
   const initialState = {
     homeInfo: {},
     teamInfo: {},
-    metamoversInfo: {},
+    metamoversInfo: { metamovers: videoUrls },
     roadMapInfo: {},
     footerInfo: {},
     loading: false,
