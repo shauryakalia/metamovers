@@ -29,10 +29,6 @@ export const BuyNow = () => {
     getMintStatus,
     mintLoading,
   } = githubContext;
-  useEffect(() => {
-    getMetamoversInfo();
-    //eslint-disable-next-line
-  }, []);
   const { metamovers = [] } = metamoversInfo;
   const [amount, setAmount] = useState(1);
 
@@ -46,7 +42,7 @@ export const BuyNow = () => {
   const { account, activate } = useEagerConnect();
   const contract = useContract();
 
-  const { currentSupply, mintPrice, maxSupply, whitelistStarted, error: readError } = useReadContract();
+  const { currentSupply, mintPrice, maxSupply, error: readError } = useReadContract();
 
   const {pending: wlPending, receipt: wlReceipt, error: wlTxError, mintWhitelist} = useWhitelistMint()
 
@@ -69,9 +65,7 @@ export const BuyNow = () => {
   };
 
   const handleMint = async () => {
-    if (whitelistStarted) {
-      await mintWhitelist(amount, mintPrice);
-    }
+    await mintWhitelist(amount, mintPrice);
   }
 
   const renderAlert = () => {
@@ -108,9 +102,9 @@ export const BuyNow = () => {
                       id={`video-${idx}`}
                     >
                       <source
-                        src={child2.videourl}
+                        src={child2}
                         type="video/mp4"
-                        title={`${child2.name}`}
+                        title={`${child2}`}
                       />
                       Your browser does not support the video tag.
                     </video>
@@ -188,22 +182,16 @@ export const BuyNow = () => {
               </div>
             </div>
             <hr />
-            {whitelistStarted ? <div /> : (
               <div className={`d-flex justify-content-between mt-3 `}>Please connect your wallet</div>
-            )}
             <div className={`d-flex justify-content-between mt-3 `}>
               <button
                 href="#"
-                className={`btn shadow-sm font-weight-bold  ${
+                className={`btn shadow-sm btn-info font-weight-bold  ${
                   isMobile ? 'w-100' : 'col-md-2'
-                } ${
-                 whitelistStarted
-                    ? ' btn-info'
-                    : 'disabled  btn-secondary cursorDisabled'
                 }`}
                 onClick={handleMint}
               >
-                <i className="fab fa-ethereum"></i> &nbsp; {whitelistStarted ? "Mint" : "Closed"}
+                <i className="fab fa-ethereum"></i> &nbsp; {"Mint"}
                 <span
                   className={`${mintLoading ? 'mintLoader ml-3' : 'd-none'}`}
                 />

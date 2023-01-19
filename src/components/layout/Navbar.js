@@ -111,7 +111,7 @@ const Navbar = ({ title }) => {
         </div>
       </div>
       <div id="myNav" className={`overlay ${open ? 'w-100' : ''}`}>
-        <div className="overlay-content">
+        {/* <div className="overlay-content">
           <span
             onClick={() => redirectPage('/', 'aboutSection')}
             className="text-white font-weight-bold text-uppercase"
@@ -129,7 +129,7 @@ const Navbar = ({ title }) => {
             className="text-white font-weight-bold text-uppercase"
           >
             <span>Roadmap </span>
-          </span> */}
+          </span>
           <span
             onClick={() => redirectPage('/', 'theTeamSection')}
             className="text-white font-weight-bold text-uppercase"
@@ -149,7 +149,7 @@ const Navbar = ({ title }) => {
           >
             Buy Now
           </span>
-        </div>
+        </div> */}
       </div>
       <nav
         className={`navbar navbar-expand-lg navbar-light ${
@@ -191,7 +191,7 @@ const Navbar = ({ title }) => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
               <span
                 onClick={() => redirectPage('/', 'aboutSection')}
                 className={`nav-link hover-underline-animation pb25 ${
@@ -211,7 +211,7 @@ const Navbar = ({ title }) => {
                 Metamovers
               </span>
             </li>
-            {/* <li className="nav-item ">
+            <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('roadMapSection')}
                 className={`nav-link hover-underline-animation pb25 ${
@@ -220,7 +220,7 @@ const Navbar = ({ title }) => {
               >
                 Roadmap
               </span>
-            </li> */}
+            </li>
             <li className="nav-item ">
               <span
                 onClick={() => scrollToSection('theTeamSection')}
@@ -240,9 +240,8 @@ const Navbar = ({ title }) => {
               >
                 Our Story
               </span>
-            </li>
+            </li> */}
             <li className="nav-item grow">
-              {blcktxt ? (
                 <div
                   className={
                     window.location.pathname.includes('/OurStory')
@@ -263,15 +262,7 @@ const Navbar = ({ title }) => {
                     {account ? truncateAccount(account) : 'Connect Wallet'}
                   </span>
                 </div>
-              ) : (
-                <span
-                  className={`navbarBtn shadow-sm`}
-                  onClick={() => redirectPage('/buyNow')}
-                  // onClick={() => redirectPage('/comingSoon')}
-                >
-                  Buy Now
-                </span>
-              )}
+
             </li>
           </ul>
         </div>

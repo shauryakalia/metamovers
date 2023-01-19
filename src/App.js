@@ -25,13 +25,11 @@ const App = () => {
           <div className="App">
             <Navbar title="Metamovers" />
             <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/buyNow" element={<BuyNow />} />
-              <Route exact path="/admin" element={<Admin />} />
-              <Route exact path="/comingSoon" element={<ComingSoon />} />
-              <Route exact path="/OurStory" element={<OurStory />} />
-              <Route element={<NotFound />} />
-            </Routes>
+            <Route exact path="/" element={<BuyNow />} />
+            {/* <Route exact path="/buyNow" element={<BuyNow />} /> */}
+            {/* <Route exact path="/comingSoon" element={<ComingSoon />} /> */}
+            {/* <Route element={<NotFound />} /> */}
+          </Routes>
           </div>
         </Router>
       </GithubState>
