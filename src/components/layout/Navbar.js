@@ -159,7 +159,6 @@ const Navbar = ({ title }) => {
         }`}
       >
         <span
-          onClick={() => redirectPage('/', 'aboutSection')}
           className="navbar-brand text-info"
         >
           <img
@@ -169,7 +168,7 @@ const Navbar = ({ title }) => {
             height="50px"
           />
         </span>
-        <button
+        {/* <button
           className="navbar-toggler customToggler"
           type="button"
           data-toggle="collapse"
@@ -187,7 +186,7 @@ const Navbar = ({ title }) => {
               onClick={() => setNav(!open)}
             ></i>
           )}
-        </button>
+        </button> */}
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
