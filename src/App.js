@@ -26,6 +26,7 @@ const App = () => {
             <Navbar title="Metamovers" />
             <Routes>
             <Route exact path="/" element={<BuyNow />} />
+            <Route exact path="/admin" element={<Admin />} />
             {/* <Route exact path="/buyNow" element={<BuyNow />} /> */}
             {/* <Route exact path="/comingSoon" element={<ComingSoon />} /> */}
             {/* <Route element={<NotFound />} /> */}
